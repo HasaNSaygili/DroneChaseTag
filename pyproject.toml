@@ -13,6 +13,7 @@ dependencies = [
     "numpy",
     "scipy",     # arena bağlantılılık kontrolü (ndimage.label)
     "matplotlib",
+    "imageio[ffmpeg]",   # maç videoları (viewer.py)
 ]
 
 [project.optional-dependencies]
