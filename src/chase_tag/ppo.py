@@ -281,6 +281,14 @@ def train(cfg, out_dir, resume=True, log=print):
     """Eğitimi çalıştırır. out_dir'e config.json, metrics.jsonl ve checkpoint'ler yazılır.
     resume=True ve out_dir'de checkpoint varsa kaldığı yerden devam eder (Colab bağlantısı koparsa)."""
     os.makedirs(out_dir, exist_ok=True)
+    log_file = open(os.path.join(out_dir, "train_log.txt"), "a", encoding="utf-8")
+    screen = log
+
+    def log(msg):  # ekrana ve train_log.txt'ye (makale için her satır saklansın)
+        screen(msg)
+        log_file.write(msg + "\n")
+        log_file.flush()
+
     me = CHASER if cfg.learner == "chaser" else EVADER
     with open(os.path.join(out_dir, "config.json"), "w") as f:
         json.dump(dataclasses.asdict(cfg), f, indent=2)
@@ -334,6 +342,7 @@ def train(cfg, out_dir, resume=True, log=print):
             _save(ckpt, dict(params=params, opt_state=opt_state, update=u + 1, key=key))
             _save(os.path.join(out_dir, f"params_{u + 1:05d}.pkl"), params)
     mfile.close()
+    log_file.close()
     return params
 
 

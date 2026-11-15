@@ -54,9 +54,18 @@ _, (outcomes, lengths, kinds, _) = run(env.reset(jax.random.PRNGKey(1)), opp_ini
 total, rows, mean_len = summarize(outcomes, lengths)
 print(f"değerlendirme: {total} maç | " + " | ".join(f"{k} %{v:.1f}" for k, v in rows.items())
       + f" | ort. süre {mean_len / 50:.1f} s")
-for role, where in crash_breakdown(kinds).items():
+crash = crash_breakdown(kinds)
+for role, where in crash.items():
     if where:
         print(f"  {role} çarpma yerleri: " + ", ".join(f"{k} %{v:.0f}" for k, v in where.items() if v > 0))
+# Sonucu koşu klasörüne de yaz: makaledeki sayılar bu dosyadan gelecek
+ev = dict(params=os.path.basename(path), eval_worlds=a.eval_worlds, eval_steps=MAX_STEPS * 2,
+          arena_seed=cfg["seed"] + 999, overrides=a.set, n_games=int(total), outcomes_pct=rows,
+          mean_len_s=mean_len / 50, crash_pct=crash)
+tag_ = "_".join(s.replace("=", "-") for s in a.set)
+with open(os.path.join(a.run, f"eval_{os.path.splitext(ev['params'])[0]}{'_' + tag_ if tag_ else ''}.json"), "w",
+          encoding="utf-8") as f:
+    json.dump(ev, f, indent=2, ensure_ascii=False)
 
 # ---- Video ----
 env = ChaseTagEnv(2, arenas, opp_crash_reward=ocr)
