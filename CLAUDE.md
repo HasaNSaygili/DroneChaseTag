@@ -3,6 +3,8 @@
 İki simüle drone, World Chase Tag (WCT) kurallarıyla engelli bir arenada 1'e 1 ebelemece oynuyor ve
 self-play RL ile oynamayı sıfırdan öğreniyor. Derin Öğrenme dersi projesi (Hasan Saygılı, bireysel, Rota 2).
 Proposal teslim edildi: `docs/proposal.pdf`. Ders şartları: `docs/DL_Project_Hand-Out.pdf`.
+Repo public (github.com/HasaNSaygili/DroneChaseTag): bu ikisi ve `paper/proposal.tex` (öğrenci no.) sadece
+yerelde, `.gitignore`'da. Commit e-postası GitHub noreply adresi (yerel git config). Public'e kişisel bilgi koyma.
 
 ## Kullanıcıyla çalışma
 - Türkçe, kısa ve sohbet havasında yaz. Uzun dosya/rapor sevmiyor; açıklamaları sohbette ver.

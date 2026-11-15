@@ -1,6 +1,11 @@
 # eski handoff paketi (prototip referansı, sadece yerelde)
 drone_chase_tag_baslangic/
 
+# public repoya girmeyecekler: hocanın ders dokümanı, öğrenci numarası içeren proposal
+docs/DL_Project_Hand-Out.pdf
+docs/proposal.pdf
+paper/proposal.tex
+
 # python
 __pycache__/
 *.egg-info/
