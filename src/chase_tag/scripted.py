@@ -205,6 +205,20 @@ def _closest_points(p, arena):
     return q_box, q_cyl
 
 
+def _open_force(me, threat, use_threat, arena):
+    """OPEN'ın toplam itme kuvveti F (aşağıdaki açıklamaya bkz.)."""
+    away = me - threat
+    d = jnp.linalg.norm(away)
+    F = jnp.where(use_threat, away / (d + _EPS) ** 2, 0.0)
+    F = F + 1.0 / (me + _EPS) - 1.0 / (ARENA - me + _EPS)
+    q_box, q_cyl = _closest_points(me, arena)
+    q = jnp.concatenate([q_box, q_cyl])
+    on = jnp.concatenate([arena.box_on, arena.cyl_on])
+    vec = me - q
+    dist = jnp.linalg.norm(vec, axis=-1, keepdims=True)
+    return F + jnp.sum(jnp.where(on[:, None], vec / (dist + _EPS) ** 2, 0.0), 0)
+
+
 def _evader_one(me, my_vel, chaser, vis, arena):
     """OPEN'ın potansiyel alanı. Her kaynak, kaçanı kendinden uzağa, mesafeyle ters orantılı iter:
          F = Σ (uzaklaşma yönü) / mesafe
@@ -220,27 +234,42 @@ def _evader_one(me, my_vel, chaser, vis, arena):
       * Fren filtresi: OPEN kaçanın hızını fizik motorunda doğrudan atıyor (anında döner); bizim drone gerçek
         kontrolcüyle uçuyor (fren ~0,4 m), o yüzden üstte safety_filter var.
     """
-    # Kovalayan: (ben − o) / d²  = birim uzaklaşma yönü × 1/d
-    away = me - chaser
-    d = jnp.linalg.norm(away)
-    F = jnp.where(vis, away / (d + _EPS) ** 2, 0.0)
+    # Kovalayan: (ben − o)/d² = birim uzaklaşma yönü × 1/d (sadece görünüyorsa)
     # Duvarlar, zemin, tavan: her yüzey kendi normal yönünde 1/mesafe ile iter
-    F = F + 1.0 / (me + _EPS) - 1.0 / (ARENA - me + _EPS)
     # Engeller: en yakın noktadan uzaklaşma yönü × 1/mesafe
-    q_box, q_cyl = _closest_points(me, arena)
-    q = jnp.concatenate([q_box, q_cyl])
-    on = jnp.concatenate([arena.box_on, arena.cyl_on])
-    vec = me - q
-    dist = jnp.linalg.norm(vec, axis=-1, keepdims=True)
-    F = F + jnp.sum(jnp.where(on[:, None], vec / (dist + _EPS) ** 2, 0.0), 0)
+    F = _open_force(me, chaser, vis, arena)
     return safety_filter(_unit(F), G.rays(me, arena), my_vel)
 
 
+F_FULL = 0.5   # OPEN + bellek: toplam kuvvet bundan büyükse tam hız (≈ tek başına 2 m'deki kovalayanın kuvveti)
+
+
+def _evader_mem_one(me, my_vel, last_seen, arena):
+    """OPEN + bellek (bizim eklediğimiz, daha güçlü baseline). OPEN'dan iki farkı var:
+      1. Bellek: kovalayan görünmüyorsa yok sayılmaz; SON GÖRÜLDÜĞÜ yerden kaçılır (last_seen, görünürken
+         gerçek konumdur). OPEN'da görünmeyen kovalayan unutuluyor ve kaçan köşede boşta kalıyordu.
+      2. Hız kuvvetle orantılı (en fazla tam hız): kuvvetlerin dengelendiği noktada OPEN tam hızla ileri
+         geri gidip geliyordu (titreşim, 'chattering'); burada kuvvet zayıflayınca yavaşlayıp havada durur.
+    """
+    F = _open_force(me, last_seen, True, arena)
+    speed = jnp.minimum(1.0, jnp.linalg.norm(F) / F_FULL)
+    return safety_filter(_unit(F) * speed, G.rays(me, arena), my_vel)
+
+
 def evader_policy(es, mem, key):
-    """Kaçanın eylemi (n, 3)."""
+    """Kaçanın eylemi (n, 3): sadık OPEN."""
     pos, vel = es.data.states.pos, es.data.states.vel
     return jax.vmap(_evader_one)(pos[:, EVADER], vel[:, EVADER], pos[:, CHASER], es.visible[:, EVADER],
                                  es.arena), mem
+
+
+def evader_mem_policy(es, mem, key):
+    """Kaçanın eylemi (n, 3): OPEN + bellek."""
+    pos, vel = es.data.states.pos, es.data.states.vel
+    return jax.vmap(_evader_mem_one)(pos[:, EVADER], vel[:, EVADER], es.last_seen[:, EVADER], es.arena), mem
+
+
+EVADERS = {"open": evader_policy, "open_mem": evader_mem_policy}
 
 
 # ---------------------------------------------------------------------------
@@ -250,10 +279,10 @@ def scripted_init(n):
     return chaser_init(n)
 
 
-def scripted_actions(es, mem, key):
-    """Her iki rol için elle yazılmış eylemler: (n, 2, 3) ve yeni bellek."""
+def scripted_actions(es, mem, key, evader="open"):
+    """Her iki rol için elle yazılmış eylemler: (n, 2, 3) ve yeni bellek. evader: 'open' ya da 'open_mem'."""
     a_c, mem = chaser_policy(es, mem, key)
-    a_e, _ = evader_policy(es, None, key)
+    a_e, _ = EVADERS[evader](es, None, key)
     return jnp.stack([a_c, a_e], 1), mem
 
 

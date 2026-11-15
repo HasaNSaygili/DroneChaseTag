@@ -6,6 +6,7 @@ Kullanım:
   python scripts/watch_match.py --live                # MuJoCo penceresinde canlı izle (fareyle kamera)
 """
 import argparse
+import functools
 import os
 
 import jax
@@ -22,13 +23,14 @@ p.add_argument("--phase", type=int, default=1)
 p.add_argument("--obst", type=int, default=6)
 p.add_argument("--games", type=int, default=3)
 p.add_argument("--seed", type=int, default=0)
+p.add_argument("--evader", default="open", choices=["open", "open_mem"])
 p.add_argument("--live", action="store_true")
 p.add_argument("--out", default="videos")
 a = p.parse_args()
 
 arenas = make_arena_set(20, phase=a.phase, n_obst=(a.obst, a.obst), seed=a.seed, verbose=False)
 env = ChaseTagEnv(2, arenas)
-run = make_runner(env, scripted_actions, reset_mem)
+run = make_runner(env, functools.partial(scripted_actions, evader=a.evader), reset_mem)
 # Kayıt sadece 0. dünyadan; istenen sayıda maç bitene kadar yetecek kadar adım
 _, (_, _, rec) = run(env.reset(jax.random.PRNGKey(a.seed)), scripted_init(2), jax.random.PRNGKey(a.seed + 1),
                      MAX_STEPS * a.games)
@@ -40,5 +42,5 @@ for g, game in enumerate(games):
     if a.live:
         play_live(rec, arenas, game)
     else:
-        path = os.path.join(a.out, f"scripted_faz{a.phase}_engel{a.obst}_mac{g}.mp4")
+        path = os.path.join(a.out, f"scripted_{a.evader}_faz{a.phase}_engel{a.obst}_mac{g}.mp4")
         print("  →", save_video(rec, arenas, game, path))
