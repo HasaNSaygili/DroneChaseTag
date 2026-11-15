@@ -26,5 +26,5 @@ paper/*.synctex.gz
 paper/*.bbl
 paper/*.blg
 
-# MuJoCo uyarı günlüğü
+# MuJoCo uyarÄ± gÃ¼nlÃ¼ÄŸÃ¼
 MUJOCO_LOG.TXT
