@@ -5,6 +5,7 @@ import jax.numpy as jnp
 import numpy as np
 import pytest
 
+from chase_tag import geometry as G
 from chase_tag.arenas import dist_to_box, dist_to_cyl, make_arena_set, pack_layout
 from chase_tag.geometry import RAY_MAX, arena_from_set, crashed, line_of_sight, ray_dist
 from chase_tag.rules import ARENA, DRONE_R
@@ -33,6 +34,16 @@ def test_ray_open_arena_hits_wall():
     assert ray_dist(p(4, 3, 1), X, arena()) == pytest.approx(2.0)
     assert ray_dist(p(3, 3, 1.5), Z, arena()) == pytest.approx(0.5)
     assert ray_dist(p(1, 3, 1), -X, arena()) == pytest.approx(1.0)
+
+
+def test_sensor_rays_against_walls():
+    """Gerçek sensör yönleri (bazı bileşenleri 'neredeyse sıfır', örn. cos 270°) duvar mesafesini doğru vermeli.
+    Rastgele yönlü testler bunu yakalamadı: bir hatada 270° ışını -5,6e8 m gösteriyordu."""
+    o = np.array([0.56, 5.56, 1.1], np.float32)
+    got = np.asarray(G.rays(jnp.asarray(o), arena()))
+    for d, r in zip(G.RAY_DIRS, got):
+        t = [((ARENA[k] if d[k] > 0 else 0.0) - o[k]) / d[k] for k in range(3) if abs(d[k]) > 1e-6]
+        assert r == pytest.approx(min(min(t), RAY_MAX), abs=1e-4), d
 
 
 def test_ray_capped_at_ray_max():

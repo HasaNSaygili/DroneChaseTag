@@ -89,6 +89,13 @@ Kural seti bizimkine çok yakın: 0,5 m'de yakalama var, süre dolarsa kaçan ka
   - Tepe hız: CTBR 12,9 m/s ve 12,85 rad/s, hız komutu 10,5 m/s ve 6,4 rad/s.
 - **Eksikler:** taktik analizi, gerçek uçuş testi, sınırlar bölümü ve eğitim süresi yok. "Monoton iyileşme" iddiası tam tutmuyor (örn. Repel 0,89'dan 0,68'e düşüyor).
 
+> **Doğrulama notu (15 Kasım 2026):** Repo (`github.com/KTH-RPL/AMSPB_PEG`) artık 404. Makale (v2) yeniden
+> okundu ve bu bölümle çelişen noktalar çıktı: makalede **p\_old = 0,75 geçmiyor**, ablasyonda 0,5 kullanılıyor
+> (Ek A: p\_old ≥ 0,5 yeterli). Yukarıdaki PPO hiperparametre tablosu (lr, clip, γ, λ, batch, entropi) makalede
+> **bulunamadı**; makale sadece "çevrimiçi erişilebilir" diyor. Ödül katsayıları makalede farklı: yaklaşma
+> κa = 0,5, adım κs = 0,007, yakalama/kaçış κc = κt = 10, gövde hızı 0,005, sınır 0,1 (Tablo II). Ağ 3 katman ×
+> 256. Makaleye bu bölümden sayı aktarmadan önce makalenin kendisinden kontrol et.
+
 **Bizim için çıkarımlar**
 
 1. Kuralları neredeyse aynen alabiliriz: 0,5 m yakalama, süre dolunca kaçan kazanır. Bizdeki fark engeller ve 20 s'lik WCT turu.
@@ -234,6 +241,7 @@ Engelli ortamda yapılan en yakın drone kovalamacası bu. Ama kaçan öğrenmiy
 
 1. Boşluk teyit edildi. Engelli çalışmada kaçan sabit bir script; engelsiz çalışmalarda ise iki taraf da öğreniyor. İkisini birleştiren yok.
 2. Hazır baseline: potansiyel alanlı kaçan (drone'lardan, engellerden ve sınırlardan mesafeyle ters orantılı itilme). Aynen kodlayıp "scripted evader" olarak kullanırız.
+   - **Kod (15 Kasım 2026'da okundu):** github.com/thu-uav/Multi-UAV-pursuit-evasion (MIT), `omni_drones/envs/hide_and_seek/hideandseek.py`, `_get_dummy_policy_prey`. Formül: her kaynak (uzaklaşma yönü)/mesafe ile iter; kovalayan sadece görüş hattı açıksa sayılır; arena sınırı, zemin/tavan (1/z − 1/(H−z)) ve silindirler (yüzeye mesafe); katsayı yok; hız sabit v\_e, yön = toplam kuvvet. Kodda hız normalizasyonu eksen eksen yapılıyor (`norm(dim=1)`, boyutu 1 olan eksen) → çaprazda hız √3 katı; makale "sabit hız" diyor. Bizim uyarlamamız `src/chase_tag/scripted.py`'de (en yakın noktadan mesafe, doğru normalizasyon, fren filtresi).
 3. Sezgisel kovalayanlar engelde ne kadar kötü olduğunu gösteriyor (Wall'da yaklaşık 0,01). Bu, RL kullanmanın doğrudan gerekçesi.
 4. AEG fikri bizim yoğunluk müfredatımıza uyar: başarı oranı 0,5–0,9 arasındaki arenaları tut. Self-play'de iki tarafı dengede tutmak için de işe yarayabilir.
 5. Test seti tasarımını alıyoruz: adlandırılmış, dağılım dışı arena tipleri (duvar, dar geçit, koridor) ile metrikler (yakalama oranı, yakalama süresi, çarpışma oranı; 300 bölüm, ortalama ± std).

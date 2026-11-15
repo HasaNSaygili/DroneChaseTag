@@ -98,8 +98,10 @@ def ray_dist(o, d, arena):
     """o noktasından birim vektör d yönünde en yakın engel ya da sınır yüzeyine mesafe (en fazla RAY_MAX)."""
     t_in, _, hit = _intervals(o, d, arena)
     t_obs = jnp.min(jnp.where(hit, jnp.maximum(t_in, 0.0), jnp.inf))
+    # Duvarlar: sadece o eksende gerçekten hareket varsa (|d| > _EPS). Eşik _safe_inv ile aynı olmalı:
+    # yoksa cos(270°) ≈ -1.8e-16 gibi "neredeyse sıfır" bileşenlerde işaret karışıp mesafe eksi çıkıyordu.
     inv = _safe_inv(d)
-    t_wall = jnp.where(d > 0, (ARENA - o) * inv, jnp.where(d < 0, -o * inv, jnp.inf))
+    t_wall = jnp.where(d > _EPS, (ARENA - o) * inv, jnp.where(d < -_EPS, -o * inv, jnp.inf))
     return jnp.minimum(jnp.minimum(t_obs, jnp.min(t_wall)), RAY_MAX)
 
 
@@ -115,8 +117,8 @@ def line_of_sight(a, b, arena):
     return ~jnp.any(hit & (t_in <= 1.0))
 
 
-def crashed(p, arena):
-    """Drone (DRONE_R yarıçaplı küre) bir engele ya da sınıra değdi mi?"""
+def obstacle_dist(p, arena):
+    """p noktasından en yakın engelin yüzeyine mesafe (içindeyse 0; sınırlar hariç)."""
     # Kutuya mesafe: p'yi kutuya kırp → kutudaki en yakın nokta
     d_box = jnp.linalg.norm(p - jnp.clip(p, arena.boxes[:, 0], arena.boxes[:, 1]), axis=-1)
     # Silindire mesafe: yatayda daireden, dikeyde z aralığından taşmaların bileşkesi
@@ -125,6 +127,11 @@ def crashed(p, arena):
     d_xy = jnp.maximum(rho - c[:, 2], 0.0)
     d_z = jnp.maximum(jnp.maximum(c[:, 3] - p[2], p[2] - c[:, 4]), 0.0)
     d_cyl = jnp.hypot(d_xy, d_z)
-    hit_obs = jnp.any(arena.box_on & (d_box < DRONE_R)) | jnp.any(arena.cyl_on & (d_cyl < DRONE_R))
+    return jnp.minimum(jnp.min(jnp.where(arena.box_on, d_box, jnp.inf)),
+                       jnp.min(jnp.where(arena.cyl_on, d_cyl, jnp.inf)))
+
+
+def crashed(p, arena):
+    """Drone (DRONE_R yarıçaplı küre) bir engele ya da sınıra değdi mi?"""
     out = jnp.any(p < DRONE_R) | jnp.any(p > ARENA - DRONE_R)   # zemin, tavan, duvarlar
-    return hit_obs | out
+    return (obstacle_dist(p, arena) < DRONE_R) | out

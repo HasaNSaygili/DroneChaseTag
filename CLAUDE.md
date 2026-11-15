@@ -88,8 +88,16 @@ Final makalesinde **en az bir ablasyon** zorunlu. Not ağırlığı %25.
   - Elle yazılmış kovalayan rakibi kaybedince son görüldüğü yerde bekliyor (arama yok).
   - Sadece kutu engel; proposal silindir de diyor.
 - A100 hız testi hiç koşmadı: hesap bütçesi bilinmiyor.
-- Yazılanlar (testli): `rules.py`, `arenas.py`, `geometry.py`, `env.py`. Sırada: `scripted.py`
-  (kovalayan: ızgarada en kısa yol + kaybedince arama; kaçan: potansiyel alan, OPEN).
+- Yazılanlar (testli): `rules.py`, `arenas.py`, `geometry.py`, `env.py`, `scripted.py`, `play.py`;
+  `scripts/scripted_match.py`. Sırada: `viewer.py` (maç kaydı → Crazyflow/MuJoCo 3B render: canlı pencere
+  + mp4; render denemesi çalıştı), sonra Colab hız testi.
+- Elle yazılmış rakipler: kovalayan = harita bilir, rakibi görüş hattıyla görür, ızgarada en kısa yol
+  (dalga yayılımı), kaybedince tahmin + rastgele arama. Kaçan = OPEN'ın kodundaki potansiyel alan (bkz.
+  literatür notları bölüm 5). İkisinin üstünde gecikme bilen fren filtresi (TAU 0,15 s, a 3 m/s²).
+  CPU ön sonucu (32 arena, 1500 adım, faz 1; koşu kaydı yok, duman testi): ebeleme %89 / %90 / %82,
+  kaçan çarptı %0 / %8 / %12 (0 / 4 / 8 engel). OPEN kaçanı engellerden faydalanamıyor (saklanmıyor).
+- Literatür notlarındaki KTH bölümünde p\_old = 0,75 ve PPO tablosu makalede bulunamadı (repo 404);
+  not düşüldü, makaleye oradan sayı aktarılmadan kontrol edilmeli.
 - Arena yoğunluğu: 8 engel alanın sadece %10–15'ini kaplıyor (seyrek). Kaplama oranıyla ayarlama ve
   faz 3'te tam boy payını artırma fikri var; maçları izledikten sonra karar verilecek.
 - Yerel ortam: `.venv` (Python 3.12, `pip install -e .`), testler `.venv\Scripts\python.exe -m pytest tests`.

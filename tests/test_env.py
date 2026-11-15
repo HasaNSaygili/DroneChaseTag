@@ -136,6 +136,18 @@ def test_visibility_memory(env, step):
     assert (obs[..., 11:14] == 0).all()                    # rakip hızı gizli
 
 
+def test_scripted_actions_valid():
+    """Elle yazılmış rakipler karışık (faz 3) arenalarda sonlu, birim küre içinde eylem üretmeli."""
+    from chase_tag.arenas import make_arena_set
+    from chase_tag.scripted import scripted_actions, scripted_init
+    e = ChaseTagEnv(N, make_arena_set(4, phase=3, n_obst=(6, 8), seed=0, verbose=False))
+    s = e.reset(jax.random.PRNGKey(0))
+    a, _ = jax.jit(scripted_actions)(s, scripted_init(N), jax.random.PRNGKey(1))
+    a = np.asarray(a)
+    assert a.shape == (N, 2, 3) and np.isfinite(a).all()
+    assert (np.linalg.norm(a, axis=-1) <= 1.0 + 1e-5).all()
+
+
 def test_jitted_scan(env):
     """Bütün oyun döngüsü tek bir derlenmiş scan içinde dönebiliyor mu (eğitimde böyle çalışacak)?"""
     def body(s, k):
