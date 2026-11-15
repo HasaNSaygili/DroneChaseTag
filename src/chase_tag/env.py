@@ -83,8 +83,15 @@ class ChaseTagEnv:
     Sınıf sadece sabit şeyleri tutar (fizik fonksiyonları, arena kümesi); oyunun durumu EnvState'tedir.
     """
 
-    def __init__(self, n_worlds, arena_set, dynamics=Dynamics.so_rpy, device=None):
+    def __init__(self, n_worlds, arena_set, dynamics=Dynamics.so_rpy, device=None, opp_crash_reward=1.0):
+        """opp_crash_reward: biri çarptığında DİĞER tarafın aldığı ödül. 1.0 = WCT kuralı (sahadan çıkan
+        kaybeder, rakibi kazanır). 0.0 = Gavin vd.'nin yolu: rakibi çarptırmak ödüllendirilmez (ablasyon 7).
+        İlk kovalayan eğitiminde ajan elle yazılmış kaçanı rezonansla yere düşürmeyi öğrendi; 0.0 bunu kapatır."""
         self.n = n_worlds
+        table = np.array(REWARD_TABLE)
+        table[E_CRASH, CHASER] = opp_crash_reward
+        table[C_CRASH, EVADER] = opp_crash_reward
+        self.reward_table = table
         self.arena_set = G.arena_from_set(arena_set)           # (n_set, ...)
         self.n_set = self.arena_set.boxes.shape[0]
         device = device or ("gpu" if jax.default_backend() == "gpu" else "cpu")
@@ -208,7 +215,7 @@ class ChaseTagEnv:
         # sadece başlangıç ve bitiş mesafesine bağlı. Bu yüzden ajanı yanlış bir hedefe saptıramaz
         # (Ng vd. 1999), sadece "yaklaşmak iyi" ipucunu erken verir.
         r_shape = jnp.stack([K_APPROACH * (s.dist - dist), jnp.full(self.n, K_SURVIVE)], -1)
-        reward = jnp.asarray(REWARD_TABLE)[outcome] + r_shape
+        reward = jnp.asarray(self.reward_table)[outcome] + r_shape
 
         # Görüş belleği: görüyorsa rakibin yerini güncelle, görmüyorsa son bilinen yer kalır
         vis = jax.vmap(G.line_of_sight)(pos[:, 0], pos[:, 1], s.arena)
@@ -218,6 +225,7 @@ class ChaseTagEnv:
 
         s = EnvState(data=data, ref=ref, arena=s.arena, arena_idx=s.arena_idx, t=t, visible=visible,
                      last_seen=last_seen, unseen=unseen, dist=dist)
-        info = dict(outcome=outcome, length=t, arena_idx=s.arena_idx)
+        kind = jax.vmap(jax.vmap(G.crash_kind, (0, None)))(pos, s.arena)        # (n, 2) nereye çarptı
+        info = dict(outcome=outcome, length=t, arena_idx=s.arena_idx, crash_kind=kind * crash)
         s = self._reset_where(s, done, key)
         return s, reward, done, info

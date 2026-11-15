@@ -69,7 +69,7 @@ def bench_rollout(n, policy_kind):
         else:
             act, mem = scripted_actions(s, mem, k1)
         s, r, d, info = env.step(s, act, k2)
-        if policy_kind != "mlp":
+        if policy_kind != "mlp":  # elle yazılmış kovalayanın belleği
             mem = reset_mem(mem, d)
         return (s, mem), r
 

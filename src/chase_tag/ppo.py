@@ -31,6 +31,7 @@ import optax
 from . import scripted
 from .arenas import make_arena_set
 from .env import CRITIC_DIM, OBS_DIM, ChaseTagEnv
+from .geometry import CRASH_KIND_NAMES
 from .rules import C_CRASH, CHASER, CTRL_HZ, E_CRASH, EVADER, OUTCOME_NAMES, TAG, TIMEOUT
 
 
@@ -42,6 +43,7 @@ class PPOConfig:
     phase: int = 1                   # engel aşaması (arenas.PHASE_KINDS)
     n_obst: tuple = (0, 0)           # arena başına engel sayısı aralığı
     n_arenas: int = 1000             # önceden üretilecek arena sayısı
+    opp_crash_reward: float = 1.0    # rakip çarpınca öbür tarafın ödülü: 1 = WCT kuralı, 0 = Gavin (ablasyon 7)
     # ---- ölçek ----
     n_worlds: int = 16384            # aynı anda oynanan arena sayısı
     n_steps: int = 64                # T: bir turda her arenada kaç adım (batch = n_worlds × T)
@@ -136,6 +138,7 @@ class Transition(NamedTuple):
     done: jax.Array
     outcome: jax.Array
     length: jax.Array
+    crash_kind: jax.Array   # (n, 2) her drone nereye çarptı (geometry.CRASH_KIND_NAMES)
 
 
 # ---------------------------------------------------------------------------
@@ -166,7 +169,7 @@ def make_update(cfg, env, me):
         es, reward, done, info = env.step(es, actions, k_env)
         mem = opp_reset(mem, done)
         tr = Transition(obs, cobs, a, log_prob(mu, std, a), critic_value(params, cobs), reward[:, me], done,
-                        info["outcome"], info["length"])
+                        info["outcome"], info["length"], info["crash_kind"])
         return (params, es, mem), tr
 
     # ---- GAE: avantajları sondan başa doğru hesapla ----
@@ -229,10 +232,13 @@ def make_update(cfg, env, me):
         # ---- ölçümler ----
         d = tr.done
         counts = jnp.sum(jax.nn.one_hot(tr.outcome, len(OUTCOME_NAMES)) * d[..., None], (0, 1))
+        # Çarpma yerleri, rol başına: (2, 5) → [kovalayan, kaçan] × [-, engel, duvar, zemin, tavan]
+        crash_counts = jnp.sum(jax.nn.one_hot(tr.crash_kind, len(CRASH_KIND_NAMES)), (0, 1))
         var_ret = jnp.var(ret)
         metrics = {k: v.mean() for k, v in aux.items()}
         metrics.update(
             outcome_counts=counts,
+            crash_counts=crash_counts,
             ep_len=jnp.sum(tr.length * d) / jnp.maximum(d.sum(), 1),
             reward_per_step=tr.reward.mean(),
             value_mean=tr.value.mean(),
@@ -245,11 +251,20 @@ def make_update(cfg, env, me):
     return jax.jit(update), tx, n_updates
 
 
-def learner_win_rate(counts, me):
-    """Öğrenen rolün kazandığı biten oyunların oranı (karşı taraf çarparsa da kazanılmış sayılır)."""
+def learner_win_rate(counts, me, reward_table):
+    """Öğrenen rolün kazandığı biten oyunların oranı: sonuç ödülü pozitifse kazanmış sayılır
+    (opp_crash_reward = 0 iken rakibi çarptırmak kazanma sayılmaz)."""
     total = counts[1:].sum()
-    wins = counts[TAG] + counts[E_CRASH] if me == CHASER else counts[TIMEOUT] + counts[C_CRASH]
+    wins = sum(counts[k] for k in range(1, len(counts)) if reward_table[k, me] > 0)
     return wins / max(total, 1)
+
+
+def _crash_summary(crash_counts, role):
+    c = crash_counts[role, 1:]
+    tot = c.sum()
+    if tot == 0:
+        return "-"
+    return " ".join(f"{CRASH_KIND_NAMES[i + 1][:3]}{100 * c[i] / tot:.0f}" for i in range(len(c)) if c[i])
 
 
 def _save(path, obj):
@@ -272,7 +287,7 @@ def train(cfg, out_dir, resume=True, log=print):
 
     log(f"arenalar üretiliyor ({cfg.n_arenas}, faz {cfg.phase}, engel {cfg.n_obst})...")
     arenas = make_arena_set(cfg.n_arenas, phase=cfg.phase, n_obst=tuple(cfg.n_obst), seed=cfg.seed, verbose=False)
-    env = ChaseTagEnv(cfg.n_worlds, arenas)
+    env = ChaseTagEnv(cfg.n_worlds, arenas, opp_crash_reward=cfg.opp_crash_reward)
     update, tx, n_updates = make_update(cfg, env, me)
     _, opp_init, _ = make_opponent(cfg.opponent)
 
@@ -293,10 +308,12 @@ def train(cfg, out_dir, resume=True, log=print):
         f"rakip: {cfg.opponent}")
     mfile = open(os.path.join(out_dir, "metrics.jsonl"), "a")
     t0, window = time.perf_counter(), np.zeros(len(OUTCOME_NAMES))
+    crash_window = np.zeros((2, len(CRASH_KIND_NAMES)))
     for u in range(start, n_updates):
         params, opt_state, es, mem, key, m = update(params, opt_state, es, mem, key)
         m = jax.device_get(m)
         window += m["outcome_counts"]
+        crash_window += m["crash_counts"]
         row = {k: (v.tolist() if isinstance(v, np.ndarray) else float(v)) for k, v in m.items()}
         row.update(update=u + 1, steps=(u + 1) * batch, time_s=time.perf_counter() - t0)
         mfile.write(json.dumps(row) + "\n")
@@ -306,10 +323,13 @@ def train(cfg, out_dir, resume=True, log=print):
             pct = lambda k: 100 * window[k] / max(total, 1)
             sps = (u + 1 - start) * batch / (time.perf_counter() - t0)
             log(f"tur {u + 1:4d} | {(u + 1) * batch / 1e6:6.0f} M adım | {sps / 1e6:.2f} M/s | maç {int(total):6d} | "
-                f"kazanma %{100 * learner_win_rate(window, me):5.1f} | ebeleme %{pct(TAG):4.1f} süre %{pct(TIMEOUT):4.1f} "
-                f"K.çarp %{pct(C_CRASH):4.1f} E.çarp %{pct(E_CRASH):4.1f} | süre {m['ep_len'] / CTRL_HZ:4.1f} s | "
-                f"std {m['std']:.2f} kl {m['approx_kl']:.4f} ev {m['explained_var']:.2f}")
+                f"kazanma %{100 * learner_win_rate(window, me, env.reward_table):5.1f} | ebeleme %{pct(TAG):4.1f} "
+                f"süre %{pct(TIMEOUT):4.1f} K.çarp %{pct(C_CRASH):4.1f} E.çarp %{pct(E_CRASH):4.1f} | "
+                f"süre {m['ep_len'] / CTRL_HZ:4.1f} s | std {m['std']:.2f} kl {m['approx_kl']:.4f} "
+                f"ev {m['explained_var']:.2f} | çarpma yeri K[{_crash_summary(crash_window, CHASER)}] "
+                f"E[{_crash_summary(crash_window, EVADER)}]")
             window[:] = 0
+            crash_window[:] = 0
         if (u + 1) % cfg.ckpt_every == 0 or u + 1 == n_updates:
             _save(ckpt, dict(params=params, opt_state=opt_state, update=u + 1, key=key))
             _save(os.path.join(out_dir, f"params_{u + 1:05d}.pkl"), params)

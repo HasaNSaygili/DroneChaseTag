@@ -17,7 +17,7 @@ import jax
 
 from chase_tag.arenas import make_arena_set
 from chase_tag.env import ChaseTagEnv
-from chase_tag.play import make_runner, split_games, summarize
+from chase_tag.play import crash_breakdown, make_runner, split_games, summarize
 from chase_tag.ppo import learned_vs_opponent
 from chase_tag.rules import MAX_STEPS, OUTCOME_NAMES
 from chase_tag.viewer import save_video
@@ -45,20 +45,24 @@ print(f"politika: {path} | öğrenen: {cfg['learner']} | rakip: {cfg['opponent']
 arenas = make_arena_set(200, phase=cfg["phase"], n_obst=tuple(cfg["n_obst"]), seed=cfg["seed"] + 999, verbose=False)
 
 # ---- Değerlendirme: çok arenada, gürültüsüz ----
-env = ChaseTagEnv(a.eval_worlds, arenas)
+ocr = cfg.get("opp_crash_reward", 1.0)
+env = ChaseTagEnv(a.eval_worlds, arenas, opp_crash_reward=ocr)
 policy, opp_init, opp_reset = learned_vs_opponent(params, cfg["learner"], cfg["opponent"], env)
 run = make_runner(env, policy, opp_reset)
-_, (outcomes, lengths, _) = run(env.reset(jax.random.PRNGKey(1)), opp_init(a.eval_worlds), jax.random.PRNGKey(2),
-                                MAX_STEPS * 2)
+_, (outcomes, lengths, kinds, _) = run(env.reset(jax.random.PRNGKey(1)), opp_init(a.eval_worlds),
+                                       jax.random.PRNGKey(2), MAX_STEPS * 2)
 total, rows, mean_len = summarize(outcomes, lengths)
 print(f"değerlendirme: {total} maç | " + " | ".join(f"{k} %{v:.1f}" for k, v in rows.items())
       + f" | ort. süre {mean_len / 50:.1f} s")
+for role, where in crash_breakdown(kinds).items():
+    if where:
+        print(f"  {role} çarpma yerleri: " + ", ".join(f"{k} %{v:.0f}" for k, v in where.items() if v > 0))
 
 # ---- Video ----
-env = ChaseTagEnv(2, arenas)
+env = ChaseTagEnv(2, arenas, opp_crash_reward=ocr)
 policy, opp_init, opp_reset = learned_vs_opponent(params, cfg["learner"], cfg["opponent"], env)
 run = make_runner(env, policy, opp_reset)
-_, (_, _, rec) = run(env.reset(jax.random.PRNGKey(3)), opp_init(2), jax.random.PRNGKey(4), MAX_STEPS * a.games)
+_, (_, _, _, rec) = run(env.reset(jax.random.PRNGKey(3)), opp_init(2), jax.random.PRNGKey(4), MAX_STEPS * a.games)
 os.makedirs(a.out, exist_ok=True)
 name = os.path.basename(os.path.normpath(a.run))
 tag = os.path.splitext(os.path.basename(path))[0]

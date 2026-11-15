@@ -135,3 +135,15 @@ def crashed(p, arena):
     """Drone (DRONE_R yarıçaplı küre) bir engele ya da sınıra değdi mi?"""
     out = jnp.any(p < DRONE_R) | jnp.any(p > ARENA - DRONE_R)   # zemin, tavan, duvarlar
     return (obstacle_dist(p, arena) < DRONE_R) | out
+
+
+# Çarpma yerleri (analiz için): ajan bir yüzeyi sömürüyorsa hangisi olduğunu görmek istiyoruz
+NO_CRASH, HIT_OBSTACLE, HIT_WALL, HIT_FLOOR, HIT_CEILING = range(5)
+CRASH_KIND_NAMES = ["-", "engel", "duvar", "zemin", "tavan"]
+
+
+def crash_kind(p, arena):
+    """Çarptıysa nereye: engel > zemin > tavan > duvar önceliğiyle (aynı anda birden fazlaysa)."""
+    return jnp.select([obstacle_dist(p, arena) < DRONE_R, p[2] < DRONE_R, p[2] > ARENA[2] - DRONE_R,
+                       jnp.any(p[:2] < DRONE_R) | jnp.any(p[:2] > ARENA[:2] - DRONE_R)],
+                      [HIT_OBSTACLE, HIT_FLOOR, HIT_CEILING, HIT_WALL], NO_CRASH)

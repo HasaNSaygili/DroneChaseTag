@@ -23,7 +23,7 @@ def make_runner(env, policy, reset_mem):
         mem = reset_mem(mem, done)
         rec = dict(pos=s.data.states.pos[0], quat=s.data.states.quat[0], visible=s.visible[0, 0],
                    arena_idx=s.arena_idx[0], t=s.t[0], outcome=info["outcome"][0])
-        return (s_next, mem), (info["outcome"], info["length"], rec)
+        return (s_next, mem), (info["outcome"], info["length"], info["crash_kind"], rec)
 
     def run(s, mem, key, n_steps):
         return jax.lax.scan(body, (s, mem), jax.random.split(key, n_steps))
@@ -38,6 +38,18 @@ def summarize(outcomes, lengths):
     total = int(ended.sum())
     rows = {OUTCOME_NAMES[k]: 100.0 * np.mean(outcomes[ended] == k) for k in range(1, len(OUTCOME_NAMES))}
     return total, rows, float(lengths[ended].mean()) if total else float("nan")
+
+
+def crash_breakdown(crash_kind):
+    """Rol başına çarpma yerleri (%): {'kovalayan': {...}, 'kaçan': {...}}."""
+    from .geometry import CRASH_KIND_NAMES
+    ck = np.asarray(crash_kind).reshape(-1, 2)
+    out = {}
+    for role, name in ((0, "kovalayan"), (1, "kaçan")):
+        hits = ck[:, role][ck[:, role] > 0]
+        out[name] = {CRASH_KIND_NAMES[k]: 100.0 * np.mean(hits == k) for k in range(1, len(CRASH_KIND_NAMES))} \
+            if len(hits) else {}
+    return out
 
 
 def split_games(rec):

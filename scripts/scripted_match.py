@@ -24,7 +24,7 @@ for k in [0, 4, 8]:
     env = ChaseTagEnv(n_worlds, arenas)
     run = make_runner(env, functools.partial(scripted_actions, evader=evader), reset_mem)
     t0 = time.perf_counter()
-    _, (outcomes, lengths, _) = run(env.reset(jax.random.PRNGKey(k)), scripted_init(n_worlds),
+    _, (outcomes, lengths, _, _) = run(env.reset(jax.random.PRNGKey(k)), scripted_init(n_worlds),
                                     jax.random.PRNGKey(1000 + k), n_steps)
     total, rows, mean_len = summarize(outcomes, lengths)
     print(f"faz {phase}, engel {k}: {total} maç ({time.perf_counter() - t0:.0f} s) | "

@@ -108,6 +108,19 @@ def test_crash_into_wall(env, step):
     assert hist[first][4][0] == pytest.approx([-1.0 - CRASH_PEN, 1.0], abs=0.02)
 
 
+def test_opp_crash_reward_and_crash_kind():
+    """opp_crash_reward=0: kaçan çarpınca kovalayan ödül almaz (sadece yaklaşma ipucu). Çarpma yeri kaydedilir."""
+    from chase_tag.geometry import HIT_FLOOR
+    e = ChaseTagEnv(N, arena_set([]), opp_crash_reward=0.0)
+    s = place(e.reset(jax.random.PRNGKey(0)), [[[3, 3, 1], [1, 1, 0.04]]] * N)   # kaçan zeminin dibinde
+    _, r, d, info = jax.jit(e.step)(s, ZERO, jax.random.PRNGKey(0))
+    assert np.asarray(d).all()
+    assert np.asarray(r[:, 0]) == pytest.approx(0.0, abs=0.02)                 # kovalayan: 0 (WCT'de +1 olurdu)
+    assert np.asarray(r[:, 1]) == pytest.approx(-1.0 - CRASH_PEN, abs=0.02)    # kaçan: yine cezalı
+    assert (np.asarray(info["crash_kind"][:, 1]) == HIT_FLOOR).all()
+    assert (np.asarray(info["crash_kind"][:, 0]) == 0).all()
+
+
 def test_timeout(env, step):
     s = place(env.reset(jax.random.PRNGKey(5)), [[[1, 1, 1], [5, 5, 1]]] * N)
     s = s._replace(t=jnp.full(N, MAX_STEPS - 1))

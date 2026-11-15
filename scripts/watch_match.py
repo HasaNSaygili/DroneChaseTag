@@ -32,7 +32,7 @@ arenas = make_arena_set(20, phase=a.phase, n_obst=(a.obst, a.obst), seed=a.seed,
 env = ChaseTagEnv(2, arenas)
 run = make_runner(env, functools.partial(scripted_actions, evader=a.evader), reset_mem)
 # Kayıt sadece 0. dünyadan; istenen sayıda maç bitene kadar yetecek kadar adım
-_, (_, _, rec) = run(env.reset(jax.random.PRNGKey(a.seed)), scripted_init(2), jax.random.PRNGKey(a.seed + 1),
+_, (_, _, _, rec) = run(env.reset(jax.random.PRNGKey(a.seed)), scripted_init(2), jax.random.PRNGKey(a.seed + 1),
                      MAX_STEPS * a.games)
 games = split_games(rec)[:a.games]
 os.makedirs(a.out, exist_ok=True)
