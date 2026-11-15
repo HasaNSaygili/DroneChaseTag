@@ -34,6 +34,13 @@ Final makalesinde **en az bir ablasyon** zorunlu. Not ağırlığı %25.
     `crazyflow.sim.functional.state_control(data, cmd)`. Durum: `data.states.pos/vel` (n_worlds, n_drones, 3).
   - Dinamik: önce `Dynamics.so_rpy` (soyutlanmış, hızlı), sonra `first_principles` + CTBR.
   - Drone–drone teması fizikte yok: ebeleme/çarpma mesafe kontrolüyle bizim kodda.
+  - Crazyflow `SCIPY_ARRAY_API=1` ister; `chase_tag/__init__.py` bunu SciPy'den önce ayarlıyor.
+  - Varsayılan drone `cf21B_500` (Crazyflie 2.1 Brushless, model 43 g); seçenekler: cf2x_L250/P250/T350, hb_x500.
+  - Kontrolcünün itki modeli simdeki drone'la uyuşmuyor (gerçek firmware gibi): hedef = "konum + v·dt"
+    verilirse integral terimi çalışmıyor, drone sıfır komutta 0,21 m/s ile yükseliyor. Çözüm (env.py):
+    **tasmalı sanal hedef nokta**, LEASH = 0,1 m. Ölçüm: havada ≤ 8 cm sapma, 2 m/s'ye 0,3–0,4 s, fren 0,4 m,
+    anlık tepe ~2,6 m/s ama 1 s'de en uzun yol düz uçuşla 2,09 m (hileler daha kısa). İvme sınırı denendi,
+    sömürüyü azaltmadı, freni uzattı → kullanılmadı.
 
 ## Oyun kuralları v1 (değiştirmeden önce sor)
 - Arena 6×6×2 m; zemin, tavan, duvarlar sınır. Süre 20 s, kontrol 50 Hz (1000 adım), fizik 500 Hz.
@@ -81,6 +88,11 @@ Final makalesinde **en az bir ablasyon** zorunlu. Not ağırlığı %25.
   - Elle yazılmış kovalayan rakibi kaybedince son görüldüğü yerde bekliyor (arama yok).
   - Sadece kutu engel; proposal silindir de diyor.
 - A100 hız testi hiç koşmadı: hesap bütçesi bilinmiyor.
+- Yazılanlar (testli): `rules.py`, `arenas.py`, `geometry.py`, `env.py`. Sırada: `scripted.py`
+  (kovalayan: ızgarada en kısa yol + kaybedince arama; kaçan: potansiyel alan, OPEN).
+- Arena yoğunluğu: 8 engel alanın sadece %10–15'ini kaplıyor (seyrek). Kaplama oranıyla ayarlama ve
+  faz 3'te tam boy payını artırma fikri var; maçları izledikten sonra karar verilecek.
+- Yerel ortam: `.venv` (Python 3.12, `pip install -e .`), testler `.venv\Scripts\python.exe -m pytest tests`.
 
 ## Klasör yapısı
 ```
