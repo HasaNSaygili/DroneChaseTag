@@ -118,6 +118,14 @@ paper/           IEEEtran.cls, proposal.tex, final makale
 docs/            proposal, ders dokümanı, literatür notları
 ```
 
+## Koşu arşivi (teslim için)
+- Her Colab koşusundan sonra: notebook'un o koşuda kullanılan sürümü `notebooks/runs/<koşu>.ipynb` olarak,
+  kurulum hücresine koşunun commit'i (`git checkout`) sabitlenmiş halde konur. Notebook şablonu tek
+  (`notebooks/train.ipynb`, `RUNS` listesi büyür); arşiv kopyaları tekrar üretilebilirlik için.
+- Koşunun küçük dosyaları (config, log, metrics, eval, grafik, son politika) notebook'un Arşiv hücresiyle
+  zip olarak iner → `experiments/<koşu>/` altına konup commit'lenir. Çıktılı notebook (Colab'dan indirilen)
+  varsa `notebooks/runs/<koşu>_ciktili.ipynb`.
+
 ## Dürüstlük kuralları
 - Sonuçlar sadece simülasyonda; algılama ideal (konum + görüş maskesi). Makalede sınırlılık olarak yaz.
 - Sayı uydurma: her tablo/grafik bir koşuya (`experiments/LOG.md`) dayanmalı.
