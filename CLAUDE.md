@@ -90,9 +90,13 @@ Final makalesinde **en az bir ablasyon** zorunlu. Not ağırlığı %25.
   - Elle yazılmış kovalayan rakibi kaybedince son görüldüğü yerde bekliyor (arama yok).
   - Sadece kutu engel; proposal silindir de diyor.
 - A100 hız testi hiç koşmadı: hesap bütçesi bilinmiyor.
-- Yazılanlar (testli): `rules.py`, `arenas.py`, `geometry.py`, `env.py`, `scripted.py`, `play.py`;
-  `scripts/scripted_match.py`. Sırada: `viewer.py` (maç kaydı → Crazyflow/MuJoCo 3B render: canlı pencere
-  + mp4; render denemesi çalıştı), sonra Colab hız testi.
+- Yazılanlar (testli): `rules.py`, `arenas.py`, `geometry.py`, `env.py`, `scripted.py`, `play.py`, `viewer.py`,
+  `ppo.py`; scriptler `scripts/` (train, watch_policy, watch_match, scripted_match, speedtest); notebook'lar
+  `notebooks/train.ipynb` (Drive'a yazar, checkpoint'ten devam eder) ve `speedtest.ipynb`.
+- PPO doğrulandı (2026-11-16): kovalayan vs OPEN kaçanı, boş arena, opp_crash_reward=0 → 500 M adımda
+  ebeleme %99,4, 4,1 s (bkz. LOG). WCT kuralıyla (opp_crash_reward=1) ise reward hacking: ajan OPEN kaçanını
+  dikey rezonansla yere düşürmeyi öğrendi (ebeleme %0). Sırada: kaçan eğitimi (elle yazılmış kovalayana
+  karşı), sonra boş arenada self-play.
 - Elle yazılmış rakipler: kovalayan = harita bilir, rakibi görüş hattıyla görür, ızgarada en kısa yol
   (dalga yayılımı), kaybedince tahmin + rastgele arama. Kaçan = OPEN'ın kodundaki potansiyel alan (bkz.
   literatür notları bölüm 5). İkisinin üstünde gecikme bilen fren filtresi (TAU 0,15 s, a 3 m/s²).
