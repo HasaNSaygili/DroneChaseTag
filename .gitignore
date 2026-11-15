@@ -1,0 +1,21 @@
+# eski handoff paketi (prototip referansı, sadece yerelde)
+drone_chase_tag_baslangic/
+
+# python
+__pycache__/
+*.egg-info/
+.venv/
+.pytest_cache/
+
+# koşu çıktıları: LOG.md, config.json ve metrics.json repoda kalır, ağır dosyalar kalmaz
+results/
+experiments/*/checkpoints/
+experiments/*/videos/
+
+# latex ara dosyaları
+paper/*.aux
+paper/*.log
+paper/*.out
+paper/*.synctex.gz
+paper/*.bbl
+paper/*.blg
