@@ -104,7 +104,9 @@ Final makalesinde **en az bir ablasyon** zorunlu. Not ağırlığı %25.
   rakip seçimi %50 en son + %50 PFSP (1−x)², havuzda sadece öğrenen politikalar (elle yazılmışlar sadece
   değerlendirmede); havuz kovalayan_0 (ppo-chaser-empty-nocrashrew-s0) + kaçan_0 (ppo-evader-...) ile başlar;
   WCT kuralı (opp_crash_reward=1); SABİT öğrenme oranı (anneal yok); rakipler 16384 dünyanın 8 bloğuna atanır;
-  ilerleme Elo ile (round-robin). Bekleyen: üç koşunun Arşiv zip'leri → experiments/<koşu>/.
+  ilerleme Elo ile (round-robin). Kullanıcı onayladı (2026-11-19).
+- Üç doğrulama koşusunun dosyaları `experiments/<koşu>/` altında (Drive'dan indirildi). Ara rapor sunumu
+  (16 slayt, Türkçe): claude.ai artifact PiPxbcF9gQQyD67yDuMcwh; eğriler `scripts/plot_curves.py` ile.
 - Elle yazılmış rakipler: kovalayan = harita bilir, rakibi görüş hattıyla görür, ızgarada en kısa yol
   (dalga yayılımı), kaybedince tahmin + rastgele arama. Kaçan = OPEN'ın kodundaki potansiyel alan (bkz.
   literatür notları bölüm 5). İkisinin üstünde gecikme bilen fren filtresi (TAU 0,15 s, a 3 m/s²).

@@ -1,0 +1,20 @@
+{
+  "kaynak": "Colab çıktısından elle aktarıldı (2026-11-16; o sürümde watch_policy.py sonucu dosyaya yazmıyordu)",
+  "params": "params_00476.pkl",
+  "eval_worlds": 1024,
+  "eval_steps": 2000,
+  "arena_seed": 999,
+  "n_games": 10102,
+  "outcomes_pct": {
+    "ebeleme": 99.8,
+    "süre doldu": 0.0,
+    "kaçan çarptı": 0.2,
+    "kovalayan çarptı": 0.0,
+    "ikisi çarptı": 0.0
+  },
+  "mean_len_s": 3.8,
+  "crash_pct": {
+    "kovalayan": {},
+    "kaçan": {"duvar": 100.0}
+  }
+}
