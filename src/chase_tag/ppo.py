@@ -47,6 +47,7 @@ class PPOConfig:
     # ---- ölçek ----
     n_worlds: int = 16384            # aynı anda oynanan arena sayısı
     n_steps: int = 64                # T: bir turda her arenada kaç adım (batch = n_worlds × T)
+    n_blocks: int = 8                # arenalar bu kadar bloğa bölünür; self-play'de her blok bir rakiple oynar
     total_steps: int = 500_000_000   # toplam oyun adımı (tek rol)
     # ---- PPO ----
     epochs: int = 4                  # aynı veriyle kaç tur güncelleme
@@ -120,11 +121,17 @@ def critic_value(params, cobs):
 # ---------------------------------------------------------------------------
 # Rakipler: (eylem fonksiyonu, bellek başlatma, bellek sıfırlama)
 # ---------------------------------------------------------------------------
+#
+# Rakip fonksiyonunun imzası: fn(es, mem, key, opp_args, obs_all) -> (eylem (n, 3), mem)
+#   opp_args: rakibin değişen girdileri (self-play'de rakip ağların ağırlıkları); elle yazılmışlar için None
+#   obs_all:  (n, 2, OBS_DIM) iki drone'un gözlemi; öğrenen için zaten hesaplandığından rakip tekrar hesaplamaz
 def make_opponent(name):
     if name in scripted.EVADERS:
-        return scripted.EVADERS[name], (lambda n: None), (lambda mem, done: mem)
+        fn = scripted.EVADERS[name]
+        return (lambda es, mem, key, args, obs: fn(es, mem, key)), (lambda n: None), (lambda mem, done: mem)
     if name == "scripted_chaser":
-        return scripted.chaser_policy, scripted.chaser_init, scripted.reset_mem
+        return ((lambda es, mem, key, args, obs: scripted.chaser_policy(es, mem, key)), scripted.chaser_init,
+                scripted.reset_mem)
     raise ValueError(f"bilinmeyen rakip: {name}")
 
 
@@ -144,10 +151,11 @@ class Transition(NamedTuple):
 # ---------------------------------------------------------------------------
 # Eğitim
 # ---------------------------------------------------------------------------
-def make_update(cfg, env, me):
-    """Tek bir PPO turunu (veri topla + öğren) yapan, derlenmiş fonksiyonu üretir."""
+def make_update(cfg, env, me, opponent=None):
+    """Tek bir PPO turunu (veri topla + öğren) yapan, derlenmiş fonksiyonu üretir.
+    opponent: (fn, init, reset) üçlüsü; verilmezse cfg.opponent'tan (elle yazılmış rakip)."""
     opp = 1 - me
-    opp_fn, _, opp_reset = make_opponent(cfg.opponent)
+    opp_fn, _, opp_reset = opponent or make_opponent(cfg.opponent)
     n, T = cfg.n_worlds, cfg.n_steps
     batch = n * T
     mb_size = batch // cfg.n_minibatches
@@ -158,19 +166,20 @@ def make_update(cfg, env, me):
 
     # ---- 1. Veri toplama: bir oyun adımı ----
     def env_step(carry, key):
-        params, es, mem = carry
+        params, es, mem, opp_args = carry
         k_act, k_opp, k_env = jax.random.split(key, 3)
-        obs = env.observe(es)[:, me]
-        cobs = env.critic_obs(es)[:, me]
+        cobs_all = env.critic_obs(es)                            # (n, 2, CRITIC_DIM); ilk OBS_DIM'i aktör gözlemi
+        obs_all = cobs_all[..., :OBS_DIM]
+        obs, cobs = obs_all[:, me], cobs_all[:, me]
         mu, std = actor_dist(params, obs)
         a = mu + std * jax.random.normal(k_act, mu.shape)      # dağılımdan örnekle (keşif burada)
-        a_opp, mem = opp_fn(es, mem, k_opp)
+        a_opp, mem = opp_fn(es, mem, k_opp, opp_args, obs_all)
         actions = jnp.zeros((n, 2, 3)).at[:, me].set(a).at[:, opp].set(a_opp)
         es, reward, done, info = env.step(es, actions, k_env)
         mem = opp_reset(mem, done)
         tr = Transition(obs, cobs, a, log_prob(mu, std, a), critic_value(params, cobs), reward[:, me], done,
                         info["outcome"], info["length"], info["crash_kind"])
-        return (params, es, mem), tr
+        return (params, es, mem, opp_args), tr
 
     # ---- GAE: avantajları sondan başa doğru hesapla ----
     def compute_gae(tr, last_value):
@@ -208,9 +217,9 @@ def make_update(cfg, env, me):
                    clip_frac=jnp.mean(jnp.abs(ratio - 1) > cfg.clip_eps))     # kırpmaya takılan oran
         return total, aux
 
-    def update(params, opt_state, es, mem, key):
+    def update(params, opt_state, es, mem, key, opp_args=None):
         key, k_roll, k_upd = jax.random.split(key, 3)
-        (_, es, mem), tr = jax.lax.scan(env_step, (params, es, mem), jax.random.split(k_roll, T))
+        (_, es, mem, _), tr = jax.lax.scan(env_step, (params, es, mem, opp_args), jax.random.split(k_roll, T))
         last_value = critic_value(params, env.critic_obs(es)[:, me])
         adv, ret = compute_gae(tr, last_value)
 
@@ -234,11 +243,16 @@ def make_update(cfg, env, me):
         counts = jnp.sum(jax.nn.one_hot(tr.outcome, len(OUTCOME_NAMES)) * d[..., None], (0, 1))
         # Çarpma yerleri, rol başına: (2, 5) → [kovalayan, kaçan] × [-, engel, duvar, zemin, tavan]
         crash_counts = jnp.sum(jax.nn.one_hot(tr.crash_kind, len(CRASH_KIND_NAMES)), (0, 1))
+        # Blok başına sonuç sayıları (n_blocks, 6): self-play'de hangi rakibe karşı ne olduğunu ayırmak için.
+        # Bloklar ardışık: dünya w, w // (n / n_blocks) numaralı blokta.
+        block_counts = jnp.sum((jax.nn.one_hot(tr.outcome, len(OUTCOME_NAMES)) * d[..., None])
+                               .reshape(T, cfg.n_blocks, n // cfg.n_blocks, len(OUTCOME_NAMES)), (0, 2))
         var_ret = jnp.var(ret)
         metrics = {k: v.mean() for k, v in aux.items()}
         metrics.update(
             outcome_counts=counts,
             crash_counts=crash_counts,
+            block_counts=block_counts,
             ep_len=jnp.sum(tr.length * d) / jnp.maximum(d.sum(), 1),
             reward_per_step=tr.reward.mean(),
             value_mean=tr.value.mean(),
@@ -359,7 +373,7 @@ def learned_vs_opponent(params, learner, opponent, env, deterministic=True):
         k1, k2 = jax.random.split(key)
         mu, std = actor_dist(params, env.observe(es)[:, me])
         a = mu if deterministic else mu + std * jax.random.normal(k1, mu.shape)
-        a_opp, mem = opp_fn(es, mem, k2)
+        a_opp, mem = opp_fn(es, mem, k2, None, None)
         n = a.shape[0]
         return jnp.zeros((n, 2, 3)).at[:, me].set(a).at[:, 1 - me].set(a_opp), mem
 
