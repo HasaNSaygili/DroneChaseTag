@@ -89,14 +89,22 @@ Final makalesinde **en az bir ablasyon** zorunlu. Not ağırlığı %25.
   - Bağlantılılık kontrolü yok (kapalı cep → kaçan bedavaya kazanır).
   - Elle yazılmış kovalayan rakibi kaybedince son görüldüğü yerde bekliyor (arama yok).
   - Sadece kutu engel; proposal silindir de diyor.
-- A100 hız testi hiç koşmadı: hesap bütçesi bilinmiyor.
+- A100 hız testi yapıldı (2026-11-15): 32768 dünyada ~1,06 M adım/s; eğitimde 16384 × 64 ile ~1,9 M adım/s
+  (1e9 adım ≈ 10–16 dk). Bütçe rahat.
 - Yazılanlar (testli): `rules.py`, `arenas.py`, `geometry.py`, `env.py`, `scripted.py`, `play.py`, `viewer.py`,
   `ppo.py`; scriptler `scripts/` (train, watch_policy, watch_match, scripted_match, speedtest); notebook'lar
   `notebooks/train.ipynb` (Drive'a yazar, checkpoint'ten devam eder) ve `speedtest.ipynb`.
 - PPO doğrulandı (2026-11-16): kovalayan vs OPEN kaçanı, boş arena, opp_crash_reward=0 → 500 M adımda
   ebeleme %99,4, 4,1 s (bkz. LOG). WCT kuralıyla (opp_crash_reward=1) ise reward hacking: ajan OPEN kaçanını
-  dikey rezonansla yere düşürmeyi öğrendi (ebeleme %0). Sırada: kaçan eğitimi (elle yazılmış kovalayana
-  karşı), sonra boş arenada self-play.
+  dikey rezonansla yere düşürmeyi öğrendi (ebeleme %0). Kaçan doğrulaması da başarılı (2026-11-16): elle
+  yazılmış kovalayana karşı süre doldu %99,8 (γ 0,998); taktik: çoğunlukla dikey düzlemde daire çizme
+  (saf takibe karşı bilinen kaçış).
+- Sırada: **boş arenada self-play** (`selfplay.py` yazılmadı). Önerilen tasarım, kullanıcı onayı bekliyor:
+  sırayla eğitim; sıra değişimi = EN SON rakibe karşı kazanma ≥ %60, en az 20 M, en fazla 100 M adım;
+  rakip seçimi %50 en son + %50 PFSP (1−x)², havuzda sadece öğrenen politikalar (elle yazılmışlar sadece
+  değerlendirmede); havuz kovalayan_0 (ppo-chaser-empty-nocrashrew-s0) + kaçan_0 (ppo-evader-...) ile başlar;
+  WCT kuralı (opp_crash_reward=1); SABİT öğrenme oranı (anneal yok); rakipler 16384 dünyanın 8 bloğuna atanır;
+  ilerleme Elo ile (round-robin). Bekleyen: üç koşunun Arşiv zip'leri → experiments/<koşu>/.
 - Elle yazılmış rakipler: kovalayan = harita bilir, rakibi görüş hattıyla görür, ızgarada en kısa yol
   (dalga yayılımı), kaybedince tahmin + rastgele arama. Kaçan = OPEN'ın kodundaki potansiyel alan (bkz.
   literatür notları bölüm 5). İkisinin üstünde gecikme bilen fren filtresi (TAU 0,15 s, a 3 m/s²).
