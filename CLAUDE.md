@@ -129,9 +129,10 @@ docs/            proposal, ders dokümanı, literatür notları
 ```
 
 ## Koşu arşivi (teslim için)
-- Her Colab koşusundan sonra: notebook'un o koşuda kullanılan sürümü `notebooks/runs/<koşu>.ipynb` olarak,
-  kurulum hücresine koşunun commit'i (`git checkout`) sabitlenmiş halde konur. Notebook şablonu tek
-  (`notebooks/train.ipynb`, `RUNS` listesi büyür); arşiv kopyaları tekrar üretilebilirlik için.
+- Her Colab koşusunun KENDİ notebook'u `notebooks/runs/<koşu>.ipynb`; koşudan ÖNCE oluşturulur ve kullanıcı
+  koşuyu ondan başlatır (kullanıcı isteği, 2026-11-19). `python scripts/archive_notebook.py <koşu>:<nb_commit>:<kod_commit>`
+  şablondan (`notebooks/train.ipynb`, `RUNS` listesi büyür) üretir, kodu commit'e sabitler ve
+  `notebooks/README.md`'deki Colab link listesini günceller. Kullanıcıya hep runs/ altındaki linki ver.
 - Koşunun küçük dosyaları (config, log, metrics, eval, grafik, son politika) notebook'un Arşiv hücresiyle
   zip olarak iner → `experiments/<koşu>/` altına konup commit'lenir. Çıktılı notebook (Colab'dan indirilen)
   varsa `notebooks/runs/<koşu>_ciktili.ipynb`.
