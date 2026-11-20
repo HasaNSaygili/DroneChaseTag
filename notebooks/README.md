@@ -8,6 +8,8 @@ Her koşunun kendi notebook'u `runs/` altında; kod o koşunun sürümüne sabit
 | `ppo-chaser-empty-nocrashrew-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/ppo-chaser-empty-nocrashrew-s0.ipynb) |
 | `ppo-chaser-empty-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/ppo-chaser-empty-s0.ipynb) |
 | `ppo-evader-empty-nocrashrew-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/ppo-evader-empty-nocrashrew-s0.ipynb) |
+| `sp-empty-ent-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-empty-ent-s0.ipynb) |
 | `sp-empty-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-empty-s0.ipynb) |
+| `sp-faz1-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-faz1-s0.ipynb) |
 
 Diğerleri: `train.ipynb` (şablon: yeni koşular buradan türetilir), `speedtest.ipynb` (A100 hız testi).
