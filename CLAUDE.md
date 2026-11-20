@@ -110,8 +110,13 @@ Final makalesinde **en az bir ablasyon** zorunlu. Not ağırlığı %25.
   sınırlar (`squash_mean=True`, varsayılan). 1–6 numaralı koşuların politikaları doymuş; onları squash'lı koda
   başlangıç olarak VERME (tanh'ın düz bölgesinde kalırlar). Eski koşular `squash_mean` anahtarı olmadan, False ile
   değerlendirilir (watch_policy bunu yapıyor). Tanı: `scripts/check_saturation.py`.
-- Sırada (2026-11-20): engelli arenada SIFIRDAN doğrulama: `ppo-chaser-faz1-s0` (vs OPEN) ve `ppo-evader-faz1-s0`
-  (vs elle yazılmış kovalayan); sonra bunlarla başlayan yeni engelli self-play; eval.py (Elo).
+- Entropi taraması (sweep-ent-chaser-faz1, 2026-11-20): ent 0–0,002 iyi ve birbirine yakın (ebeleme ~%30),
+  ≥ 0,004 zararlı (std sınırsız büyüyor). Gaz pedalı çözülmüş. Yeni darboğaz: kovalayan rakibi görüş hattından
+  kaybedince arayamıyor (süre dolan maçlarda rakip %14 görünür). Seçilen entropi 0,001.
+- Sırada (2026-11-21): `sweep-obs-chaser-faz1` = tam gözlem kontrolü (`full_obs=True`, ablasyon 2'nin ilk verisi)
+  + maskeli 1,5 milyar adım. Sonuca göre hafıza (GRU / rakip geçmişi) kararı; sonra elle yazılmışlara karşı
+  temel koşular (3 seed), yeni engelli self-play, eval.py (Elo). Eski `ppo-chaser-faz1-s0` / `ppo-evader-faz1-s0`
+  notebook'ları geçersiz (koşulmayacak).
 - Üç doğrulama koşusunun dosyaları `experiments/<koşu>/` altında (Drive'dan indirildi). Ara rapor sunumu
   (16 slayt, Türkçe): claude.ai artifact PiPxbcF9gQQyD67yDuMcwh; eğriler `scripts/plot_curves.py` ile.
 - Elle yazılmış rakipler: kovalayan = harita bilir, rakibi görüş hattıyla görür, ızgarada en kısa yol

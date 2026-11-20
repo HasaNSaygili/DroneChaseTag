@@ -149,6 +149,20 @@ def test_visibility_memory(env, step):
     assert (obs[..., 11:14] == 0).all()                    # rakip hızı gizli
 
 
+def test_full_obs():
+    """full_obs=True: duvar arkasındaki rakip aktör gözleminde gerçek yeriyle görünür; oyunun görüş durumu
+    (s.visible) değişmez, yani elle yazılmış rakipler etkilenmez."""
+    e = ChaseTagEnv(N, arena_set([]), full_obs=True)
+    wall = G.arena_from_set(pack_layout(np.array([WALL]), np.zeros((0, 5))))
+    s = place(e.reset(jax.random.PRNGKey(7)), [[[1.5, 3, 1], [4.5, 3, 1]]] * N, arena=wall)
+    # Görmüyor ve son görülen yer eskimiş olsun
+    s = s._replace(visible=jnp.zeros((N, 2), bool), last_seen=jnp.full((N, 2, 3), 1.0), unseen=jnp.full((N, 2), 3.0))
+    obs = np.asarray(e.observe(s))
+    np.testing.assert_allclose(obs[:, 0, 6:9], [[3.0 / 6, 0, 0]] * N, atol=1e-5)   # gerçek göreli konum / 6 m
+    assert (obs[..., 9] == 1).all() and (obs[..., 10] == 0).all()                 # görünür, "görmeme süresi" 0
+    assert not np.asarray(s.visible).any()
+
+
 def test_scripted_actions_valid():
     """Elle yazılmış rakipler karışık (faz 3) arenalarda sonlu, birim küre içinde eylem üretmeli."""
     from chase_tag.arenas import make_arena_set

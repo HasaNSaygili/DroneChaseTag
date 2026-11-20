@@ -63,6 +63,7 @@ class PPOConfig:
     hidden: int = 256
     init_log_std: float = -0.5       # başlangıç keşif gürültüsü: std = e^-0.5 ≈ 0.6
     squash_mean: bool = True         # eylem ortalaması tanh ile [-1, 1]'de; False = eski (2026-11-20 öncesi) davranış
+    full_obs: bool = False           # True: aktör rakibi hep görür (kontrol deneyi / ablasyon 2), bkz. ChaseTagEnv
     # ---- kayıt ----
     seed: int = 0
     log_every: int = 5               # kaç turda bir satır yazdır
@@ -330,7 +331,7 @@ def train(cfg, out_dir, resume=True, log=print):
 
     log(f"arenalar üretiliyor ({cfg.n_arenas}, faz {cfg.phase}, engel {cfg.n_obst})...")
     arenas = make_arena_set(cfg.n_arenas, phase=cfg.phase, n_obst=tuple(cfg.n_obst), seed=cfg.seed, verbose=False)
-    env = ChaseTagEnv(cfg.n_worlds, arenas, opp_crash_reward=cfg.opp_crash_reward)
+    env = ChaseTagEnv(cfg.n_worlds, arenas, opp_crash_reward=cfg.opp_crash_reward, full_obs=cfg.full_obs)
     update, tx, n_updates = make_update(cfg, env, me)
     _, opp_init, _ = make_opponent(cfg.opponent)
 

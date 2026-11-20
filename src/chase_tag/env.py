@@ -83,11 +83,17 @@ class ChaseTagEnv:
     Sınıf sadece sabit şeyleri tutar (fizik fonksiyonları, arena kümesi); oyunun durumu EnvState'tedir.
     """
 
-    def __init__(self, n_worlds, arena_set, dynamics=Dynamics.so_rpy, device=None, opp_crash_reward=1.0):
+    def __init__(self, n_worlds, arena_set, dynamics=Dynamics.so_rpy, device=None, opp_crash_reward=1.0,
+                 full_obs=False):
         """opp_crash_reward: biri çarptığında DİĞER tarafın aldığı ödül. 1.0 = WCT kuralı (sahadan çıkan
         kaybeder, rakibi kazanır). 0.0 = Gavin vd.'nin yolu: rakibi çarptırmak ödüllendirilmez (ablasyon 7).
-        İlk kovalayan eğitiminde ajan elle yazılmış kaçanı rezonansla yere düşürmeyi öğrendi; 0.0 bunu kapatır."""
+        İlk kovalayan eğitiminde ajan elle yazılmış kaçanı rezonansla yere düşürmeyi öğrendi; 0.0 bunu kapatır.
+
+        full_obs: True ise AKTÖR gözleminde rakip hep görünür (gerçek konum ve hız; engel arkasında bile).
+        Kontrol deneyi / ablasyon 2 (maskeli vs tam gözlem). Sadece ağların gözlemini değiştirir: oyunun
+        görüş durumu (s.visible, last_seen) aynı kalır, elle yazılmış rakipler hâlâ maskeli oynar."""
         self.n = n_worlds
+        self.full_obs = full_obs
         table = np.array(REWARD_TABLE)
         table[E_CRASH, CHASER] = opp_crash_reward
         table[C_CRASH, EVADER] = opp_crash_reward
@@ -156,14 +162,17 @@ class ChaseTagEnv:
         """Aktör gözlemi (n, 2, OBS_DIM), her drone kendi bakış açısından. Değerler kabaca [-1, 1]."""
         pos, vel = s.data.states.pos, s.data.states.vel
         rays = self._rays(s) if rays is None else rays
-        vis = s.visible[..., None]
+        if self.full_obs:   # kontrol deneyi: rakip hep görünür, "son görülen yer" hep gerçek yeri
+            vis, target, unseen = jnp.ones_like(s.visible)[..., None], _swap(pos), jnp.zeros_like(s.unseen)
+        else:
+            vis, target, unseen = s.visible[..., None], s.last_seen, s.unseen
         t_left = jnp.broadcast_to((1.0 - s.t / MAX_STEPS)[:, None, None], vis.shape)
         return jnp.concatenate([
             pos / ARENA * 2 - 1,                              # kendi konumum
             vel / V_MAX,                                      # kendi hızım
-            (s.last_seen - pos) / ARENA[0],                   # rakibe (ya da son görüldüğü yere) vektör
+            (target - pos) / ARENA[0],                        # rakibe (ya da son görüldüğü yere) vektör
             vis.astype(jnp.float32),                          # şu an görüyor muyum
-            jnp.minimum(s.unseen, UNSEEN_CAP)[..., None] / UNSEEN_CAP,  # kaç saniyedir görmüyorum
+            jnp.minimum(unseen, UNSEEN_CAP)[..., None] / UNSEEN_CAP,    # kaç saniyedir görmüyorum
             jnp.where(vis, _swap(vel), 0.0) / V_MAX,          # rakibin hızı (sadece görüyorsam)
             rays / G.RAY_MAX,                                 # etrafımdaki engeller
             t_left,                                           # kalan süre

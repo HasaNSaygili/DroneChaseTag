@@ -65,6 +65,7 @@ class SelfPlayConfig:
     max_grad_norm: float = 0.5
     hidden: int = 256
     squash_mean: bool = True              # eylem ortalaması tanh ile sınırlı (bkz. ppo.actor_dist)
+    full_obs: bool = False                # True: iki taraf da rakibi hep görür (ablasyon 2)
     gamma_chaser: float = 0.995           # ufuk ~4 s
     gamma_evader: float = 0.998           # ufuk ~10 s (kaçanın ödülü 20 s sonunda)
     # ---- self-play ----
@@ -88,7 +89,7 @@ def role_ppo_cfg(sp, role):
     """Bir rol için PPO ayarları (ppo.make_update bunları kullanır)."""
     keys = ("phase", "n_obst", "n_arenas", "opp_crash_reward", "n_worlds", "n_steps", "n_blocks", "epochs",
             "n_minibatches", "gae_lambda", "clip_eps", "vf_coef", "ent_coef", "lr", "max_grad_norm", "hidden",
-            "squash_mean", "seed")
+            "squash_mean", "full_obs", "seed")
     return PPOConfig(learner=role, opponent="pool", anneal_lr=False,
                      gamma=sp.gamma_chaser if role == "chaser" else sp.gamma_evader,
                      **{k: getattr(sp, k) for k in keys})
@@ -150,7 +151,7 @@ def train_selfplay(sp, out_dir, resume=True, log=print):
 
     log(f"arenalar üretiliyor ({sp.n_arenas}, faz {sp.phase}, engel {sp.n_obst})...")
     arenas = make_arena_set(sp.n_arenas, phase=sp.phase, n_obst=tuple(sp.n_obst), seed=sp.seed, verbose=False)
-    env = ChaseTagEnv(sp.n_worlds, arenas, opp_crash_reward=sp.opp_crash_reward)
+    env = ChaseTagEnv(sp.n_worlds, arenas, opp_crash_reward=sp.opp_crash_reward, full_obs=sp.full_obs)
     role_idx = {"chaser": CHASER, "evader": EVADER}
     cfgs = {r: role_ppo_cfg(sp, r) for r in ROLES}
     updates, txs = {}, {}

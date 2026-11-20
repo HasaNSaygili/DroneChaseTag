@@ -47,7 +47,8 @@ arenas = make_arena_set(200, phase=cfg["phase"], n_obst=tuple(cfg["n_obst"]), se
 # ---- Değerlendirme: çok arenada, gürültüsüz ----
 ocr = cfg.get("opp_crash_reward", 1.0)
 squash = cfg.get("squash_mean", False)        # ayar yoksa eski koşu: ortalama sınırsızdı
-env = ChaseTagEnv(a.eval_worlds, arenas, opp_crash_reward=ocr)
+full_obs = cfg.get("full_obs", False)          # tam gözlemle eğitildiyse öyle değerlendir
+env = ChaseTagEnv(a.eval_worlds, arenas, opp_crash_reward=ocr, full_obs=full_obs)
 policy, opp_init, opp_reset = learned_vs_opponent(params, cfg["learner"], cfg["opponent"], env, squash=squash)
 run = make_runner(env, policy, opp_reset)
 _, (outcomes, lengths, kinds, _) = run(env.reset(jax.random.PRNGKey(1)), opp_init(a.eval_worlds),
@@ -69,7 +70,7 @@ with open(os.path.join(a.run, f"eval_{os.path.splitext(ev['params'])[0]}{'_' + t
     json.dump(ev, f, indent=2, ensure_ascii=False)
 
 # ---- Video ----
-env = ChaseTagEnv(2, arenas, opp_crash_reward=ocr)
+env = ChaseTagEnv(2, arenas, opp_crash_reward=ocr, full_obs=full_obs)
 policy, opp_init, opp_reset = learned_vs_opponent(params, cfg["learner"], cfg["opponent"], env, squash=squash)
 run = make_runner(env, policy, opp_reset)
 _, (_, _, _, rec) = run(env.reset(jax.random.PRNGKey(3)), opp_init(2), jax.random.PRNGKey(4), MAX_STEPS * a.games)
