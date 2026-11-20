@@ -244,7 +244,8 @@ def train_selfplay(sp, out_dir, resume=True, log=print):
                     f"en son rakibe karşı kazanma %{100 * win_latest:5.1f} | havuz ort. %{100 * ema[role][:pool.n].mean():5.1f} | "
                     f"ebeleme %{pct(TAG):4.1f} süre %{pct(TIMEOUT):4.1f} K.çarp %{pct(C_CRASH):4.1f} "
                     f"E.çarp %{pct(E_CRASH):4.1f} | süre {m['ep_len'] / CTRL_HZ:4.1f} s | std {m['std']:.2f} "
-                    f"kl {m['approx_kl']:.4f} | çarpma K[{_crash_summary(crash_window, CHASER)}] "
+                    f"kl {m['approx_kl']:.4f} | gaz: hız {m['act_speed']:.2f} kırpılan %{100 * m['act_clip_frac']:.0f} "
+                    f"düz %{100 * m['pre_sat_frac']:.0f} | çarpma K[{_crash_summary(crash_window, CHASER)}] "
                     f"E[{_crash_summary(crash_window, EVADER)}]")
                 window[:] = 0
                 crash_window[:] = 0

@@ -256,7 +256,20 @@ def make_update(cfg, env, me, opponent=None):
         block_counts = jnp.sum((jax.nn.one_hot(tr.outcome, len(OUTCOME_NAMES)) * d[..., None])
                                .reshape(T, cfg.n_blocks, n // cfg.n_blocks, len(OUTCOME_NAMES)), (0, 2))
         var_ret = jnp.var(ret)
+        # ---- gaz pedalı (doyma) ölçüleri ----
+        # Ortam eylemin boyunu 1'e kırpıyor. Denenen eylemlerin çoğu kırpılıyorsa denemeler aynı eyleme dönüşür.
+        a_norm = jnp.linalg.norm(tr.action, axis=-1)
+        # tanh'tan ÖNCEKİ ham ortalama: |x| > 2,65 ise tanh(x) > 0,99, yani o eksende eğim ~0 ve ajan
+        # "tam gaz" alışkanlığından ancak çok yavaş vazgeçebilir. (Gözlemlerin bir örneği üstünde ölçülür.)
+        pre = mlp(params["actor"], data[0][:8192])
+        metrics_sat = dict(
+            act_clip_frac=jnp.mean(a_norm > 1.0),              # denenen eylemlerin kırpılan oranı
+            act_speed=jnp.mean(jnp.minimum(a_norm, 1.0)),      # komut edilen ortalama hız (1 = tam gaz)
+            pre_abs=jnp.mean(jnp.abs(pre)),                    # ham ortalamanın büyüklüğü
+            pre_sat_frac=jnp.mean(jnp.abs(pre) > 2.65),         # tanh'ın düz bölgesindeki eksen oranı
+        )
         metrics = {k: v.mean() for k, v in aux.items()}
+        metrics.update(metrics_sat)
         metrics.update(
             outcome_counts=counts,
             crash_counts=crash_counts,
@@ -356,7 +369,8 @@ def train(cfg, out_dir, resume=True, log=print):
                 f"kazanma %{100 * learner_win_rate(window, me, env.reward_table):5.1f} | ebeleme %{pct(TAG):4.1f} "
                 f"süre %{pct(TIMEOUT):4.1f} K.çarp %{pct(C_CRASH):4.1f} E.çarp %{pct(E_CRASH):4.1f} | "
                 f"süre {m['ep_len'] / CTRL_HZ:4.1f} s | std {m['std']:.2f} kl {m['approx_kl']:.4f} "
-                f"ev {m['explained_var']:.2f} | çarpma yeri K[{_crash_summary(crash_window, CHASER)}] "
+                f"ev {m['explained_var']:.2f} | gaz: hız {m['act_speed']:.2f} kırpılan %{100 * m['act_clip_frac']:.0f} "
+                f"düz %{100 * m['pre_sat_frac']:.0f} | çarpma yeri K[{_crash_summary(crash_window, CHASER)}] "
                 f"E[{_crash_summary(crash_window, EVADER)}]")
             window[:] = 0
             crash_window[:] = 0

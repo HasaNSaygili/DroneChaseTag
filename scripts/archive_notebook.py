@@ -3,7 +3,8 @@ sürümünden alınır, RUN o koşuya ayarlanır ve kurulum hücresine koşunun 
 koşu kendi notebook'undan, kendi kod sürümüyle tekrar çalıştırılabilir. Koşudan ÖNCE de çalıştırılabilir:
 kullanıcı koşuyu bu notebook'tan başlatır.
 
-Kullanım (repo kökünden):  python scripts/archive_notebook.py <koşu>:<notebook_commit>:<kod_commit> ...
+Kullanım (repo kökünden):  python scripts/archive_notebook.py <koşu>:<notebook_commit>:<kod_commit>[:<şablon>] ...
+  şablon varsayılan notebooks/train.ipynb; tarama için notebooks/sweep.ipynb (koşu adı = tarama adı).
 Sonra notebooks/README.md'deki listeyi günceller.
 """
 import json
@@ -14,10 +15,12 @@ import sys
 
 COLAB = "https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/"
 
-RUNS = [tuple(a.split(":")) for a in sys.argv[1:]]  # koşu:notebook_sürümü:kod_commit'i
+RUNS = [a.split(":") for a in sys.argv[1:]]  # koşu:notebook_sürümü:kod_commit'i[:şablon]
 os.makedirs("notebooks/runs", exist_ok=True)
-for run, nb_rev, code_rev in RUNS:
-    raw = subprocess.run(["git", "show", f"{nb_rev}:notebooks/train.ipynb"], capture_output=True, check=True).stdout
+for parts in RUNS:
+    run, nb_rev, code_rev = parts[:3]
+    template = parts[3] if len(parts) > 3 else "notebooks/train.ipynb"
+    raw = subprocess.run(["git", "show", f"{nb_rev}:{template}"], capture_output=True, check=True).stdout
     nb = json.loads(raw.decode("utf-8"))
     for c in nb["cells"]:
         src = "".join(c["source"])
@@ -26,6 +29,9 @@ for run, nb_rev, code_rev in RUNS:
             c["source"] = src.splitlines(keepends=True)
         if c["cell_type"] == "code" and src.startswith("# Bütün koşular"):
             src = re.sub(r"^RUN = .*$", f'RUN = "{run}"', src, count=1, flags=re.M)
+            c["source"] = src.splitlines(keepends=True)
+        if c["cell_type"] == "code" and "SWEEP_NAME = " in src:
+            src = re.sub(r"^SWEEP_NAME = .*$", f'SWEEP_NAME = "{run}"', src, count=1, flags=re.M)
             c["source"] = src.splitlines(keepends=True)
         if c["cell_type"] == "markdown" and src.startswith("# Drone Chase Tag"):
             src += (f"\n\n**Bu notebook `{run}` koşusuna ait.** Kod `{code_rev}` sürümüne sabitli; "
@@ -44,7 +50,8 @@ lines = ["# Notebook'lar", "",
          "*Çalışma zamanı → A100 GPU* seç, hücreleri sırayla çalıştır. Sonuçlar: `../experiments/LOG.md`.", "",
          "| Koşu | Colab |", "|---|---|"]
 lines += [f"| `{r}` | [aç]({COLAB}{r}.ipynb) |" for r in runs]
-lines += ["", "Diğerleri: `train.ipynb` (şablon: yeni koşular buradan türetilir), `speedtest.ipynb` (A100 hız testi).", ""]
+lines += ["", "Diğerleri: `train.ipynb` (tek koşu şablonu), `sweep.ipynb` (tarama şablonu: birkaç koşu arka arkaya + "
+          "karşılaştırma), `speedtest.ipynb` (A100 hız testi).", ""]
 with open("notebooks/README.md", "w", encoding="utf-8") as f:
     f.write("\n".join(lines))
 print("notebooks/README.md")
