@@ -13,6 +13,7 @@ Her koşunun kendi notebook'u `runs/` altında; kod o koşunun sürümüne sabit
 | `sp-empty-ent-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-empty-ent-s0.ipynb) |
 | `sp-empty-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-empty-s0.ipynb) |
 | `sp-faz1-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-faz1-s0.ipynb) |
+| `sweep-base-faz1` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sweep-base-faz1.ipynb) |
 | `sweep-ent-chaser-faz1` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sweep-ent-chaser-faz1.ipynb) |
 | `sweep-obs-chaser-faz1` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sweep-obs-chaser-faz1.ipynb) |
 
