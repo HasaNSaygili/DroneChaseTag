@@ -13,5 +13,6 @@ Her koşunun kendi notebook'u `runs/` altında; kod o koşunun sürümüne sabit
 | `sp-empty-ent-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-empty-ent-s0.ipynb) |
 | `sp-empty-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-empty-s0.ipynb) |
 | `sp-faz1-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-faz1-s0.ipynb) |
+| `sweep-ent-chaser-faz1` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sweep-ent-chaser-faz1.ipynb) |
 
-Diğerleri: `train.ipynb` (şablon: yeni koşular buradan türetilir), `speedtest.ipynb` (A100 hız testi).
+Diğerleri: `train.ipynb` (tek koşu şablonu), `sweep.ipynb` (tarama şablonu: birkaç koşu arka arkaya + karşılaştırma), `speedtest.ipynb` (A100 hız testi).
