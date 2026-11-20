@@ -1,0 +1,295 @@
+arenalar üretiliyor (1000, faz 1, engel (0, 0))...
+
+=== nesil 0 · öğrenen: kovalayan · rakip havuzu: 1 kaçan (en son: kaçan_0) ===
+nesil  0 kovalayan tur   5 |    5 M | 0.13 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 70.5 | ebeleme %100.0 süre % 0.0 K.çarp % 0.0 E.çarp % 0.0 | süre  5.2 s | std 0.18 kl 0.0086 | çarpma K[-] E[duv100]
+nesil  0 kovalayan tur  10 |   10 M | 0.23 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 82.6 | ebeleme %100.0 süre % 0.0 K.çarp % 0.0 E.çarp % 0.0 | süre  5.2 s | std 0.18 kl 0.0099 | çarpma K[-] E[duv100]
+nesil  0 kovalayan tur  15 |   16 M | 0.31 M/s | en son rakibe karşı kazanma % 99.3 | havuz ort. % 89.4 | ebeleme %99.3 süre % 0.0 K.çarp % 0.7 E.çarp % 0.0 | süre  4.6 s | std 0.18 kl 0.0069 | çarpma K[tav100] E[duv100]
+nesil  0 kovalayan tur  20 |   21 M | 0.38 M/s | en son rakibe karşı kazanma % 77.0 | havuz ort. % 86.3 | ebeleme %77.0 süre %22.9 K.çarp % 0.1 E.çarp % 0.0 | süre  6.9 s | std 0.18 kl 0.0046 | çarpma K[tav100] E[duv100]
+--- nesil 0 bitti (eşik): kovalayan, 21 M adım, 0.9 dk, en son rakibe karşı %77.0 → havuza kovalayan_1 olarak eklendi
+
+=== nesil 1 · öğrenen: kaçan · rakip havuzu: 2 kovalayan (en son: kovalayan_1) ===
+nesil  1 kaçan     tur   5 |    5 M | 0.23 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 31.2 | ebeleme %100.0 süre % 0.0 K.çarp % 0.0 E.çarp % 0.0 | süre  4.0 s | std 0.20 kl 0.0037 | çarpma K[-] E[duv100]
+nesil  1 kaçan     tur  10 |   10 M | 0.39 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 18.4 | ebeleme %100.0 süre % 0.0 K.çarp % 0.0 E.çarp % 0.0 | süre  4.0 s | std 0.20 kl 0.0044 | çarpma K[-] E[duv100]
+nesil  1 kaçan     tur  15 |   16 M | 0.51 M/s | en son rakibe karşı kazanma %  0.1 | havuz ort. % 10.9 | ebeleme %99.8 süre % 0.0 K.çarp % 0.1 E.çarp % 0.0 | süre  4.3 s | std 0.20 kl 0.0042 | çarpma K[tav100] E[duv100]
+nesil  1 kaçan     tur  20 |   21 M | 0.59 M/s | en son rakibe karşı kazanma % 12.0 | havuz ort. % 13.2 | ebeleme %84.5 süre %14.8 K.çarp % 0.6 E.çarp % 0.2 | süre  6.5 s | std 0.20 kl 0.0053 | çarpma K[tav100] E[duv100]
+nesil  1 kaçan     tur  25 |   26 M | 0.66 M/s | en son rakibe karşı kazanma % 12.2 | havuz ort. % 14.0 | ebeleme %85.4 süre %12.2 K.çarp % 2.1 E.çarp % 0.4 | süre  6.8 s | std 0.19 kl 0.0047 | çarpma K[tav100] E[duv100]
+nesil  1 kaçan     tur  30 |   31 M | 0.72 M/s | en son rakibe karşı kazanma % 13.1 | havuz ort. % 13.7 | ebeleme %85.6 süre %11.7 K.çarp % 1.8 E.çarp % 0.9 | süre  7.1 s | std 0.19 kl 0.0046 | çarpma K[tav100] E[duv100]
+nesil  1 kaçan     tur  35 |   37 M | 0.76 M/s | en son rakibe karşı kazanma % 16.0 | havuz ort. % 14.6 | ebeleme %83.2 süre %13.4 K.çarp % 2.7 E.çarp % 0.8 | süre  8.0 s | std 0.19 kl 0.0050 | çarpma K[tav100] E[duv98 tav2]
+nesil  1 kaçan     tur  40 |   42 M | 0.80 M/s | en son rakibe karşı kazanma % 22.0 | havuz ort. % 17.7 | ebeleme %77.2 süre %18.8 K.çarp % 2.9 E.çarp % 1.2 | süre  8.6 s | std 0.19 kl 0.0069 | çarpma K[tav100] E[duv99 tav1]
+nesil  1 kaçan     tur  45 |   47 M | 0.83 M/s | en son rakibe karşı kazanma % 31.3 | havuz ort. % 23.7 | ebeleme %69.2 süre %28.2 K.çarp % 2.3 E.çarp % 0.2 | süre  9.4 s | std 0.19 kl 0.0043 | çarpma K[tav100] E[duv72 tav28]
+nesil  1 kaçan     tur  50 |   52 M | 0.86 M/s | en son rakibe karşı kazanma % 35.7 | havuz ort. % 27.5 | ebeleme %64.3 süre %32.6 K.çarp % 2.7 E.çarp % 0.4 | süre  9.6 s | std 0.19 kl 0.0049 | çarpma K[tav100] E[duv8 tav92]
+nesil  1 kaçan     tur  55 |   58 M | 0.88 M/s | en son rakibe karşı kazanma % 41.2 | havuz ort. % 33.3 | ebeleme %58.7 süre %35.4 K.çarp % 4.9 E.çarp % 1.1 | süre 10.6 s | std 0.19 kl 0.0056 | çarpma K[tav100] E[duv5 tav95]
+nesil  1 kaçan     tur  60 |   63 M | 0.90 M/s | en son rakibe karşı kazanma % 43.1 | havuz ort. % 36.6 | ebeleme %56.7 süre %34.0 K.çarp % 8.5 E.çarp % 0.8 | süre 10.8 s | std 0.19 kl 0.0050 | çarpma K[tav100] E[duv30 tav70]
+nesil  1 kaçan     tur  65 |   68 M | 0.92 M/s | en son rakibe karşı kazanma % 46.8 | havuz ort. % 40.3 | ebeleme %52.1 süre %33.1 K.çarp %13.1 E.çarp % 1.7 | süre 11.7 s | std 0.19 kl 0.0106 | çarpma K[tav100] E[duv23 tav77]
+nesil  1 kaçan     tur  70 |   73 M | 0.94 M/s | en son rakibe karşı kazanma % 45.4 | havuz ort. % 41.8 | ebeleme %52.0 süre %22.6 K.çarp %22.2 E.çarp % 3.1 | süre 10.8 s | std 0.19 kl 0.0051 | çarpma K[tav100] E[duv78 tav22]
+nesil  1 kaçan     tur  75 |   79 M | 0.95 M/s | en son rakibe karşı kazanma % 50.2 | havuz ort. % 44.7 | ebeleme %48.9 süre %20.7 K.çarp %28.8 E.çarp % 1.6 | süre 11.6 s | std 0.19 kl 0.0068 | çarpma K[tav100] E[duv33 tav67]
+nesil  1 kaçan     tur  80 |   84 M | 0.97 M/s | en son rakibe karşı kazanma % 50.0 | havuz ort. % 45.7 | ebeleme %50.1 süre %10.6 K.çarp %38.0 E.çarp % 1.3 | süre 10.9 s | std 0.19 kl 0.0066 | çarpma K[tav100] E[duv30 tav70]
+nesil  1 kaçan     tur  85 |   89 M | 0.98 M/s | en son rakibe karşı kazanma % 50.4 | havuz ort. % 46.3 | ebeleme %48.6 süre % 5.2 K.çarp %44.7 E.çarp % 1.4 | süre  9.9 s | std 0.19 kl 0.0060 | çarpma K[tav100] E[duv33 tav67]
+nesil  1 kaçan     tur  90 |   94 M | 0.99 M/s | en son rakibe karşı kazanma % 47.2 | havuz ort. % 47.1 | ebeleme %50.7 süre % 2.1 K.çarp %45.5 E.çarp % 1.7 | süre  9.0 s | std 0.19 kl 0.0052 | çarpma K[tav100] E[duv71 tav29]
+nesil  1 kaçan     tur  95 |  100 M | 1.00 M/s | en son rakibe karşı kazanma % 50.6 | havuz ort. % 45.5 | ebeleme %46.4 süre % 0.7 K.çarp %49.4 E.çarp % 3.4 | süre  8.6 s | std 0.19 kl 0.0048 | çarpma K[tav100] E[duv88 tav12]
+nesil  1 kaçan     tur  96 |  101 M | 1.00 M/s | en son rakibe karşı kazanma % 51.5 | havuz ort. % 46.3 | ebeleme %46.3 süre % 1.0 K.çarp %49.9 E.çarp % 2.8 | süre  8.6 s | std 0.19 kl 0.0056 | çarpma K[duv0 tav100] E[duv96 tav4]
+--- nesil 1 bitti (en fazla adım): kaçan, 101 M adım, 1.7 dk, en son rakibe karşı %51.5 → havuza kaçan_1 olarak eklendi
+
+=== nesil 2 · öğrenen: kovalayan · rakip havuzu: 2 kaçan (en son: kaçan_1) ===
+nesil  2 kovalayan tur   5 |    5 M | 0.24 M/s | en son rakibe karşı kazanma % 91.2 | havuz ort. % 73.7 | ebeleme %84.8 süre % 0.0 K.çarp % 8.5 E.çarp % 6.7 | süre  5.3 s | std 0.18 kl 0.0105 | çarpma K[duv0 tav100] E[duv91 tav9]
+nesil  2 kovalayan tur  10 |   10 M | 0.40 M/s | en son rakibe karşı kazanma % 75.2 | havuz ort. % 77.5 | ebeleme %70.4 süre % 0.0 K.çarp %24.6 E.çarp % 5.0 | süre  5.3 s | std 0.18 kl 0.0064 | çarpma K[duv0 tav100] E[duv91 tav9]
+nesil  2 kovalayan tur  15 |   16 M | 0.51 M/s | en son rakibe karşı kazanma % 90.2 | havuz ort. % 84.6 | ebeleme %85.0 süre % 0.0 K.çarp % 6.9 E.çarp % 8.1 | süre  6.7 s | std 0.18 kl 0.0098 | çarpma K[tav100] E[duv93 tav7]
+nesil  2 kovalayan tur  20 |   21 M | 0.60 M/s | en son rakibe karşı kazanma % 61.2 | havuz ort. % 80.6 | ebeleme %58.9 süre %35.3 K.çarp % 0.5 E.çarp % 5.3 | süre 11.7 s | std 0.18 kl 0.0061 | çarpma K[tav100] E[duv95 tav5]
+--- nesil 2 bitti (eşik): kovalayan, 21 M adım, 0.6 dk, en son rakibe karşı %61.2 → havuza kovalayan_2 olarak eklendi
+
+=== nesil 3 · öğrenen: kaçan · rakip havuzu: 3 kovalayan (en son: kovalayan_2) ===
+nesil  3 kaçan     tur   5 |    5 M | 0.40 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 34.9 | ebeleme %96.2 süre % 0.0 K.çarp % 0.2 E.çarp % 3.6 | süre  5.3 s | std 0.19 kl 0.0043 | çarpma K[tav100] E[duv89 tav11]
+nesil  3 kaçan     tur  10 |   10 M | 0.60 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 29.8 | ebeleme %91.3 süre % 0.0 K.çarp % 6.7 E.çarp % 2.0 | süre  5.7 s | std 0.19 kl 0.0060 | çarpma K[tav100] E[duv93 tav7]
+nesil  3 kaçan     tur  15 |   16 M | 0.72 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 30.0 | ebeleme %77.6 süre % 0.0 K.çarp %19.1 E.çarp % 3.3 | süre  6.5 s | std 0.19 kl 0.0049 | çarpma K[tav100] E[duv96 tav4]
+nesil  3 kaçan     tur  20 |   21 M | 0.80 M/s | en son rakibe karşı kazanma %  0.1 | havuz ort. % 31.5 | ebeleme %75.6 süre % 1.6 K.çarp %18.2 E.çarp % 4.7 | süre  6.7 s | std 0.19 kl 0.0040 | çarpma K[tav100] E[duv91 tav9]
+nesil  3 kaçan     tur  25 |   26 M | 0.86 M/s | en son rakibe karşı kazanma %  0.2 | havuz ort. % 31.5 | ebeleme %84.0 süre % 2.2 K.çarp % 8.0 E.çarp % 5.8 | süre  6.4 s | std 0.19 kl 0.0038 | çarpma K[tav100] E[duv87 tav13]
+nesil  3 kaçan     tur  30 |   31 M | 0.90 M/s | en son rakibe karşı kazanma %  0.4 | havuz ort. % 31.9 | ebeleme %83.5 süre % 2.1 K.çarp % 8.5 E.çarp % 5.9 | süre  5.6 s | std 0.19 kl 0.0043 | çarpma K[tav100] E[duv59 tav41]
+nesil  3 kaçan     tur  35 |   37 M | 0.94 M/s | en son rakibe karşı kazanma %  0.4 | havuz ort. % 27.7 | ebeleme %88.9 süre % 1.6 K.çarp % 6.3 E.çarp % 3.2 | süre  5.9 s | std 0.19 kl 0.0044 | çarpma K[tav100] E[duv39 tav61]
+nesil  3 kaçan     tur  40 |   42 M | 0.96 M/s | en son rakibe karşı kazanma %  0.4 | havuz ort. % 29.6 | ebeleme %85.7 süre % 1.4 K.çarp % 8.7 E.çarp % 4.2 | süre  5.7 s | std 0.19 kl 0.0042 | çarpma K[tav100] E[duv36 tav64]
+nesil  3 kaçan     tur  45 |   47 M | 0.99 M/s | en son rakibe karşı kazanma %  0.8 | havuz ort. % 29.6 | ebeleme %95.5 süre % 2.3 K.çarp % 0.3 E.çarp % 1.9 | süre  5.7 s | std 0.19 kl 0.0059 | çarpma K[tav100] E[duv50 tav50]
+nesil  3 kaçan     tur  50 |   52 M | 1.01 M/s | en son rakibe karşı kazanma %  1.5 | havuz ort. % 29.8 | ebeleme %93.6 süre % 4.0 K.çarp % 0.3 E.çarp % 2.2 | süre  5.5 s | std 0.18 kl 0.0048 | çarpma K[tav100] E[duv22 tav78]
+nesil  3 kaçan     tur  55 |   58 M | 1.02 M/s | en son rakibe karşı kazanma %  3.7 | havuz ort. % 30.0 | ebeleme %93.8 süre % 4.3 K.çarp % 0.3 E.çarp % 1.6 | süre  5.6 s | std 0.18 kl 0.0041 | çarpma K[tav100] E[duv11 tav89]
+nesil  3 kaçan     tur  60 |   63 M | 1.03 M/s | en son rakibe karşı kazanma %  8.7 | havuz ort. % 30.6 | ebeleme %90.5 süre % 7.8 K.çarp % 0.3 E.çarp % 1.4 | süre  6.2 s | std 0.18 kl 0.0045 | çarpma K[tav100] E[duv17 tav83]
+nesil  3 kaçan     tur  65 |   68 M | 1.05 M/s | en son rakibe karşı kazanma % 13.6 | havuz ort. % 31.7 | ebeleme %82.4 süre %12.6 K.çarp % 0.7 E.çarp % 4.4 | süre  6.7 s | std 0.18 kl 0.0073 | çarpma K[tav100] E[duv6 tav94]
+nesil  3 kaçan     tur  70 |   73 M | 1.06 M/s | en son rakibe karşı kazanma % 17.9 | havuz ort. % 32.9 | ebeleme %79.8 süre %16.7 K.çarp % 0.8 E.çarp % 2.6 | süre  7.7 s | std 0.18 kl 0.0051 | çarpma K[tav100] E[duv4 tav96]
+nesil  3 kaçan     tur  75 |   79 M | 1.07 M/s | en son rakibe karşı kazanma % 24.0 | havuz ort. % 35.3 | ebeleme %68.4 süre %20.7 K.çarp % 9.4 E.çarp % 1.5 | süre  8.3 s | std 0.18 kl 0.0066 | çarpma K[tav100] E[duv7 tav93]
+nesil  3 kaçan     tur  80 |   84 M | 1.07 M/s | en son rakibe karşı kazanma % 31.8 | havuz ort. % 37.5 | ebeleme %61.7 süre %24.3 K.çarp %10.8 E.çarp % 3.3 | süre  8.6 s | std 0.18 kl 0.0058 | çarpma K[tav100] E[duv5 tav95]
+nesil  3 kaçan     tur  85 |   89 M | 1.08 M/s | en son rakibe karşı kazanma % 35.0 | havuz ort. % 37.5 | ebeleme %62.3 süre %28.5 K.çarp % 5.2 E.çarp % 3.9 | süre  9.4 s | std 0.18 kl 0.0048 | çarpma K[tav100] E[duv14 tav86]
+nesil  3 kaçan     tur  90 |   94 M | 1.09 M/s | en son rakibe karşı kazanma % 37.7 | havuz ort. % 40.5 | ebeleme %58.9 süre %31.9 K.çarp % 6.4 E.çarp % 2.8 | süre  9.9 s | std 0.18 kl 0.0056 | çarpma K[duv0 tav100] E[duv80 tav20]
+nesil  3 kaçan     tur  95 |  100 M | 1.09 M/s | en son rakibe karşı kazanma % 39.9 | havuz ort. % 44.0 | ebeleme %56.0 süre %34.2 K.çarp % 7.4 E.çarp % 2.4 | süre 10.7 s | std 0.18 kl 0.0053 | çarpma K[duv0 tav100] E[duv72 tav28]
+nesil  3 kaçan     tur  96 |  101 M | 1.09 M/s | en son rakibe karşı kazanma % 40.3 | havuz ort. % 44.4 | ebeleme %54.7 süre %34.8 K.çarp % 7.7 E.çarp % 2.7 | süre 10.4 s | std 0.18 kl 0.0064 | çarpma K[tav100] E[duv58 tav42]
+--- nesil 3 bitti (en fazla adım): kaçan, 101 M adım, 1.5 dk, en son rakibe karşı %40.3 → havuza kaçan_2 olarak eklendi
+
+=== nesil 4 · öğrenen: kovalayan · rakip havuzu: 3 kaçan (en son: kaçan_2) ===
+nesil  4 kovalayan tur   5 |    5 M | 1.21 M/s | en son rakibe karşı kazanma % 96.4 | havuz ort. % 79.0 | ebeleme %95.5 süre % 0.0 K.çarp % 3.0 E.çarp % 1.5 | süre  5.3 s | std 0.18 kl 0.0127 | çarpma K[tav100] E[duv71 tav29]
+nesil  4 kovalayan tur  10 |   10 M | 1.20 M/s | en son rakibe karşı kazanma % 97.5 | havuz ort. % 85.3 | ebeleme %95.9 süre % 0.0 K.çarp % 1.8 E.çarp % 2.3 | süre  4.9 s | std 0.18 kl 0.0093 | çarpma K[tav100] E[duv79 tav21]
+nesil  4 kovalayan tur  15 |   16 M | 1.20 M/s | en son rakibe karşı kazanma % 99.3 | havuz ort. % 89.8 | ebeleme %95.9 süre % 0.0 K.çarp % 0.3 E.çarp % 3.8 | süre  5.6 s | std 0.18 kl 0.0073 | çarpma K[duv4 tav96] E[duv87 tav13]
+nesil  4 kovalayan tur  20 |   21 M | 1.20 M/s | en son rakibe karşı kazanma % 54.0 | havuz ort. % 89.0 | ebeleme %64.0 süre %34.7 K.çarp % 0.1 E.çarp % 1.2 | süre  7.9 s | std 0.18 kl 0.0051 | çarpma K[tav100] E[duv74 tav26]
+nesil  4 kovalayan tur  21 |   22 M | 1.20 M/s | en son rakibe karşı kazanma % 78.4 | havuz ort. % 89.5 | ebeleme %84.1 süre % 6.8 K.çarp % 0.2 E.çarp % 8.9 | süre  5.7 s | std 0.18 kl 0.0066 | çarpma K[tav100] E[duv12 tav88]
+--- nesil 4 bitti (eşik): kovalayan, 22 M adım, 0.3 dk, en son rakibe karşı %78.4 → havuza kovalayan_3 olarak eklendi
+
+=== nesil 5 · öğrenen: kaçan · rakip havuzu: 4 kovalayan (en son: kovalayan_3) ===
+nesil  5 kaçan     tur   5 |    5 M | 1.21 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 32.5 | ebeleme %98.9 süre % 0.0 K.çarp % 0.6 E.çarp % 0.5 | süre  5.1 s | std 0.18 kl 0.0065 | çarpma K[tav100] E[duv54 tav46]
+nesil  5 kaçan     tur  10 |   10 M | 1.21 M/s | en son rakibe karşı kazanma %  0.1 | havuz ort. % 28.0 | ebeleme %95.4 süre % 0.0 K.çarp % 3.0 E.çarp % 1.6 | süre  4.8 s | std 0.18 kl 0.0071 | çarpma K[tav100] E[duv89 tav11]
+nesil  5 kaçan     tur  15 |   16 M | 1.21 M/s | en son rakibe karşı kazanma %  0.1 | havuz ort. % 26.3 | ebeleme %95.2 süre % 0.0 K.çarp % 1.8 E.çarp % 3.0 | süre  4.9 s | std 0.18 kl 0.0058 | çarpma K[tav100] E[duv94 tav6]
+nesil  5 kaçan     tur  20 |   21 M | 1.21 M/s | en son rakibe karşı kazanma %  5.1 | havuz ort. % 32.5 | ebeleme %67.8 süre %30.7 K.çarp % 0.8 E.çarp % 0.6 | süre  9.3 s | std 0.18 kl 0.0045 | çarpma K[duv1 tav99] E[duv73 tav27]
+nesil  5 kaçan     tur  25 |   26 M | 1.21 M/s | en son rakibe karşı kazanma % 10.6 | havuz ort. % 32.9 | ebeleme %82.5 süre %13.1 K.çarp % 2.6 E.çarp % 1.8 | süre  7.2 s | std 0.18 kl 0.0086 | çarpma K[duv1 tav99] E[duv44 tav56]
+nesil  5 kaçan     tur  30 |   31 M | 1.20 M/s | en son rakibe karşı kazanma % 21.3 | havuz ort. % 33.7 | ebeleme %76.2 süre %19.8 K.çarp % 2.4 E.çarp % 1.6 | süre  8.6 s | std 0.18 kl 0.0107 | çarpma K[duv1 tav99] E[duv59 tav41]
+nesil  5 kaçan     tur  35 |   37 M | 1.20 M/s | en son rakibe karşı kazanma % 33.8 | havuz ort. % 37.8 | ebeleme %56.7 süre %39.7 K.çarp % 0.2 E.çarp % 3.4 | süre 11.1 s | std 0.18 kl 0.0058 | çarpma K[duv15 tav85] E[duv54 tav46]
+nesil  5 kaçan     tur  40 |   42 M | 1.20 M/s | en son rakibe karşı kazanma % 42.2 | havuz ort. % 42.1 | ebeleme %50.0 süre %47.7 K.çarp % 0.1 E.çarp % 2.3 | süre 12.1 s | std 0.18 kl 0.0071 | çarpma K[duv14 tav86] E[duv86 tav14]
+nesil  5 kaçan     tur  45 |   47 M | 1.20 M/s | en son rakibe karşı kazanma % 41.5 | havuz ort. % 44.8 | ebeleme %44.2 süre %32.5 K.çarp %20.6 E.çarp % 2.7 | süre 10.3 s | std 0.18 kl 0.0060 | çarpma K[tav100] E[duv59 tav41]
+nesil  5 kaçan     tur  50 |   52 M | 1.20 M/s | en son rakibe karşı kazanma % 45.1 | havuz ort. % 45.1 | ebeleme %48.9 süre %31.2 K.çarp %16.8 E.çarp % 3.0 | süre 10.4 s | std 0.18 kl 0.0057 | çarpma K[tav100] E[duv26 tav74]
+nesil  5 kaçan     tur  55 |   58 M | 1.20 M/s | en son rakibe karşı kazanma % 47.8 | havuz ort. % 44.0 | ebeleme %54.1 süre %38.7 K.çarp % 6.5 E.çarp % 0.7 | süre 11.2 s | std 0.18 kl 0.0123 | çarpma K[tav100] E[duv55 tav45]
+nesil  5 kaçan     tur  60 |   63 M | 1.20 M/s | en son rakibe karşı kazanma % 49.8 | havuz ort. % 50.3 | ebeleme %43.8 süre %50.5 K.çarp % 4.7 E.çarp % 1.0 | süre 13.2 s | std 0.17 kl 0.0055 | çarpma K[tav100] E[duv28 tav72]
+nesil  5 kaçan     tur  65 |   68 M | 1.20 M/s | en son rakibe karşı kazanma % 50.5 | havuz ort. % 51.3 | ebeleme %44.3 süre %50.7 K.çarp % 4.4 E.çarp % 0.5 | süre 11.9 s | std 0.17 kl 0.0063 | çarpma K[tav100] E[duv45 tav55]
+nesil  5 kaçan     tur  70 |   73 M | 1.20 M/s | en son rakibe karşı kazanma % 51.4 | havuz ort. % 52.6 | ebeleme %47.3 süre %48.3 K.çarp % 4.0 E.çarp % 0.4 | süre 12.3 s | std 0.17 kl 0.0058 | çarpma K[tav100] E[duv80 tav20]
+nesil  5 kaçan     tur  75 |   79 M | 1.20 M/s | en son rakibe karşı kazanma % 51.9 | havuz ort. % 53.9 | ebeleme %46.7 süre %49.9 K.çarp % 2.7 E.çarp % 0.7 | süre 11.8 s | std 0.17 kl 0.0060 | çarpma K[tav100] E[duv61 tav39]
+nesil  5 kaçan     tur  80 |   84 M | 1.20 M/s | en son rakibe karşı kazanma % 49.5 | havuz ort. % 54.4 | ebeleme %45.2 süre %52.3 K.çarp % 1.7 E.çarp % 0.9 | süre 12.3 s | std 0.17 kl 0.0057 | çarpma K[tav100] E[duv74 tav26]
+nesil  5 kaçan     tur  85 |   89 M | 1.20 M/s | en son rakibe karşı kazanma % 49.8 | havuz ort. % 54.1 | ebeleme %47.7 süre %51.0 K.çarp % 0.0 E.çarp % 1.3 | süre 11.6 s | std 0.17 kl 0.0068 | çarpma K[tav100] E[duv75 tav25]
+nesil  5 kaçan     tur  90 |   94 M | 1.20 M/s | en son rakibe karşı kazanma % 46.3 | havuz ort. % 53.6 | ebeleme %51.1 süre %48.1 K.çarp % 0.0 E.çarp % 0.8 | süre 11.2 s | std 0.18 kl 0.0056 | çarpma K[-] E[duv75 tav25]
+nesil  5 kaçan     tur  95 |  100 M | 1.20 M/s | en son rakibe karşı kazanma % 44.1 | havuz ort. % 53.9 | ebeleme %50.5 süre %47.8 K.çarp % 0.6 E.çarp % 1.2 | süre 10.9 s | std 0.18 kl 0.0057 | çarpma K[tav100] E[duv32 tav68]
+nesil  5 kaçan     tur  96 |  101 M | 1.20 M/s | en son rakibe karşı kazanma % 44.5 | havuz ort. % 54.0 | ebeleme %49.0 süre %49.5 K.çarp % 0.7 E.çarp % 0.8 | süre 11.6 s | std 0.18 kl 0.0086 | çarpma K[tav100] E[duv50 tav50]
+--- nesil 5 bitti (en fazla adım): kaçan, 101 M adım, 1.4 dk, en son rakibe karşı %44.5 → havuza kaçan_3 olarak eklendi
+
+=== nesil 6 · öğrenen: kovalayan · rakip havuzu: 4 kaçan (en son: kaçan_3) ===
+nesil  6 kovalayan tur   5 |    5 M | 1.20 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 84.6 | ebeleme %98.1 süre % 0.0 K.çarp % 0.0 E.çarp % 1.9 | süre  3.6 s | std 0.18 kl 0.0073 | çarpma K[-] E[duv56 tav44]
+nesil  6 kovalayan tur  10 |   10 M | 1.20 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 88.7 | ebeleme %97.2 süre % 0.0 K.çarp % 0.0 E.çarp % 2.8 | süre  3.9 s | std 0.18 kl 0.0067 | çarpma K[-] E[duv60 tav40]
+nesil  6 kovalayan tur  15 |   16 M | 1.20 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 92.4 | ebeleme %96.9 süre % 0.0 K.çarp % 0.0 E.çarp % 3.1 | süre  4.4 s | std 0.18 kl 0.0062 | çarpma K[duv100] E[duv56 tav44]
+nesil  6 kovalayan tur  20 |   21 M | 1.20 M/s | en son rakibe karşı kazanma % 44.5 | havuz ort. % 90.9 | ebeleme %59.7 süre %39.7 K.çarp % 0.0 E.çarp % 0.7 | süre  5.3 s | std 0.17 kl 0.0052 | çarpma K[-] E[duv41 tav59]
+nesil  6 kovalayan tur  21 |   22 M | 1.20 M/s | en son rakibe karşı kazanma % 72.4 | havuz ort. % 90.9 | ebeleme %84.1 süre %10.5 K.çarp % 0.0 E.çarp % 5.4 | süre  6.1 s | std 0.17 kl 0.0055 | çarpma K[duv100] E[duv6 tav94]
+--- nesil 6 bitti (eşik): kovalayan, 22 M adım, 0.3 dk, en son rakibe karşı %72.4 → havuza kovalayan_4 olarak eklendi
+
+=== nesil 7 · öğrenen: kaçan · rakip havuzu: 5 kovalayan (en son: kovalayan_4) ===
+nesil  7 kaçan     tur   5 |    5 M | 1.20 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 45.9 | ebeleme %99.0 süre % 0.0 K.çarp % 0.0 E.çarp % 1.0 | süre  3.0 s | std 0.18 kl 0.0047 | çarpma K[duv100] E[duv48 tav52]
+nesil  7 kaçan     tur  10 |   10 M | 1.20 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 40.3 | ebeleme %97.9 süre % 0.0 K.çarp % 0.0 E.çarp % 2.1 | süre  3.8 s | std 0.18 kl 0.0054 | çarpma K[-] E[duv31 tav69]
+nesil  7 kaçan     tur  15 |   16 M | 1.20 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 37.0 | ebeleme %97.9 süre % 0.0 K.çarp % 0.0 E.çarp % 2.1 | süre  4.0 s | std 0.18 kl 0.0060 | çarpma K[-] E[duv48 tav52]
+nesil  7 kaçan     tur  20 |   21 M | 1.20 M/s | en son rakibe karşı kazanma % 48.3 | havuz ort. % 41.6 | ebeleme %43.8 süre %55.7 K.çarp % 0.0 E.çarp % 0.4 | süre  7.9 s | std 0.18 kl 0.0094 | çarpma K[-] E[duv39 tav61]
+nesil  7 kaçan     tur  25 |   26 M | 1.20 M/s | en son rakibe karşı kazanma % 31.6 | havuz ort. % 42.3 | ebeleme %70.7 süre %28.6 K.çarp % 0.0 E.çarp % 0.7 | süre  7.2 s | std 0.18 kl 0.0049 | çarpma K[tav100] E[duv18 tav82]
+nesil  7 kaçan     tur  30 |   31 M | 1.20 M/s | en son rakibe karşı kazanma % 27.4 | havuz ort. % 41.5 | ebeleme %74.2 süre %24.1 K.çarp % 0.0 E.çarp % 1.7 | süre  7.0 s | std 0.18 kl 0.0136 | çarpma K[-] E[duv2 tav98]
+nesil  7 kaçan     tur  35 |   37 M | 1.20 M/s | en son rakibe karşı kazanma % 43.5 | havuz ort. % 46.0 | ebeleme %44.4 süre %53.8 K.çarp % 0.6 E.çarp % 1.2 | süre  9.9 s | std 0.18 kl 0.0076 | çarpma K[tav100] E[duv2 tav98]
+nesil  7 kaçan     tur  40 |   42 M | 1.20 M/s | en son rakibe karşı kazanma % 44.2 | havuz ort. % 46.0 | ebeleme %55.7 süre %42.2 K.çarp % 0.8 E.çarp % 1.2 | süre  9.7 s | std 0.18 kl 0.0115 | çarpma K[tav100] E[duv3 tav97]
+nesil  7 kaçan     tur  45 |   47 M | 1.20 M/s | en son rakibe karşı kazanma % 39.0 | havuz ort. % 45.0 | ebeleme %62.2 süre %35.9 K.çarp % 0.0 E.çarp % 1.9 | süre  8.4 s | std 0.18 kl 0.0088 | çarpma K[tav100] E[duv2 tav98]
+nesil  7 kaçan     tur  50 |   52 M | 1.20 M/s | en son rakibe karşı kazanma % 43.8 | havuz ort. % 46.5 | ebeleme %50.3 süre %48.8 K.çarp % 0.0 E.çarp % 0.9 | süre 12.5 s | std 0.18 kl 0.0056 | çarpma K[-] E[duv15 tav85]
+nesil  7 kaçan     tur  55 |   58 M | 1.20 M/s | en son rakibe karşı kazanma % 48.6 | havuz ort. % 47.2 | ebeleme %48.9 süre %49.5 K.çarp % 0.9 E.çarp % 0.7 | süre 11.3 s | std 0.17 kl 0.0051 | çarpma K[tav100] E[duv7 tav93]
+nesil  7 kaçan     tur  60 |   63 M | 1.20 M/s | en son rakibe karşı kazanma % 47.5 | havuz ort. % 46.3 | ebeleme %52.7 süre %43.4 K.çarp % 3.4 E.çarp % 0.6 | süre 10.0 s | std 0.18 kl 0.0093 | çarpma K[tav100] E[duv11 tav89]
+nesil  7 kaçan     tur  65 |   68 M | 1.20 M/s | en son rakibe karşı kazanma % 45.5 | havuz ort. % 45.9 | ebeleme %53.8 süre %45.3 K.çarp % 0.3 E.çarp % 0.6 | süre 12.0 s | std 0.18 kl 0.0069 | çarpma K[tav100] E[duv9 tav91]
+nesil  7 kaçan     tur  70 |   73 M | 1.20 M/s | en son rakibe karşı kazanma % 48.4 | havuz ort. % 48.8 | ebeleme %48.6 süre %51.0 K.çarp % 0.1 E.çarp % 0.3 | süre 11.6 s | std 0.18 kl 0.0048 | çarpma K[tav100] E[duv26 tav74]
+nesil  7 kaçan     tur  75 |   79 M | 1.20 M/s | en son rakibe karşı kazanma % 48.4 | havuz ort. % 49.0 | ebeleme %50.3 süre %48.8 K.çarp % 0.3 E.çarp % 0.6 | süre 10.9 s | std 0.18 kl 0.0079 | çarpma K[tav100] E[duv16 tav84]
+nesil  7 kaçan     tur  80 |   84 M | 1.20 M/s | en son rakibe karşı kazanma % 45.6 | havuz ort. % 48.5 | ebeleme %53.2 süre %45.1 K.çarp % 0.8 E.çarp % 1.0 | süre 10.7 s | std 0.18 kl 0.0053 | çarpma K[tav100] E[duv24 tav76]
+nesil  7 kaçan     tur  85 |   89 M | 1.20 M/s | en son rakibe karşı kazanma % 47.7 | havuz ort. % 49.4 | ebeleme %48.7 süre %50.1 K.çarp % 0.5 E.çarp % 0.7 | süre 12.0 s | std 0.18 kl 0.0058 | çarpma K[tav100] E[duv34 tav66]
+nesil  7 kaçan     tur  90 |   94 M | 1.20 M/s | en son rakibe karşı kazanma % 54.7 | havuz ort. % 50.3 | ebeleme %46.3 süre %52.3 K.çarp % 0.4 E.çarp % 1.0 | süre 12.1 s | std 0.18 kl 0.0052 | çarpma K[tav100] E[duv33 tav67]
+nesil  7 kaçan     tur  95 |  100 M | 1.20 M/s | en son rakibe karşı kazanma % 56.7 | havuz ort. % 50.1 | ebeleme %46.4 süre %52.4 K.çarp % 0.1 E.çarp % 1.0 | süre 11.5 s | std 0.18 kl 0.0056 | çarpma K[tav100] E[duv29 tav71]
+nesil  7 kaçan     tur  96 |  101 M | 1.20 M/s | en son rakibe karşı kazanma % 56.4 | havuz ort. % 50.1 | ebeleme %46.6 süre %52.7 K.çarp % 0.1 E.çarp % 0.5 | süre 12.1 s | std 0.18 kl 0.0063 | çarpma K[tav100] E[duv56 tav44]
+--- nesil 7 bitti (en fazla adım): kaçan, 101 M adım, 1.4 dk, en son rakibe karşı %56.4 → havuza kaçan_4 olarak eklendi
+
+=== nesil 8 · öğrenen: kovalayan · rakip havuzu: 5 kaçan (en son: kaçan_4) ===
+nesil  8 kovalayan tur   5 |    5 M | 1.20 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 86.8 | ebeleme %99.1 süre % 0.0 K.çarp % 0.0 E.çarp % 0.9 | süre  5.0 s | std 0.17 kl 0.0109 | çarpma K[-] E[duv61 tav39]
+nesil  8 kovalayan tur  10 |   10 M | 1.20 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 89.2 | ebeleme %99.7 süre % 0.0 K.çarp % 0.0 E.çarp % 0.3 | süre  5.2 s | std 0.17 kl 0.0070 | çarpma K[-] E[duv88 tav12]
+nesil  8 kovalayan tur  15 |   16 M | 1.20 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 92.8 | ebeleme %97.2 süre % 0.0 K.çarp % 0.0 E.çarp % 2.8 | süre  6.1 s | std 0.17 kl 0.0066 | çarpma K[duv100] E[duv15 tav85]
+nesil  8 kovalayan tur  20 |   21 M | 1.20 M/s | en son rakibe karşı kazanma % 49.3 | havuz ort. % 92.0 | ebeleme %67.7 süre %31.3 K.çarp % 0.1 E.çarp % 0.9 | süre  4.9 s | std 0.17 kl 0.0050 | çarpma K[duv100] E[duv38 tav62]
+nesil  8 kovalayan tur  21 |   22 M | 1.20 M/s | en son rakibe karşı kazanma % 82.1 | havuz ort. % 92.2 | ebeleme %89.7 süre % 7.7 K.çarp % 0.0 E.çarp % 2.6 | süre  5.6 s | std 0.17 kl 0.0085 | çarpma K[duv100] E[duv12 tav88]
+--- nesil 8 bitti (eşik): kovalayan, 22 M adım, 0.3 dk, en son rakibe karşı %82.1 → havuza kovalayan_5 olarak eklendi
+
+=== nesil 9 · öğrenen: kaçan · rakip havuzu: 6 kovalayan (en son: kovalayan_5) ===
+nesil  9 kaçan     tur   5 |    5 M | 1.20 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 36.5 | ebeleme %96.7 süre % 0.0 K.çarp % 0.1 E.çarp % 3.1 | süre  4.0 s | std 0.18 kl 0.0117 | çarpma K[tav100] E[duv12 tav88]
+nesil  9 kaçan     tur  10 |   10 M | 1.20 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 28.5 | ebeleme %98.4 süre % 0.0 K.çarp % 0.1 E.çarp % 1.5 | süre  4.4 s | std 0.18 kl 0.0048 | çarpma K[tav100] E[duv13 tav87]
+nesil  9 kaçan     tur  15 |   16 M | 1.20 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 25.2 | ebeleme %98.6 süre % 0.0 K.çarp % 0.0 E.çarp % 1.4 | süre  4.9 s | std 0.18 kl 0.0094 | çarpma K[tav100] E[duv12 tav88]
+nesil  9 kaçan     tur  20 |   21 M | 1.20 M/s | en son rakibe karşı kazanma %  4.8 | havuz ort. % 31.0 | ebeleme %64.2 süre %35.0 K.çarp % 0.0 E.çarp % 0.8 | süre  6.1 s | std 0.18 kl 0.0087 | çarpma K[-] E[duv11 tav89]
+nesil  9 kaçan     tur  25 |   26 M | 1.20 M/s | en son rakibe karşı kazanma %  7.0 | havuz ort. % 31.6 | ebeleme %87.1 süre %10.5 K.çarp % 0.1 E.çarp % 2.3 | süre  6.4 s | std 0.18 kl 0.0044 | çarpma K[tav100] E[duv4 tav96]
+nesil  9 kaçan     tur  30 |   31 M | 1.20 M/s | en son rakibe karşı kazanma % 13.2 | havuz ort. % 33.2 | ebeleme %86.4 süre %12.8 K.çarp % 0.0 E.çarp % 0.8 | süre  7.8 s | std 0.18 kl 0.0097 | çarpma K[tav100] E[duv1 tav99]
+nesil  9 kaçan     tur  35 |   37 M | 1.20 M/s | en son rakibe karşı kazanma % 20.2 | havuz ort. % 43.8 | ebeleme %52.4 süre %47.2 K.çarp % 0.0 E.çarp % 0.4 | süre 10.9 s | std 0.18 kl 0.0057 | çarpma K[tav100] E[duv9 tav91]
+nesil  9 kaçan     tur  40 |   42 M | 1.20 M/s | en son rakibe karşı kazanma % 26.1 | havuz ort. % 46.5 | ebeleme %60.4 süre %38.4 K.çarp % 0.0 E.çarp % 1.1 | süre 10.0 s | std 0.18 kl 0.0090 | çarpma K[tav100] E[duv3 tav97]
+nesil  9 kaçan     tur  45 |   47 M | 1.20 M/s | en son rakibe karşı kazanma % 34.5 | havuz ort. % 49.6 | ebeleme %64.0 süre %34.7 K.çarp % 0.2 E.çarp % 1.1 | süre 10.6 s | std 0.18 kl 0.0096 | çarpma K[tav100] E[duv3 tav97]
+nesil  9 kaçan     tur  50 |   52 M | 1.20 M/s | en son rakibe karşı kazanma % 43.6 | havuz ort. % 53.7 | ebeleme %36.9 süre %61.1 K.çarp % 0.0 E.çarp % 1.9 | süre 14.6 s | std 0.18 kl 0.0104 | çarpma K[tav100] E[tav100]
+nesil  9 kaçan     tur  55 |   58 M | 1.20 M/s | en son rakibe karşı kazanma % 49.3 | havuz ort. % 54.7 | ebeleme %40.4 süre %54.4 K.çarp % 0.2 E.çarp % 5.0 | süre 12.8 s | std 0.18 kl 0.0076 | çarpma K[tav100] E[duv0 tav100]
+nesil  9 kaçan     tur  60 |   63 M | 1.20 M/s | en son rakibe karşı kazanma % 56.2 | havuz ort. % 57.0 | ebeleme %43.1 süre %55.8 K.çarp % 0.1 E.çarp % 1.0 | süre 14.0 s | std 0.18 kl 0.0089 | çarpma K[tav100] E[tav100]
+nesil  9 kaçan     tur  63 |   66 M | 1.20 M/s | en son rakibe karşı kazanma % 60.3 | havuz ort. % 60.7 | ebeleme %27.0 süre %69.5 K.çarp % 2.9 E.çarp % 0.6 | süre 17.1 s | std 0.18 kl 0.0098 | çarpma K[tav100] E[tav100]
+--- nesil 9 bitti (eşik): kaçan, 66 M adım, 0.9 dk, en son rakibe karşı %60.3 → havuza kaçan_5 olarak eklendi
+
+=== nesil 10 · öğrenen: kovalayan · rakip havuzu: 6 kaçan (en son: kaçan_5) ===
+nesil 10 kovalayan tur   5 |    5 M | 1.20 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 88.6 | ebeleme %95.0 süre % 0.0 K.çarp % 0.0 E.çarp % 5.0 | süre  5.5 s | std 0.17 kl 0.0071 | çarpma K[-] E[duv8 tav92]
+nesil 10 kovalayan tur  10 |   10 M | 1.20 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 90.6 | ebeleme %96.8 süre % 0.0 K.çarp % 0.0 E.çarp % 3.2 | süre  6.3 s | std 0.17 kl 0.0066 | çarpma K[-] E[duv2 tav98]
+nesil 10 kovalayan tur  15 |   16 M | 1.20 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 91.8 | ebeleme %95.9 süre % 0.0 K.çarp % 0.0 E.çarp % 4.1 | süre 10.5 s | std 0.17 kl 0.0076 | çarpma K[-] E[duv2 tav98]
+nesil 10 kovalayan tur  20 |   21 M | 1.20 M/s | en son rakibe karşı kazanma % 39.5 | havuz ort. % 90.5 | ebeleme %38.7 süre %60.4 K.çarp % 0.0 E.çarp % 1.0 | süre  7.4 s | std 0.17 kl 0.0096 | çarpma K[-] E[duv7 tav93]
+nesil 10 kovalayan tur  21 |   22 M | 1.20 M/s | en son rakibe karşı kazanma % 81.3 | havuz ort. % 90.3 | ebeleme %66.8 süre %17.2 K.çarp % 0.0 E.çarp %16.0 | süre  8.0 s | std 0.17 kl 0.0076 | çarpma K[-] E[duv1 tav99]
+--- nesil 10 bitti (eşik): kovalayan, 22 M adım, 0.3 dk, en son rakibe karşı %81.3 → havuza kovalayan_6 olarak eklendi
+
+=== nesil 11 · öğrenen: kaçan · rakip havuzu: 7 kovalayan (en son: kovalayan_6) ===
+nesil 11 kaçan     tur   5 |    5 M | 1.20 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 45.6 | ebeleme %93.3 süre % 0.0 K.çarp % 0.0 E.çarp % 6.7 | süre  5.5 s | std 0.18 kl 0.0053 | çarpma K[-] E[duv2 tav98]
+nesil 11 kaçan     tur  10 |   10 M | 1.20 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 38.4 | ebeleme %98.1 süre % 0.0 K.çarp % 0.0 E.çarp % 1.9 | süre  5.9 s | std 0.18 kl 0.0109 | çarpma K[tav100] E[duv4 tav96]
+nesil 11 kaçan     tur  15 |   16 M | 1.20 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 36.7 | ebeleme %95.8 süre % 0.0 K.çarp % 2.7 E.çarp % 1.5 | süre  6.1 s | std 0.18 kl 0.0095 | çarpma K[tav100] E[duv9 tav91]
+nesil 11 kaçan     tur  20 |   21 M | 1.20 M/s | en son rakibe karşı kazanma % 27.4 | havuz ort. % 39.8 | ebeleme %50.6 süre %49.1 K.çarp % 0.1 E.çarp % 0.1 | süre  9.7 s | std 0.18 kl 0.0057 | çarpma K[tav100] E[duv52 tav48]
+nesil 11 kaçan     tur  25 |   26 M | 1.20 M/s | en son rakibe karşı kazanma % 20.6 | havuz ort. % 40.6 | ebeleme %81.2 süre %18.7 K.çarp % 0.0 E.çarp % 0.1 | süre  9.1 s | std 0.18 kl 0.0101 | çarpma K[-] E[duv9 tav91]
+nesil 11 kaçan     tur  30 |   31 M | 1.20 M/s | en son rakibe karşı kazanma % 19.1 | havuz ort. % 43.2 | ebeleme %78.8 süre %19.6 K.çarp % 0.0 E.çarp % 1.6 | süre  8.3 s | std 0.18 kl 0.0074 | çarpma K[-] E[tav100]
+nesil 11 kaçan     tur  35 |   37 M | 1.20 M/s | en son rakibe karşı kazanma % 24.4 | havuz ort. % 47.0 | ebeleme %49.5 süre %48.3 K.çarp % 0.2 E.çarp % 2.1 | süre 11.0 s | std 0.18 kl 0.0065 | çarpma K[tav100] E[duv0 tav100]
+nesil 11 kaçan     tur  40 |   42 M | 1.20 M/s | en son rakibe karşı kazanma % 31.5 | havuz ort. % 50.3 | ebeleme %53.6 süre %44.5 K.çarp % 0.7 E.çarp % 1.2 | süre 12.2 s | std 0.18 kl 0.0071 | çarpma K[tav100] E[tav100]
+nesil 11 kaçan     tur  45 |   47 M | 1.20 M/s | en son rakibe karşı kazanma % 30.8 | havuz ort. % 53.8 | ebeleme %58.8 süre %41.1 K.çarp % 0.0 E.çarp % 0.1 | süre 12.3 s | std 0.18 kl 0.0108 | çarpma K[-] E[duv23 tav77]
+nesil 11 kaçan     tur  50 |   52 M | 1.20 M/s | en son rakibe karşı kazanma % 34.2 | havuz ort. % 54.8 | ebeleme %49.4 süre %49.7 K.çarp % 0.0 E.çarp % 0.8 | süre 12.5 s | std 0.18 kl 0.0062 | çarpma K[-] E[duv2 tav98]
+nesil 11 kaçan     tur  55 |   58 M | 1.20 M/s | en son rakibe karşı kazanma % 36.8 | havuz ort. % 55.7 | ebeleme %59.4 süre %38.9 K.çarp % 0.0 E.çarp % 1.6 | süre 11.3 s | std 0.18 kl 0.0059 | çarpma K[tav100] E[tav100]
+nesil 11 kaçan     tur  60 |   63 M | 1.20 M/s | en son rakibe karşı kazanma % 44.7 | havuz ort. % 57.0 | ebeleme %53.9 süre %44.5 K.çarp % 0.0 E.çarp % 1.6 | süre 13.0 s | std 0.18 kl 0.0063 | çarpma K[-] E[duv3 tav97]
+nesil 11 kaçan     tur  65 |   68 M | 1.20 M/s | en son rakibe karşı kazanma % 44.7 | havuz ort. % 58.0 | ebeleme %48.1 süre %51.0 K.çarp % 0.0 E.çarp % 0.8 | süre 13.7 s | std 0.18 kl 0.0080 | çarpma K[-] E[duv4 tav96]
+nesil 11 kaçan     tur  70 |   73 M | 1.20 M/s | en son rakibe karşı kazanma % 44.8 | havuz ort. % 59.4 | ebeleme %52.2 süre %47.2 K.çarp % 0.0 E.çarp % 0.7 | süre 13.1 s | std 0.18 kl 0.0068 | çarpma K[-] E[duv17 tav83]
+nesil 11 kaçan     tur  75 |   79 M | 1.20 M/s | en son rakibe karşı kazanma % 49.9 | havuz ort. % 61.5 | ebeleme %43.7 süre %54.4 K.çarp % 0.0 E.çarp % 1.9 | süre 14.6 s | std 0.19 kl 0.0073 | çarpma K[-] E[duv8 tav92]
+nesil 11 kaçan     tur  80 |   84 M | 1.20 M/s | en son rakibe karşı kazanma % 56.2 | havuz ort. % 63.9 | ebeleme %37.3 süre %61.4 K.çarp % 0.0 E.çarp % 1.3 | süre 15.2 s | std 0.19 kl 0.0090 | çarpma K[-] E[duv7 tav93]
+nesil 11 kaçan     tur  83 |   87 M | 1.20 M/s | en son rakibe karşı kazanma % 60.1 | havuz ort. % 64.1 | ebeleme %33.6 süre %64.0 K.çarp % 0.0 E.çarp % 2.3 | süre 15.6 s | std 0.19 kl 0.0159 | çarpma K[-] E[duv2 tav98]
+--- nesil 11 bitti (eşik): kaçan, 87 M adım, 1.2 dk, en son rakibe karşı %60.1 → havuza kaçan_6 olarak eklendi
+
+=== nesil 12 · öğrenen: kovalayan · rakip havuzu: 7 kaçan (en son: kaçan_6) ===
+nesil 12 kovalayan tur   5 |    5 M | 1.20 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 88.4 | ebeleme %98.9 süre % 0.0 K.çarp % 0.0 E.çarp % 1.1 | süre  4.3 s | std 0.17 kl 0.0101 | çarpma K[-] E[duv36 tav64]
+nesil 12 kovalayan tur  10 |   10 M | 1.20 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 90.7 | ebeleme %99.4 süre % 0.0 K.çarp % 0.0 E.çarp % 0.6 | süre  5.4 s | std 0.17 kl 0.0065 | çarpma K[-] E[duv27 tav73]
+nesil 12 kovalayan tur  15 |   16 M | 1.20 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 92.8 | ebeleme %98.1 süre % 0.0 K.çarp % 0.1 E.çarp % 1.8 | süre  6.8 s | std 0.17 kl 0.0108 | çarpma K[tav100] E[duv6 tav94]
+nesil 12 kovalayan tur  20 |   21 M | 1.20 M/s | en son rakibe karşı kazanma % 57.4 | havuz ort. % 92.4 | ebeleme %77.0 süre %22.1 K.çarp % 0.1 E.çarp % 0.8 | süre  5.8 s | std 0.17 kl 0.0107 | çarpma K[tav100] E[duv4 tav96]
+nesil 12 kovalayan tur  21 |   22 M | 1.20 M/s | en son rakibe karşı kazanma % 86.3 | havuz ort. % 92.7 | ebeleme %83.2 süre % 5.4 K.çarp % 0.1 E.çarp %11.3 | süre  5.4 s | std 0.16 kl 0.0070 | çarpma K[tav100] E[duv0 tav100]
+--- nesil 12 bitti (eşik): kovalayan, 22 M adım, 0.3 dk, en son rakibe karşı %86.3 → havuza kovalayan_7 olarak eklendi
+
+=== nesil 13 · öğrenen: kaçan · rakip havuzu: 8 kovalayan (en son: kovalayan_7) ===
+nesil 13 kaçan     tur   5 |    5 M | 1.20 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 50.3 | ebeleme %93.9 süre % 0.0 K.çarp % 0.0 E.çarp % 6.1 | süre  4.0 s | std 0.19 kl 0.0066 | çarpma K[-] E[duv2 tav98]
+nesil 13 kaçan     tur  10 |   10 M | 1.20 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 43.2 | ebeleme %85.7 süre % 0.0 K.çarp % 0.0 E.çarp %14.3 | süre  5.9 s | std 0.19 kl 0.0065 | çarpma K[-] E[duv1 tav99]
+nesil 13 kaçan     tur  15 |   16 M | 1.20 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 40.3 | ebeleme %98.2 süre % 0.0 K.çarp % 0.0 E.çarp % 1.8 | süre  7.6 s | std 0.19 kl 0.0092 | çarpma K[-] E[duv5 tav95]
+nesil 13 kaçan     tur  20 |   21 M | 1.20 M/s | en son rakibe karşı kazanma % 19.2 | havuz ort. % 45.5 | ebeleme %64.2 süre %35.6 K.çarp % 0.0 E.çarp % 0.2 | süre  7.5 s | std 0.19 kl 0.0074 | çarpma K[-] E[duv14 tav86]
+nesil 13 kaçan     tur  25 |   26 M | 1.20 M/s | en son rakibe karşı kazanma % 12.1 | havuz ort. % 42.5 | ebeleme %82.9 süre %17.0 K.çarp % 0.0 E.çarp % 0.1 | süre  8.1 s | std 0.19 kl 0.0125 | çarpma K[-] E[duv12 tav88]
+nesil 13 kaçan     tur  30 |   31 M | 1.20 M/s | en son rakibe karşı kazanma % 12.9 | havuz ort. % 46.0 | ebeleme %80.6 süre %19.0 K.çarp % 0.0 E.çarp % 0.4 | süre  9.4 s | std 0.19 kl 0.0070 | çarpma K[-] E[tav100]
+nesil 13 kaçan     tur  35 |   37 M | 1.20 M/s | en son rakibe karşı kazanma % 19.8 | havuz ort. % 53.1 | ebeleme %53.8 süre %45.7 K.çarp % 0.0 E.çarp % 0.5 | süre 12.0 s | std 0.19 kl 0.0078 | çarpma K[-] E[tav100]
+nesil 13 kaçan     tur  40 |   42 M | 1.20 M/s | en son rakibe karşı kazanma % 26.5 | havuz ort. % 54.1 | ebeleme %62.6 süre %35.7 K.çarp % 0.0 E.çarp % 1.7 | süre 10.5 s | std 0.18 kl 0.0071 | çarpma K[-] E[tav100]
+nesil 13 kaçan     tur  45 |   47 M | 1.20 M/s | en son rakibe karşı kazanma % 35.4 | havuz ort. % 53.3 | ebeleme %61.3 süre %38.0 K.çarp % 0.2 E.çarp % 0.6 | süre 11.5 s | std 0.18 kl 0.0088 | çarpma K[tav100] E[tav100]
+nesil 13 kaçan     tur  50 |   52 M | 1.20 M/s | en son rakibe karşı kazanma % 38.4 | havuz ort. % 55.0 | ebeleme %48.1 süre %51.6 K.çarp % 0.2 E.çarp % 0.2 | süre 11.6 s | std 0.18 kl 0.0098 | çarpma K[tav100] E[tav100]
+nesil 13 kaçan     tur  55 |   58 M | 1.20 M/s | en son rakibe karşı kazanma % 40.3 | havuz ort. % 56.0 | ebeleme %48.9 süre %46.8 K.çarp % 0.0 E.çarp % 4.3 | süre 10.7 s | std 0.18 kl 0.0077 | çarpma K[tav100] E[tav100]
+nesil 13 kaçan     tur  60 |   63 M | 1.20 M/s | en son rakibe karşı kazanma % 45.3 | havuz ort. % 58.3 | ebeleme %47.6 süre %49.0 K.çarp % 0.0 E.çarp % 3.4 | süre 13.3 s | std 0.18 kl 0.0148 | çarpma K[-] E[tav100]
+nesil 13 kaçan     tur  65 |   68 M | 1.20 M/s | en son rakibe karşı kazanma % 51.2 | havuz ort. % 61.3 | ebeleme %34.0 süre %64.5 K.çarp % 0.9 E.çarp % 0.6 | süre 14.6 s | std 0.18 kl 0.0067 | çarpma K[tav100] E[tav100]
+nesil 13 kaçan     tur  70 |   73 M | 1.20 M/s | en son rakibe karşı kazanma % 51.0 | havuz ort. % 61.8 | ebeleme %39.8 süre %57.6 K.çarp % 1.4 E.çarp % 1.1 | süre 13.2 s | std 0.18 kl 0.0104 | çarpma K[tav100] E[tav100]
+nesil 13 kaçan     tur  75 |   79 M | 1.20 M/s | en son rakibe karşı kazanma % 54.5 | havuz ort. % 62.0 | ebeleme %45.0 süre %53.4 K.çarp % 1.3 E.çarp % 0.3 | süre 12.6 s | std 0.18 kl 0.0065 | çarpma K[tav100] E[tav100]
+nesil 13 kaçan     tur  80 |   84 M | 1.20 M/s | en son rakibe karşı kazanma % 57.4 | havuz ort. % 63.2 | ebeleme %37.7 süre %60.4 K.çarp % 1.7 E.çarp % 0.1 | süre 14.0 s | std 0.18 kl 0.0071 | çarpma K[tav100] E[tav100]
+nesil 13 kaçan     tur  85 |   89 M | 1.20 M/s | en son rakibe karşı kazanma % 59.1 | havuz ort. % 64.6 | ebeleme %37.7 süre %62.1 K.çarp % 0.1 E.çarp % 0.1 | süre 13.3 s | std 0.18 kl 0.0101 | çarpma K[tav100] E[tav100]
+nesil 13 kaçan     tur  90 |   94 M | 1.20 M/s | en son rakibe karşı kazanma % 58.0 | havuz ort. % 65.4 | ebeleme %41.3 süre %58.6 K.çarp % 0.0 E.çarp % 0.2 | süre 13.3 s | std 0.18 kl 0.0058 | çarpma K[-] E[tav100]
+nesil 13 kaçan     tur  95 |  100 M | 1.20 M/s | en son rakibe karşı kazanma % 57.9 | havuz ort. % 66.8 | ebeleme %35.2 süre %64.0 K.çarp % 0.3 E.çarp % 0.5 | süre 14.3 s | std 0.18 kl 0.0085 | çarpma K[tav100] E[tav100]
+nesil 13 kaçan     tur  96 |  101 M | 1.20 M/s | en son rakibe karşı kazanma % 59.3 | havuz ort. % 67.2 | ebeleme %29.5 süre %70.0 K.çarp % 0.1 E.çarp % 0.4 | süre 14.9 s | std 0.18 kl 0.0071 | çarpma K[tav100] E[tav100]
+--- nesil 13 bitti (en fazla adım): kaçan, 101 M adım, 1.4 dk, en son rakibe karşı %59.3 → havuza kaçan_7 olarak eklendi
+
+=== nesil 14 · öğrenen: kovalayan · rakip havuzu: 8 kaçan (en son: kaçan_7) ===
+nesil 14 kovalayan tur   5 |    5 M | 1.20 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 90.1 | ebeleme %98.8 süre % 0.0 K.çarp % 0.0 E.çarp % 1.2 | süre  4.0 s | std 0.16 kl 0.0065 | çarpma K[duv100] E[duv43 tav57]
+nesil 14 kovalayan tur  10 |   10 M | 1.20 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 91.7 | ebeleme %99.0 süre % 0.0 K.çarp % 0.1 E.çarp % 0.9 | süre  5.2 s | std 0.16 kl 0.0076 | çarpma K[duv9 tav91] E[duv58 tav42]
+nesil 14 kovalayan tur  15 |   16 M | 1.20 M/s | en son rakibe karşı kazanma %100.0 | havuz ort. % 94.3 | ebeleme %97.2 süre % 0.0 K.çarp % 0.2 E.çarp % 2.6 | süre  4.9 s | std 0.16 kl 0.0121 | çarpma K[duv76 tav24] E[duv2 tav98]
+nesil 14 kovalayan tur  20 |   21 M | 1.20 M/s | en son rakibe karşı kazanma % 62.7 | havuz ort. % 94.1 | ebeleme %80.5 süre %18.8 K.çarp % 0.1 E.çarp % 0.6 | süre  4.9 s | std 0.16 kl 0.0179 | çarpma K[duv87 tav13] E[duv9 tav91]
+--- nesil 14 bitti (eşik): kovalayan, 21 M adım, 0.3 dk, en son rakibe karşı %62.7 → havuza kovalayan_8 olarak eklendi
+
+=== nesil 15 · öğrenen: kaçan · rakip havuzu: 9 kovalayan (en son: kovalayan_8) ===
+nesil 15 kaçan     tur   5 |    5 M | 1.20 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 58.6 | ebeleme %97.4 süre % 0.0 K.çarp % 0.0 E.çarp % 2.6 | süre  4.2 s | std 0.18 kl 0.0073 | çarpma K[-] E[tav100]
+nesil 15 kaçan     tur  10 |   10 M | 1.20 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 53.3 | ebeleme %99.3 süre % 0.0 K.çarp % 0.0 E.çarp % 0.7 | süre  4.4 s | std 0.18 kl 0.0057 | çarpma K[-] E[tav100]
+nesil 15 kaçan     tur  15 |   16 M | 1.20 M/s | en son rakibe karşı kazanma %  0.0 | havuz ort. % 43.7 | ebeleme %98.9 süre % 0.0 K.çarp % 0.0 E.çarp % 1.1 | süre  4.7 s | std 0.18 kl 0.0157 | çarpma K[tav100] E[tav100]
+nesil 15 kaçan     tur  20 |   21 M | 1.20 M/s | en son rakibe karşı kazanma %  1.4 | havuz ort. % 47.5 | ebeleme %73.2 süre %26.5 K.çarp % 0.1 E.çarp % 0.3 | süre  5.5 s | std 0.18 kl 0.0089 | çarpma K[tav100] E[tav100]
+nesil 15 kaçan     tur  25 |   26 M | 1.20 M/s | en son rakibe karşı kazanma %  1.6 | havuz ort. % 49.4 | ebeleme %83.6 süre %16.1 K.çarp % 0.0 E.çarp % 0.2 | süre  7.2 s | std 0.18 kl 0.0176 | çarpma K[tav100] E[tav100]
+nesil 15 kaçan     tur  30 |   31 M | 1.20 M/s | en son rakibe karşı kazanma %  2.3 | havuz ort. % 48.3 | ebeleme %91.7 süre % 7.9 K.çarp % 0.0 E.çarp % 0.4 | süre  5.5 s | std 0.18 kl 0.0084 | çarpma K[-] E[tav100]
+nesil 15 kaçan     tur  35 |   37 M | 1.20 M/s | en son rakibe karşı kazanma %  3.4 | havuz ort. % 48.1 | ebeleme %83.6 süre %16.3 K.çarp % 0.0 E.çarp % 0.1 | süre  7.6 s | std 0.18 kl 0.0067 | çarpma K[-] E[tav100]
+nesil 15 kaçan     tur  40 |   42 M | 1.20 M/s | en son rakibe karşı kazanma %  6.4 | havuz ort. % 51.9 | ebeleme %82.3 süre %17.5 K.çarp % 0.0 E.çarp % 0.2 | süre  8.9 s | std 0.18 kl 0.0082 | çarpma K[-] E[duv4 tav96]
+nesil 15 kaçan     tur  45 |   47 M | 1.20 M/s | en son rakibe karşı kazanma %  7.5 | havuz ort. % 53.9 | ebeleme %71.7 süre %27.4 K.çarp % 0.3 E.çarp % 0.6 | süre  9.6 s | std 0.18 kl 0.0091 | çarpma K[tav100] E[duv6 tav94]
+nesil 15 kaçan     tur  50 |   52 M | 1.20 M/s | en son rakibe karşı kazanma % 10.0 | havuz ort. % 54.7 | ebeleme %68.9 süre %28.4 K.çarp % 1.5 E.çarp % 1.3 | süre  9.5 s | std 0.18 kl 0.0069 | çarpma K[tav100] E[duv2 tav98]
+nesil 15 kaçan     tur  55 |   58 M | 1.20 M/s | en son rakibe karşı kazanma % 15.2 | havuz ort. % 56.5 | ebeleme %64.7 süre %32.1 K.çarp % 1.6 E.çarp % 1.6 | süre 11.1 s | std 0.18 kl 0.0101 | çarpma K[tav100] E[duv1 tav99]
+nesil 15 kaçan     tur  60 |   63 M | 1.20 M/s | en son rakibe karşı kazanma % 18.6 | havuz ort. % 58.0 | ebeleme %64.9 süre %33.0 K.çarp % 1.4 E.çarp % 0.6 | süre 10.4 s | std 0.18 kl 0.0062 | çarpma K[tav100] E[tav100]
+nesil 15 kaçan     tur  65 |   68 M | 1.20 M/s | en son rakibe karşı kazanma % 19.6 | havuz ort. % 58.1 | ebeleme %71.2 süre %27.7 K.çarp % 0.9 E.çarp % 0.2 | süre 10.1 s | std 0.18 kl 0.0097 | çarpma K[tav100] E[duv4 tav96]
+nesil 15 kaçan     tur  70 |   73 M | 1.20 M/s | en son rakibe karşı kazanma % 22.1 | havuz ort. % 60.0 | ebeleme %72.4 süre %27.1 K.çarp % 0.2 E.çarp % 0.2 | süre  9.4 s | std 0.18 kl 0.0097 | çarpma K[tav100] E[tav100]
+nesil 15 kaçan     tur  75 |   79 M | 1.20 M/s | en son rakibe karşı kazanma % 24.4 | havuz ort. % 58.4 | ebeleme %63.5 süre %36.1 K.çarp % 0.4 E.çarp % 0.1 | süre 10.6 s | std 0.18 kl 0.0071 | çarpma K[tav100] E[tav100]
+nesil 15 kaçan     tur  80 |   84 M | 1.20 M/s | en son rakibe karşı kazanma % 25.7 | havuz ort. % 60.6 | ebeleme %58.5 süre %39.8 K.çarp % 0.8 E.çarp % 1.0 | süre 11.7 s | std 0.18 kl 0.0092 | çarpma K[tav100] E[tav100]
+nesil 15 kaçan     tur  85 |   89 M | 1.20 M/s | en son rakibe karşı kazanma % 27.8 | havuz ort. % 62.6 | ebeleme %52.1 süre %42.5 K.çarp % 2.8 E.çarp % 2.5 | süre 11.1 s | std 0.18 kl 0.0176 | çarpma K[tav100] E[duv1 tav99]
+nesil 15 kaçan     tur  90 |   94 M | 1.20 M/s | en son rakibe karşı kazanma % 29.7 | havuz ort. % 62.0 | ebeleme %56.5 süre %36.6 K.çarp % 2.6 E.çarp % 4.3 | süre 10.7 s | std 0.18 kl 0.0152 | çarpma K[duv0 tav100] E[duv1 tav99]
+nesil 15 kaçan     tur  95 |  100 M | 1.20 M/s | en son rakibe karşı kazanma % 29.4 | havuz ort. % 61.0 | ebeleme %58.2 süre %32.6 K.çarp % 4.1 E.çarp % 5.1 | süre 10.0 s | std 0.18 kl 0.0072 | çarpma K[duv0 tav100] E[tav100]
+nesil 15 kaçan     tur  96 |  101 M | 1.20 M/s | en son rakibe karşı kazanma % 29.2 | havuz ort. % 61.0 | ebeleme %47.6 süre %30.7 K.çarp % 5.7 E.çarp %16.0 | süre 10.2 s | std 0.18 kl 0.0068 | çarpma K[tav100] E[tav100]
+--- nesil 15 bitti (en fazla adım): kaçan, 101 M adım, 1.4 dk, en son rakibe karşı %29.2 → havuza kaçan_8 olarak eklendi
+
+=== nesil 16 · öğrenen: kovalayan · rakip havuzu: 9 kaçan (en son: kaçan_8) ===
+nesil 16 kovalayan tur   5 |    5 M | 1.20 M/s | en son rakibe karşı kazanma % 98.7 | havuz ort. % 91.4 | ebeleme %81.7 süre % 0.0 K.çarp % 1.5 E.çarp %16.8 | süre  5.1 s | std 0.16 kl 0.0088 | çarpma K[tav100] E[tav100]
+nesil 16 kovalayan tur  10 |   10 M | 1.20 M/s | en son rakibe karşı kazanma % 99.9 | havuz ort. % 92.8 | ebeleme %79.6 süre % 0.0 K.çarp % 0.1 E.çarp %20.4 | süre  6.1 s | std 0.16 kl 0.0094 | çarpma K[tav100] E[tav100]
+nesil 16 kovalayan tur  15 |   16 M | 1.20 M/s | en son rakibe karşı kazanma % 99.1 | havuz ort. % 94.0 | ebeleme %85.7 süre % 0.0 K.çarp % 0.7 E.çarp %13.6 | süre  6.8 s | std 0.16 kl 0.0063 | çarpma K[tav100] E[duv0 tav100]
+nesil 16 kovalayan tur  20 |   21 M | 1.20 M/s | en son rakibe karşı kazanma % 60.6 | havuz ort. % 93.4 | ebeleme %60.6 süre %32.4 K.çarp % 0.2 E.çarp % 6.8 | süre  7.2 s | std 0.16 kl 0.0065 | çarpma K[tav100] E[duv0 tav100]
+--- nesil 16 bitti (eşik): kovalayan, 21 M adım, 0.3 dk, en son rakibe karşı %60.6 → havuza kovalayan_9 olarak eklendi
+
+=== nesil 17 · öğrenen: kaçan · rakip havuzu: 10 kovalayan (en son: kovalayan_9) ===
+nesil 17 kaçan     tur   5 |    5 M | 1.20 M/s | en son rakibe karşı kazanma %  0.1 | havuz ort. % 48.5 | ebeleme %56.7 süre % 0.0 K.çarp % 0.3 E.çarp %43.0 | süre  5.0 s | std 0.18 kl 0.0144 | çarpma K[tav100] E[tav100]
+nesil 17 kaçan     tur  10 |   10 M | 1.20 M/s | en son rakibe karşı kazanma %  0.1 | havuz ort. % 42.8 | ebeleme %43.3 süre % 0.0 K.çarp % 2.9 E.çarp %53.7 | süre  4.9 s | std 0.18 kl 0.0133 | çarpma K[tav100] E[tav100]
+nesil 17 kaçan     tur  15 |   16 M | 1.20 M/s | en son rakibe karşı kazanma %  0.4 | havuz ort. % 37.5 | ebeleme %84.7 süre % 0.0 K.çarp % 3.4 E.çarp %11.9 | süre  5.6 s | std 0.18 kl 0.0086 | çarpma K[duv3 tav97] E[duv2 tav98]
+nesil 17 kaçan     tur  20 |   21 M | 1.20 M/s | en son rakibe karşı kazanma % 13.4 | havuz ort. % 39.0 | ebeleme %63.9 süre %27.0 K.çarp % 3.8 E.çarp % 5.3 | süre  9.3 s | std 0.18 kl 0.0097 | çarpma K[duv46 tav54] E[duv53 tav47]
+nesil 17 kaçan     tur  25 |   26 M | 1.20 M/s | en son rakibe karşı kazanma % 17.1 | havuz ort. % 41.2 | ebeleme %66.4 süre %21.9 K.çarp % 3.3 E.çarp % 8.5 | süre  9.9 s | std 0.18 kl 0.0078 | çarpma K[duv58 tav42] E[duv20 tav80]
+nesil 17 kaçan     tur  30 |   31 M | 1.20 M/s | en son rakibe karşı kazanma % 22.6 | havuz ort. % 42.3 | ebeleme %69.9 süre %23.9 K.çarp % 3.3 E.çarp % 2.9 | süre  7.9 s | std 0.18 kl 0.0097 | çarpma K[duv61 tav39] E[duv27 tav73]
+nesil 17 kaçan     tur  35 |   37 M | 1.20 M/s | en son rakibe karşı kazanma % 24.8 | havuz ort. % 44.3 | ebeleme %61.8 süre %26.3 K.çarp % 8.3 E.çarp % 3.5 | süre  8.4 s | std 0.18 kl 0.0100 | çarpma K[duv9 tav91] E[duv15 tav85]
+nesil 17 kaçan     tur  40 |   42 M | 1.20 M/s | en son rakibe karşı kazanma % 27.1 | havuz ort. % 45.8 | ebeleme %61.4 süre %24.7 K.çarp %11.2 E.çarp % 2.7 | süre  9.0 s | std 0.18 kl 0.0084 | çarpma K[duv27 tav73] E[duv33 tav67]
+nesil 17 kaçan     tur  45 |   47 M | 1.20 M/s | en son rakibe karşı kazanma % 31.4 | havuz ort. % 47.5 | ebeleme %56.5 süre %25.1 K.çarp % 7.9 E.çarp %10.5 | süre  7.9 s | std 0.18 kl 0.0076 | çarpma K[duv7 tav93] E[duv3 tav97]
+nesil 17 kaçan     tur  50 |   52 M | 1.20 M/s | en son rakibe karşı kazanma % 33.8 | havuz ort. % 48.4 | ebeleme %51.1 süre %24.7 K.çarp %11.2 E.çarp %13.0 | süre  8.4 s | std 0.18 kl 0.0180 | çarpma K[duv2 tav98] E[tav100]
+nesil 17 kaçan     tur  55 |   58 M | 1.20 M/s | en son rakibe karşı kazanma % 34.0 | havuz ort. % 49.4 | ebeleme %45.7 süre %20.9 K.çarp %18.5 E.çarp %14.9 | süre  7.8 s | std 0.18 kl 0.0104 | çarpma K[duv5 tav95] E[duv0 tav100]
+nesil 17 kaçan     tur  60 |   63 M | 1.20 M/s | en son rakibe karşı kazanma % 44.1 | havuz ort. % 51.5 | ebeleme %49.6 süre %18.9 K.çarp %29.7 E.çarp % 1.8 | süre  7.7 s | std 0.18 kl 0.0205 | çarpma K[duv11 tav89] E[duv37 tav63]
+nesil 17 kaçan     tur  65 |   68 M | 1.20 M/s | en son rakibe karşı kazanma % 51.5 | havuz ort. % 52.2 | ebeleme %45.1 süre %19.5 K.çarp %34.1 E.çarp % 1.3 | süre  7.7 s | std 0.18 kl 0.0084 | çarpma K[duv14 tav86] E[duv51 tav49]
+nesil 17 kaçan     tur  70 |   73 M | 1.20 M/s | en son rakibe karşı kazanma % 56.9 | havuz ort. % 55.3 | ebeleme %37.5 süre %24.8 K.çarp %36.2 E.çarp % 1.5 | süre  8.6 s | std 0.18 kl 0.0082 | çarpma K[duv4 tav96] E[duv3 tav97]
+nesil 17 kaçan     tur  75 |   79 M | 1.20 M/s | en son rakibe karşı kazanma % 54.2 | havuz ort. % 56.3 | ebeleme %34.6 süre %34.7 K.çarp %27.7 E.çarp % 3.0 | süre 11.2 s | std 0.18 kl 0.0081 | çarpma K[duv0 tav100] E[tav100]
+nesil 17 kaçan     tur  80 |   84 M | 1.20 M/s | en son rakibe karşı kazanma % 58.4 | havuz ort. % 58.0 | ebeleme %30.6 süre %34.2 K.çarp %31.2 E.çarp % 4.0 | süre 10.6 s | std 0.18 kl 0.0135 | çarpma K[tav100] E[tav100]
+nesil 17 kaçan     tur  84 |   88 M | 1.20 M/s | en son rakibe karşı kazanma % 61.4 | havuz ort. % 60.7 | ebeleme %30.2 süre %41.4 K.çarp %25.6 E.çarp % 2.9 | süre 12.0 s | std 0.18 kl 0.0217 | çarpma K[tav100] E[tav100]
+--- nesil 17 bitti (eşik): kaçan, 88 M adım, 1.2 dk, en son rakibe karşı %61.4 → havuza kaçan_9 olarak eklendi
+
+=== nesil 18 · öğrenen: kovalayan · rakip havuzu: 10 kaçan (en son: kaçan_9) ===
+nesil 18 kovalayan tur   5 |    5 M | 1.20 M/s | en son rakibe karşı kazanma % 68.3 | havuz ort. % 89.4 | ebeleme %68.1 süre % 0.0 K.çarp %31.3 E.çarp % 0.7 | süre  4.0 s | std 0.16 kl 0.0118 | çarpma K[tav100] E[tav100]
+nesil 18 kovalayan tur  10 |   10 M | 1.20 M/s | en son rakibe karşı kazanma % 87.3 | havuz ort. % 90.9 | ebeleme %86.8 süre % 0.0 K.çarp %12.1 E.çarp % 1.1 | süre  7.3 s | std 0.16 kl 0.0143 | çarpma K[tav100] E[tav100]
+nesil 18 kovalayan tur  15 |   16 M | 1.20 M/s | en son rakibe karşı kazanma % 99.7 | havuz ort. % 92.9 | ebeleme %96.9 süre % 0.0 K.çarp % 0.2 E.çarp % 2.9 | süre  7.2 s | std 0.16 kl 0.0097 | çarpma K[tav100] E[tav100]
+nesil 18 kovalayan tur  20 |   21 M | 1.20 M/s | en son rakibe karşı kazanma % 74.9 | havuz ort. % 93.1 | ebeleme %77.0 süre %20.9 K.çarp % 0.3 E.çarp % 1.8 | süre  4.6 s | std 0.16 kl 0.0122 | çarpma K[tav100] E[tav100]
+--- nesil 18 bitti (eşik): kovalayan, 21 M adım, 0.3 dk, en son rakibe karşı %74.9 → havuza kovalayan_10 olarak eklendi
+
+=== nesil 19 · öğrenen: kaçan · rakip havuzu: 11 kovalayan (en son: kovalayan_10) ===
+nesil 19 kaçan     tur   5 |    5 M | 1.20 M/s | en son rakibe karşı kazanma %  0.2 | havuz ort. % 57.0 | ebeleme %88.3 süre % 0.0 K.çarp %11.4 E.çarp % 0.4 | süre  4.0 s | std 0.18 kl 0.0074 | çarpma K[tav100] E[tav100]
+nesil 19 kaçan     tur  10 |   10 M | 1.20 M/s | en son rakibe karşı kazanma %  0.3 | havuz ort. % 55.7 | ebeleme %83.0 süre % 0.0 K.çarp %15.5 E.çarp % 1.5 | süre  4.6 s | std 0.18 kl 0.0083 | çarpma K[tav100] E[tav100]
+nesil 19 kaçan     tur  15 |   16 M | 1.20 M/s | en son rakibe karşı kazanma %  0.2 | havuz ort. % 52.4 | ebeleme %94.4 süre % 0.0 K.çarp % 4.6 E.çarp % 0.9 | süre  5.0 s | std 0.18 kl 0.0182 | çarpma K[tav100] E[tav100]
+nesil 19 kaçan     tur  20 |   21 M | 1.20 M/s | en son rakibe karşı kazanma %  0.3 | havuz ort. % 53.2 | ebeleme %84.1 süre %10.7 K.çarp % 4.1 E.çarp % 1.1 | süre  6.1 s | std 0.18 kl 0.0135 | çarpma K[duv0 tav100] E[tav100]
+nesil 19 kaçan     tur  25 |   26 M | 1.20 M/s | en son rakibe karşı kazanma %  0.5 | havuz ort. % 52.4 | ebeleme %85.2 süre %12.8 K.çarp % 0.9 E.çarp % 1.1 | süre  7.7 s | std 0.17 kl 0.0123 | çarpma K[duv4 tav96] E[duv1 tav99]
+nesil 19 kaçan     tur  30 |   31 M | 1.20 M/s | en son rakibe karşı kazanma %  1.0 | havuz ort. % 52.2 | ebeleme %89.3 süre % 6.0 K.çarp % 1.2 E.çarp % 3.4 | süre  6.0 s | std 0.17 kl 0.0194 | çarpma K[duv55 tav45] E[duv33 tav67]
+nesil 19 kaçan     tur  35 |   37 M | 1.20 M/s | en son rakibe karşı kazanma %  2.0 | havuz ort. % 51.5 | ebeleme %76.0 süre %10.0 K.çarp %11.5 E.çarp % 2.5 | süre  7.1 s | std 0.17 kl 0.0091 | çarpma K[duv2 tav98] E[duv27 tav73]
+nesil 19 kaçan     tur  40 |   42 M | 1.20 M/s | en son rakibe karşı kazanma %  2.0 | havuz ort. % 50.0 | ebeleme %75.9 süre % 7.5 K.çarp %13.1 E.çarp % 3.5 | süre  6.4 s | std 0.17 kl 0.0110 | çarpma K[duv8 tav92] E[duv74 tav26]
+nesil 19 kaçan     tur  45 |   47 M | 1.20 M/s | en son rakibe karşı kazanma %  2.5 | havuz ort. % 48.7 | ebeleme %84.0 süre % 4.9 K.çarp % 2.7 E.çarp % 8.4 | süre  5.7 s | std 0.17 kl 0.0209 | çarpma K[duv31 tav69] E[duv57 tav43]
+nesil 19 kaçan     tur  50 |   52 M | 1.20 M/s | en son rakibe karşı kazanma %  2.9 | havuz ort. % 48.2 | ebeleme %85.4 süre % 3.2 K.çarp % 3.1 E.çarp % 8.3 | süre  5.6 s | std 0.17 kl 0.0076 | çarpma K[duv23 tav77] E[duv45 tav55]
+nesil 19 kaçan     tur  55 |   58 M | 1.20 M/s | en son rakibe karşı kazanma %  4.4 | havuz ort. % 48.1 | ebeleme %78.7 süre % 4.2 K.çarp %11.9 E.çarp % 5.2 | süre  5.9 s | std 0.17 kl 0.0125 | çarpma K[duv8 tav92] E[duv66 tav34]
+nesil 19 kaçan     tur  60 |   63 M | 1.20 M/s | en son rakibe karşı kazanma %  4.0 | havuz ort. % 48.2 | ebeleme %79.5 süre % 5.7 K.çarp %10.3 E.çarp % 4.5 | süre  6.2 s | std 0.17 kl 0.0231 | çarpma K[duv11 tav89] E[duv85 tav15]
+nesil 19 kaçan     tur  65 |   68 M | 1.20 M/s | en son rakibe karşı kazanma %  5.3 | havuz ort. % 48.4 | ebeleme %77.6 süre % 6.6 K.çarp %10.6 E.çarp % 5.2 | süre  5.9 s | std 0.17 kl 0.0182 | çarpma K[duv13 tav87] E[duv65 tav35]
+nesil 19 kaçan     tur  70 |   73 M | 1.20 M/s | en son rakibe karşı kazanma %  7.4 | havuz ort. % 48.5 | ebeleme %76.5 süre % 5.5 K.çarp %12.7 E.çarp % 5.3 | süre  5.8 s | std 0.17 kl 0.0212 | çarpma K[duv8 tav92] E[duv57 tav43]
+nesil 19 kaçan     tur  75 |   79 M | 1.20 M/s | en son rakibe karşı kazanma % 10.1 | havuz ort. % 48.5 | ebeleme %76.6 süre % 8.2 K.çarp % 9.6 E.çarp % 5.7 | süre  6.8 s | std 0.17 kl 0.0098 | çarpma K[duv7 tav93] E[duv39 tav61]
+nesil 19 kaçan     tur  80 |   84 M | 1.20 M/s | en son rakibe karşı kazanma %  9.1 | havuz ort. % 47.5 | ebeleme %75.2 süre % 8.1 K.çarp % 8.2 E.çarp % 8.6 | süre  6.7 s | std 0.17 kl 0.0420 | çarpma K[duv20 tav80] E[duv90 tav10]
+nesil 19 kaçan     tur  85 |   89 M | 1.20 M/s | en son rakibe karşı kazanma %  9.3 | havuz ort. % 45.2 | ebeleme %66.9 süre % 8.0 K.çarp % 8.6 E.çarp %16.5 | süre  6.3 s | std 0.17 kl 0.0315 | çarpma K[duv23 tav77] E[duv62 tav38]
+nesil 19 kaçan     tur  90 |   94 M | 1.20 M/s | en son rakibe karşı kazanma % 12.6 | havuz ort. % 43.7 | ebeleme %67.1 süre % 4.5 K.çarp %13.0 E.çarp %15.3 | süre  6.0 s | std 0.17 kl 0.0128 | çarpma K[duv16 tav84] E[duv45 tav55]
+nesil 19 kaçan     tur  95 |  100 M | 1.20 M/s | en son rakibe karşı kazanma % 13.9 | havuz ort. % 42.4 | ebeleme %68.8 süre % 6.8 K.çarp %10.5 E.çarp %13.9 | süre  6.5 s | std 0.17 kl 0.0160 | çarpma K[duv12 tav88] E[duv24 tav76]
+nesil 19 kaçan     tur  96 |  101 M | 1.20 M/s | en son rakibe karşı kazanma % 14.9 | havuz ort. % 42.5 | ebeleme %70.5 süre %10.6 K.çarp %13.6 E.çarp % 5.4 | süre  6.9 s | std 0.17 kl 0.0106 | çarpma K[duv6 tav94] E[duv25 tav75]
+--- nesil 19 bitti (en fazla adım): kaçan, 101 M adım, 1.4 dk, en son rakibe karşı %14.9 → havuza kaçan_10 olarak eklendi
+
+bitti: 1161 M adım, 17.7 dk

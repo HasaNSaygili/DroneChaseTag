@@ -288,7 +288,9 @@ nesillerinde en son rakibe karşı kazanma %0'da kaldı. İki neden bulundu (ayr
 2. **Keşfin çökmesi:** Kaçan sürekli kaybettiği için rastgeleliğini neredeyse sıfıra indirdi ve yeni şey denemeyi
    bıraktı.
 
-Bu "başarısızlık" aslında ana hipotezi destekliyor: **engel olmadan kaçan kazanamaz.**
+**Düzeltme (20 Kasım):** Boş arenayı entropi bonusuyla tekrar koşunca kaçan nesilleri en son rakibe karşı %15–61
+kazandı ve taraflar sırayla birbirini yenmeye başladı. Yani asıl neden keşfin çökmesiymiş, oyunun yapısı değil. Ayrıca
+engelli ilk self-play'de bir uygulama kusuru (eylemlerin doyması) bulundu ve düzeltildi. Ayrıntı: Kısım B, soru 8.
 
 ---
 
@@ -596,10 +598,21 @@ az (0,17 → 0,10).
    değiştiriyor; PPO'nun "en fazla %20 değiş" kırpması sık sık devreye giriyor ve güncellemeler gürültüleniyor. Veride
    de görünüyor: kaçanın KL'si (bir turda ne kadar değiştiğinin ölçüsü) 0,007'den 0,02'nin üstüne çıktı.
 
-### Hangisi asıl neden?
-Büyük olasılıkla **Neden 1 asıl, Neden 2 durumu kötüleştiren.** Kanıt: nesil 3'te kaçanın std'si hâlâ 0,10 civarındaydı
-(çökmemişti) ama en son rakibe karşı yine %0 kazandı. Kesin cevabı önerilen kontrol koşusu verecek: boş arenada sadece
-entropi bonusuyla self-play. Kaçan yine kazanamazsa Neden 1 doğrulanmış olur.
+### Hangisi asıl neden? (Düzeltme, 20 Kasım)
+İlk yorum "Neden 1 asıl, Neden 2 ikincil" idi. **Kontrol koşusu bunu yanlışladı.** Boş arenayı sadece entropi bonusuyla
+tekrar koşunca (`sp-empty-ent-s0`) kaçanın std'si ~0,18'de kaldı ve kaçan nesilleri en son rakibe karşı %0 yerine
+%15–61 kazandı; taraflar sırayla birbirini yenmeye başladı. Yani boş arenadaki kovalayan üstünlüğünün **asıl nedeni
+keşfin çökmesiydi**. Aslan-insan teorisi idealize bir oyun için; 20 saniyelik süre sınırı ve drone dinamiği varken
+kaçana pratikte yer kalıyor.
+
+### Üçüncü bir sorun: eylemlerin doyması
+Engelli arenadaki ilk self-play'de (`sp-faz1-s0`) drone'lar 1,2 milyar adım boyunca engellere çarpmaya devam etti.
+Nedeni bir uygulama kusuruydu: aktör eylemin *ortalamasını* sınırsız üretiyordu, ortam ise eylemin boyunu 1'e
+kırpıyordu. Boş arenada hep tam hız iyi olduğu için ortalamalar ~4,5'e kaydı. Std küçükken denenen bütün eylemler
+kırpılınca aynı eyleme dönüştü: farklı deneme yok, farklı sonuç yok, avantaj sıfır; ajan fren yapmayı öğrenemedi.
+Düzeltme: ortalama tanh ile [-1, 1]'e sınırlandı. Sıfırdan eğitilen bir kovalayan engelli arenada birkaç yüz bin adımda
+çarpmayı büyük ölçüde bıraktı. Ders: sürekli eylemli PPO'da eylemi sınırsız bir Gauss'tan seçip ortamda kırpmak bilinen
+bir tuzak; ortalama ya da eylem sınırlanmalı.
 
 ---
 

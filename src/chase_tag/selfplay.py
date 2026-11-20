@@ -64,6 +64,7 @@ class SelfPlayConfig:
     lr: float = 3e-4                      # SABİT: self-play'de öğrenme "bitmez", rakip hep değişir
     max_grad_norm: float = 0.5
     hidden: int = 256
+    squash_mean: bool = True              # eylem ortalaması tanh ile sınırlı (bkz. ppo.actor_dist)
     gamma_chaser: float = 0.995           # ufuk ~4 s
     gamma_evader: float = 0.998           # ufuk ~10 s (kaçanın ödülü 20 s sonunda)
     # ---- self-play ----
@@ -87,13 +88,13 @@ def role_ppo_cfg(sp, role):
     """Bir rol için PPO ayarları (ppo.make_update bunları kullanır)."""
     keys = ("phase", "n_obst", "n_arenas", "opp_crash_reward", "n_worlds", "n_steps", "n_blocks", "epochs",
             "n_minibatches", "gae_lambda", "clip_eps", "vf_coef", "ent_coef", "lr", "max_grad_norm", "hidden",
-            "seed")
+            "squash_mean", "seed")
     return PPOConfig(learner=role, opponent="pool", anneal_lr=False,
                      gamma=sp.gamma_chaser if role == "chaser" else sp.gamma_evader,
                      **{k: getattr(sp, k) for k in keys})
 
 
-def make_pool_opponent(n, n_blocks, opp_role):
+def make_pool_opponent(n, n_blocks, opp_role, squash=True):
     """Havuzdaki donmuş ağlarla oynayan rakip. opp_args = (havuz dizisi, blok başına havuz indeksi)."""
     bs = n // n_blocks
 
@@ -101,7 +102,7 @@ def make_pool_opponent(n, n_blocks, opp_role):
         pool, slot = opp_args
         p = jax.tree.map(lambda x: x[slot], pool)                          # (B, ...) her bloğun rakip ağı
         obs = obs_all[:, opp_role].reshape(n_blocks, bs, OBS_DIM)
-        mu, std = jax.vmap(actor_dist)(p, obs)                             # (B, bs, 3), (B, 3)
+        mu, std = jax.vmap(lambda pp, oo: actor_dist(pp, oo, squash))(p, obs)   # (B, bs, 3), (B, 3)
         a = mu + std[:, None, :] * jax.random.normal(key, mu.shape)        # rakip de olasılıklı oynar
         return a.reshape(n, 3), mem
 
@@ -156,7 +157,8 @@ def train_selfplay(sp, out_dir, resume=True, log=print):
     for r in ROLES:
         other = role_idx["evader" if r == "chaser" else "chaser"]
         updates[r], txs[r], _ = make_update(cfgs[r], env, role_idx[r],
-                                            opponent=make_pool_opponent(sp.n_worlds, sp.n_blocks, other))
+                                            opponent=make_pool_opponent(sp.n_worlds, sp.n_blocks, other,
+                                                                        sp.squash_mean))
 
     # ---- durum: iki rolün öğrenen ağı, Adam durumu, havuzu, rakip başına kazanma oranları ----
     ckpt = os.path.join(out_dir, "checkpoint.pkl")

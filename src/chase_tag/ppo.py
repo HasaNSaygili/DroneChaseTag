@@ -62,6 +62,7 @@ class PPOConfig:
     max_grad_norm: float = 0.5       # gradyan kırpma
     hidden: int = 256
     init_log_std: float = -0.5       # başlangıç keşif gürültüsü: std = e^-0.5 ≈ 0.6
+    squash_mean: bool = True         # eylem ortalaması tanh ile [-1, 1]'de; False = eski (2026-11-20 öncesi) davranış
     # ---- kayıt ----
     seed: int = 0
     log_every: int = 5               # kaç turda bir satır yazdır
@@ -98,9 +99,16 @@ def init_params(key, cfg):
     }
 
 
-def actor_dist(params, obs):
-    """Politika π(a|s): ortalaması ağdan gelen, std'si öğrenilen Gauss dağılımı."""
-    return mlp(params["actor"], obs), jnp.exp(params["log_std"])
+def actor_dist(params, obs, squash=True):
+    """Politika π(a|s): ortalaması ağdan gelen, std'si öğrenilen Gauss dağılımı.
+
+    squash=True: ortalama tanh ile her eksende [-1, 1]'e sınırlanır. Neden: ortam eylemin boyunu 1'e kırpıyor.
+    Sınırsız ortalamayla eğitilen ilk politikalar ortalamayı ~4,5'e kaydırdı (boş arenada hep tam hız en iyiydi);
+    std küçükken denenen bütün eylemler kırpılınca AYNI eyleme dönüşüyor, farklı sonuç çıkmıyor, avantaj sıfır
+    oluyor ve ajan fren yapmayı öğrenemiyor (engelli self-play'de engellere tam hızla çarpma). Sınırlı ortalamada
+    denemeler gerçekten farklı eylemler üretir. (Eski koşuların politikaları squash=False ile açılmalı.)"""
+    mu = mlp(params["actor"], obs)
+    return (jnp.tanh(mu) if squash else mu), jnp.exp(params["log_std"])
 
 
 def log_prob(mu, std, a):
@@ -171,7 +179,7 @@ def make_update(cfg, env, me, opponent=None):
         cobs_all = env.critic_obs(es)                            # (n, 2, CRITIC_DIM); ilk OBS_DIM'i aktör gözlemi
         obs_all = cobs_all[..., :OBS_DIM]
         obs, cobs = obs_all[:, me], cobs_all[:, me]
-        mu, std = actor_dist(params, obs)
+        mu, std = actor_dist(params, obs, cfg.squash_mean)
         a = mu + std * jax.random.normal(k_act, mu.shape)      # dağılımdan örnekle (keşif burada)
         a_opp, mem = opp_fn(es, mem, k_opp, opp_args, obs_all)
         actions = jnp.zeros((n, 2, 3)).at[:, me].set(a).at[:, opp].set(a_opp)
@@ -200,7 +208,7 @@ def make_update(cfg, env, me, opponent=None):
     # ---- 2. Öğrenme: PPO kaybı ----
     def loss_fn(params, mb):
         obs, cobs, a, logp_old, v_old, adv, ret = mb
-        mu, std = actor_dist(params, obs)
+        mu, std = actor_dist(params, obs, cfg.squash_mean)
         logp = log_prob(mu, std, a)
         ratio = jnp.exp(logp - logp_old)                       # π_yeni / π_eski
         adv = (adv - adv.mean()) / (adv.std() + 1e-8)          # normalize: ölçekten bağımsız, kararlı adım
@@ -363,15 +371,15 @@ def train(cfg, out_dir, resume=True, log=print):
 # ---------------------------------------------------------------------------
 # Eğitilmiş politikayı oynatmak için (play.make_runner arayüzü)
 # ---------------------------------------------------------------------------
-def learned_vs_opponent(params, learner, opponent, env, deterministic=True):
+def learned_vs_opponent(params, learner, opponent, env, deterministic=True, squash=True):
     """policy(es, mem, key) -> ((n, 2, 3), mem): öğrenen rol ağla, diğeri rakip fonksiyonuyla oynar.
-    deterministic: değerlendirmede gürültüsüz (ortalama eylem) oynat."""
+    deterministic: değerlendirmede gürültüsüz (ortalama eylem) oynat. squash: koşunun squash_mean ayarı."""
     me = CHASER if learner == "chaser" else EVADER
     opp_fn, opp_init, opp_reset = make_opponent(opponent)
 
     def policy(es, mem, key):
         k1, k2 = jax.random.split(key)
-        mu, std = actor_dist(params, env.observe(es)[:, me])
+        mu, std = actor_dist(params, env.observe(es)[:, me], squash)
         a = mu if deterministic else mu + std * jax.random.normal(k1, mu.shape)
         a_opp, mem = opp_fn(es, mem, k2, None, None)
         n = a.shape[0]
