@@ -1,0 +1,30 @@
+{
+  "params": "params_00476.pkl",
+  "eval_worlds": 1024,
+  "eval_steps": 2000,
+  "arena_seed": 999,
+  "overrides": [],
+  "n_games": 2798,
+  "outcomes_pct": {
+    "ebeleme": 30.271622587562547,
+    "süre doldu": 37.95568263045032,
+    "kaçan çarptı": 20.97927090779128,
+    "kovalayan çarptı": 10.793423874195854,
+    "ikisi çarptı": 0.0
+  },
+  "mean_len_s": 12.102909220872052,
+  "crash_pct": {
+    "kovalayan": {
+      "engel": 68.21192052980133,
+      "duvar": 31.788079470198678,
+      "zemin": 0.0,
+      "tavan": 0.0
+    },
+    "kaçan": {
+      "engel": 0.0,
+      "duvar": 97.9557069846678,
+      "zemin": 2.0442930153321974,
+      "tavan": 0.0
+    }
+  }
+}
