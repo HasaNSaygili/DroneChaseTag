@@ -113,10 +113,11 @@ Final makalesinde **en az bir ablasyon** zorunlu. Not ağırlığı %25.
 - Entropi taraması (sweep-ent-chaser-faz1, 2026-11-20): ent 0–0,002 iyi ve birbirine yakın (ebeleme ~%30),
   ≥ 0,004 zararlı (std sınırsız büyüyor). Gaz pedalı çözülmüş. Yeni darboğaz: kovalayan rakibi görüş hattından
   kaybedince arayamıyor (süre dolan maçlarda rakip %14 görünür). Seçilen entropi 0,001.
-- Sırada (2026-11-21): `sweep-obs-chaser-faz1` = tam gözlem kontrolü (`full_obs=True`, ablasyon 2'nin ilk verisi)
-  + maskeli 1,5 milyar adım. Sonuca göre hafıza (GRU / rakip geçmişi) kararı; sonra elle yazılmışlara karşı
-  temel koşular (3 seed), yeni engelli self-play, eval.py (Elo). Eski `ppo-chaser-faz1-s0` / `ppo-evader-faz1-s0`
-  notebook'ları geçersiz (koşulmayacak).
+- Gözlem taraması (sweep-obs-chaser-faz1, 2026-11-21): maskeli 1,5 milyar adım → ebeleme **%82** (5,2 s); tam gözlem
+  500 M → %22. Darboğaz görüş/hafıza DEĞİL, eğitim süresiydi (500 M'lik koşularda lr 500 M'de 0'a inip öğrenmeyi
+  kesiyordu). Engelli arenada temel koşular 1,5 milyar adım olmalı. Hafıza (GRU) şimdilik gerekmiyor; ablasyon 5 olarak kalır.
+- Sırada: elle yazılmışlara karşı temel koşular (kaçan vs elle yazılmış kovalayan dahil, 1,5 milyar, birden çok seed),
+  yeni engelli self-play, eval.py (Elo). Eski `ppo-chaser-faz1-s0` / `ppo-evader-faz1-s0` notebook'ları geçersiz.
 - Üç doğrulama koşusunun dosyaları `experiments/<koşu>/` altında (Drive'dan indirildi). Ara rapor sunumu
   (16 slayt, Türkçe): claude.ai artifact PiPxbcF9gQQyD67yDuMcwh; eğriler `scripts/plot_curves.py` ile.
 - Elle yazılmış rakipler: kovalayan = harita bilir, rakibi görüş hattıyla görür, ızgarada en kısa yol
