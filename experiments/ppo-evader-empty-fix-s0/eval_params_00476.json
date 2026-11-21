@@ -1,0 +1,20 @@
+{
+  "params": "params_00476.pkl",
+  "eval_worlds": 1024,
+  "eval_steps": 2000,
+  "arena_seed": 999,
+  "overrides": [],
+  "n_games": 2048,
+  "outcomes_pct": {
+    "ebeleme": 0.0,
+    "süre doldu": 100.0,
+    "kaçan çarptı": 0.0,
+    "kovalayan çarptı": 0.0,
+    "ikisi çarptı": 0.0
+  },
+  "mean_len_s": 20.0,
+  "crash_pct": {
+    "kovalayan": {},
+    "kaçan": {}
+  }
+}
