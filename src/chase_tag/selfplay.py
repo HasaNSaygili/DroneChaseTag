@@ -14,15 +14,21 @@ taraflar bir döngüde dönebilir (kovalayan daireyi kesmeyi unutur, kaçan dair
   * diğer yarısı havuzdan PFSP ile seçilir: zorlandığın rakip daha sık gelir, ağırlık (1 − x)²,
     x = öğrenenin o rakibe karşı kazanma oranı (Gavin & Bronz 2026'nın tarifi).
 
-Sıra değişimi: öğrenen EN SON rakibe karşı son `win_window` turda ≥ `switch_win` kazanınca (en az `min_steps`
-adımdan sonra) ya da `max_steps` dolunca.
+Sıra değişimi: öğrenen EN SON rakibe karşı ≥ `switch_win` kazanınca (en az `min_steps` adımdan sonra) ya da
+`max_steps` dolunca. Kazanma oranı AYRI KONTROL MAÇLARIYLA ölçülür (`match_eval`): `eval_worlds` maç sıfırdan
+başlar, her biri sonuna kadar oynanır, her maç tam bir kez sayılır.
+
+Neden eğitim maçlarından ölçülmüyor (2026-11-21'e kadar öyleydi)? Nesil başında bütün dünyalar AYNI ANDA başlıyor.
+Yakalanmalar dağınık zamanlarda biter, ama süre dolan maçların hepsi aynı turda (1000. adım) biter. "Son birkaç
+turda biten maçlar" sayılınca bu patlamanın denk geldiği pencere kaçanın oranını şişirir (sp-empty-fix-s0: log
+%71–87, gerçek ~%50), denk gelmeyen pencere sıfırlar. Eğitim içi sonuç oranları (logdaki ebeleme/süre yüzdeleri,
+PFSP'nin rakip başına `ema`'sı) bu yanlılığı hâlâ taşır: log sadece gösterge, PFSP ağırlığı yaklaşık.
 
 Uygulama ayrıntısı: arenalar `n_blocks` bloğa bölünür, her blok bir rakip ağla oynar. Rakip ağırlıkları
 argüman olarak geçtiği için havuz büyüdükçe yeniden derleme olmaz (havuz `pool_max` boyutlu sabit dizi).
 PFSP blokları her `resample_every` turda yeniden çekilir; maçlar turlara yayıldığı için bir maçın ortasında
 rakip değişebilir (yaklaşıklık; en son rakip blokları hiç değişmez).
 """
-import collections
 import dataclasses
 import json
 import os
@@ -37,7 +43,7 @@ from .arenas import make_arena_set
 from .env import OBS_DIM, ChaseTagEnv
 from .geometry import CRASH_KIND_NAMES
 from .ppo import PPOConfig, _crash_summary, actor_dist, make_update
-from .rules import C_CRASH, CHASER, CTRL_HZ, E_CRASH, EVADER, OUTCOME_NAMES, TAG, TIMEOUT
+from .rules import C_CRASH, CHASER, CTRL_HZ, E_CRASH, EVADER, MAX_STEPS, OUTCOME_NAMES, TAG, TIMEOUT
 
 ROLES = ("chaser", "evader")
 ROLE_TR = {"chaser": "kovalayan", "evader": "kaçan"}
@@ -76,7 +82,8 @@ class SelfPlayConfig:
     min_steps: int = 20_000_000           # bir nesilde en az bu kadar adım (gürültüyle erken geçişi önler)
     max_steps: int = 100_000_000          # bir nesilde en fazla (oyun yapısal olarak dengesizse takılmasın)
     switch_win: float = 0.6               # en son rakibe karşı bu orana ulaşınca sıra değişir
-    win_window: int = 5                   # bu oran son kaç turun toplamından hesaplanır
+    eval_every: int = 5_000_000           # min_steps'ten sonra kaç adımda bir kontrol maçı yapılır
+    eval_worlds: int = 4096               # kontrol maçı sayısı (her dünya 1 maç; ±%1,5 belirsizlik)
     p_latest: float = 0.5                 # blokların bu kadarı hep en son rakiple oynar
     resample_every: int = 10              # PFSP blokları kaç turda bir yeniden çekilir
     pool_max: int = 32
@@ -108,6 +115,34 @@ def make_pool_opponent(n, n_blocks, opp_role, squash=True):
         return a.reshape(n, 3), mem
 
     return fn, (lambda n: None), (lambda mem, done: mem)
+
+
+def make_match_eval(env, squash=True):
+    """Kontrol maçları: run(p_kovalayan, p_kaçan, key) -> (n,) her dünyanın İLK maçının sonucu.
+
+    Bütün dünyalar sıfırdan başlar ve tam MAX_STEPS adım oynanır; süre sınırı yüzünden her maç en geç son adımda
+    biter, yani her dünya tam bir maç verir (sonrası otomatik yeniden başlar, sayılmaz). İki taraf da eğitimdeki
+    gibi olasılıklı oynar: ölçülen şey, eğitilen politikanın gerçekten kazandığı oran."""
+    def run(p_ch, p_ev, key):
+        k_reset, k_run = jax.random.split(key)
+        s = env.reset(k_reset)
+
+        def body(carry, k):
+            s, first = carry
+            k_c, k_e, k_env = jax.random.split(k, 3)
+            obs = env.observe(s)
+            mu_c, sd_c = actor_dist(p_ch, obs[:, CHASER], squash)
+            mu_e, sd_e = actor_dist(p_ev, obs[:, EVADER], squash)
+            a = jnp.stack([mu_c + sd_c * jax.random.normal(k_c, mu_c.shape),
+                           mu_e + sd_e * jax.random.normal(k_e, mu_e.shape)], axis=1)   # (n, 2, 3)
+            s, _, _, info = env.step(s, a, k_env)
+            first = jnp.where(first == 0, info["outcome"].astype(jnp.int32), first)   # sadece ilk biten maç
+            return (s, first), None
+
+        (_, first), _ = jax.lax.scan(body, (s, jnp.zeros(env.n, jnp.int32)), jax.random.split(k_run, MAX_STEPS))
+        return first
+
+    return jax.jit(run)
 
 
 def _load_params(path):
@@ -152,6 +187,9 @@ def train_selfplay(sp, out_dir, resume=True, log=print):
     log(f"arenalar üretiliyor ({sp.n_arenas}, faz {sp.phase}, engel {sp.n_obst})...")
     arenas = make_arena_set(sp.n_arenas, phase=sp.phase, n_obst=tuple(sp.n_obst), seed=sp.seed, verbose=False)
     env = ChaseTagEnv(sp.n_worlds, arenas, opp_crash_reward=sp.opp_crash_reward, full_obs=sp.full_obs)
+    # Kontrol maçları için ayrı, küçük ortam (aynı arenalar, aynı kurallar)
+    match_eval = make_match_eval(ChaseTagEnv(sp.eval_worlds, arenas, opp_crash_reward=sp.opp_crash_reward,
+                                             full_obs=sp.full_obs), sp.squash_mean)
     role_idx = {"chaser": CHASER, "evader": EVADER}
     cfgs = {r: role_ppo_cfg(sp, r) for r in ROLES}
     updates, txs = {}, {}
@@ -204,7 +242,8 @@ def train_selfplay(sp, out_dir, resume=True, log=print):
         key, k_env = jax.random.split(key)
         es, mem = env.reset(k_env), None
         slot = np.full(sp.n_blocks, latest, np.int32)
-        recent = collections.deque(maxlen=sp.win_window)            # (kazanılan, biten) en son rakibe karşı
+        opp_latest = jax.tree.map(lambda x: x[latest], pool.arr)      # kontrol maçlarının rakibi
+        win_eval, eval_pct, last_eval = None, None, -np.inf
         window = np.zeros(len(OUTCOME_NAMES))
         crash_window = np.zeros((2, len(CRASH_KIND_NAMES)))
         steps, u, t_gen = 0, 0, time.perf_counter()
@@ -221,28 +260,39 @@ def train_selfplay(sp, out_dir, resume=True, log=print):
             u += 1
             bc = m["block_counts"]                                   # (B, 6)
             wins_b, ended_b = bc[:, win_k].sum(1), bc[:, 1:].sum(1)
-            recent.append((wins_b[:n_latest].sum(), ended_b[:n_latest].sum()))
-            for j in np.unique(slot):                                # rakip başına kazanma oranını güncelle
+            for j in np.unique(slot):                                # rakip başına kazanma oranını güncelle (PFSP için)
                 sel = slot == j
                 if ended_b[sel].sum() > 0:
                     ema[role][j] = (1 - sp.win_ema) * ema[role][j] + sp.win_ema * wins_b[sel].sum() / ended_b[sel].sum()
-            win_latest = float(sum(a for a, _ in recent) / max(sum(b for _, b in recent), 1))
+            # ---- kontrol maçları: en az adımdan sonra her eval_every adımda bir (ve en fazla adımda son kez) ----
+            evaled = False
+            if steps >= sp.min_steps and (steps - last_eval >= sp.eval_every or steps >= sp.max_steps):
+                key, k_eval = jax.random.split(key)
+                p_ch, p_ev = (params[role], opp_latest) if role == "chaser" else (opp_latest, params[role])
+                first = np.asarray(match_eval(p_ch, p_ev, k_eval))
+                first = first[first > 0]                             # (süre sınırı yüzünden hepsi biter)
+                win_eval = float(np.isin(first, win_k).mean())
+                eval_pct = {OUTCOME_NAMES[k]: 100 * float(np.mean(first == k)) for k in range(1, len(OUTCOME_NAMES))}
+                last_eval, evaled = steps, True
             window += m["outcome_counts"]
             crash_window += m["crash_counts"]
             row = dict(gen=gen, learner=role, update=u, gen_steps=steps, total_steps=total,
-                       time_s=time.perf_counter() - t_start, slot=slot.tolist(), win_latest_window=win_latest,
+                       time_s=time.perf_counter() - t_start, slot=slot.tolist(),
+                       win_latest_eval=win_eval if evaled else None, eval_pct=eval_pct if evaled else None,
                        ema=ema[role][:pool.n].tolist(),
                        **{k: (v.tolist() if isinstance(v, np.ndarray) else float(v)) for k, v in m.items()})
             mfile.write(json.dumps(row) + "\n")
-            done_gen = steps >= sp.max_steps or (steps >= sp.min_steps and len(recent) == sp.win_window
-                                                 and win_latest >= sp.switch_win)
+            done_gen = steps >= sp.max_steps or (evaled and win_eval >= sp.switch_win)
+            if evaled:
+                log(f"nesil {gen:2d} kontrol maçı ({len(first)} maç, en son {ROLE_TR[other]}_{latest}'e karşı): "
+                    f"kazanma %{100 * win_eval:.1f} | " + " ".join(f"{k} %{v:.1f}" for k, v in eval_pct.items()))
             if u % sp.log_every == 0 or done_gen:
                 mfile.flush()
                 tot = window[1:].sum()
                 pct = lambda k: 100 * window[k] / max(tot, 1)
                 sps = steps / (time.perf_counter() - t_gen)
                 log(f"nesil {gen:2d} {ROLE_TR[role]:9s} tur {u:3d} | {steps / 1e6:4.0f} M | {sps / 1e6:.2f} M/s | "
-                    f"en son rakibe karşı kazanma %{100 * win_latest:5.1f} | havuz ort. %{100 * ema[role][:pool.n].mean():5.1f} | "
+                    f"havuz ort. %{100 * ema[role][:pool.n].mean():5.1f} | eğitim maçları: "
                     f"ebeleme %{pct(TAG):4.1f} süre %{pct(TIMEOUT):4.1f} K.çarp %{pct(C_CRASH):4.1f} "
                     f"E.çarp %{pct(E_CRASH):4.1f} | süre {m['ep_len'] / CTRL_HZ:4.1f} s | std {m['std']:.2f} "
                     f"kl {m['approx_kl']:.4f} | gaz: hız {m['act_speed']:.2f} kırpılan %{100 * m['act_clip_frac']:.0f} "
@@ -253,12 +303,12 @@ def train_selfplay(sp, out_dir, resume=True, log=print):
             if done_gen:
                 break
         # ---- nesil sonu: öğreneni havuzuna ekle, kaydet ----
-        why = "eşik" if win_latest >= sp.switch_win else "en fazla adım"
+        why = "eşik" if win_eval >= sp.switch_win else "en fazla adım"
         j = pools[role].add(params[role])
         ema[other][j] = 0.5                                          # yeni rakip: henüz bilinmiyor
         _save(os.path.join(out_dir, f"{role}_gen{gen:02d}.pkl"), params[role])
         log(f"--- nesil {gen} bitti ({why}): {ROLE_TR[role]}, {steps / 1e6:.0f} M adım, "
-            f"{(time.perf_counter() - t_gen) / 60:.1f} dk, en son rakibe karşı %{100 * win_latest:.1f} → "
+            f"{(time.perf_counter() - t_gen) / 60:.1f} dk, kontrol maçında en son rakibe karşı %{100 * win_eval:.1f} → "
             f"havuza {ROLE_TR[role]}_{j} olarak eklendi")
         _save(ckpt, dict(params=params, opt=opt, pool={r: pools[r].arr for r in ROLES},
                          pool_n={r: pools[r].n for r in ROLES}, ema=ema, gen=gen + 1, key=key, total_steps=total))

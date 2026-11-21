@@ -25,7 +25,8 @@ cfg = SelfPlayConfig()
 if a.small:
     b = 64 * 32
     cfg = dataclasses.replace(cfg, n_worlds=64, n_steps=32, n_blocks=4, n_arenas=20, min_steps=3 * b,
-                              max_steps=6 * b, n_gens=3, win_window=2, resample_every=2, log_every=1)
+                              max_steps=6 * b, n_gens=3, eval_every=2 * b, eval_worlds=64, resample_every=2,
+                              log_every=1)
 for kv in a.set:
     k, v = kv.split("=", 1)
     if not hasattr(cfg, k):
