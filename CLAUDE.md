@@ -100,10 +100,12 @@ Final makalesinde **en az bir ablasyon** zorunlu. Not ağırlığı %25.
   yazılmış kovalayana karşı süre doldu %99,8 (γ 0,998); taktik: çoğunlukla dikey düzlemde daire çizme
   (saf takibe karşı bilinen kaçış).
 - Self-play (`selfplay.py`, 2026-11-19): sırayla eğitim; sıra değişimi = EN SON rakibe karşı kazanma ≥ %60,
-  en az 20 M, en fazla 100 M adım; rakip seçimi %50 en son + %50 PFSP (1−x)²; havuzda sadece öğrenen politikalar;
+  en az 20 M, en fazla 100 M adım; kazanma oranı **ayrı kontrol maçlarıyla** ölçülür (2026-11-21'den beri: 4096 maç
+  baştan sona, her 5 M adımda). Eski ölçü (son 5 turda biten eğitim maçları) senkron başlangıç yüzünden yanlıydı:
+  süre dolan maçlar aynı turda bitip kaçanın oranını şişiriyordu; sp-* koşularının (fix2 öncesi) oranları buna tabi; rakip seçimi %50 en son + %50 PFSP (1−x)²; havuzda sadece öğrenen politikalar;
   WCT kuralı; SABİT öğrenme oranı; 8 blok; ilerleme Elo ile (eval.py henüz yazılmadı).
 - Self-play sonuçları (ayrıntı LOG): sp-empty-s0 → kovalayan baskın, kaçanın std'si 0,03'e çöktü.
-  sp-empty-ent-s0 (ent_coef 0,003) → denge değişti, kaçan %15–61; ASIL neden keşfin çökmesiydi (önceki "oyunun
+  sp-empty-ent-s0 (ent_coef 0,003) → denge değişti, kaçan %15–61 (oranlar şişirilmiş, yukarıya bak); ASIL neden keşfin çökmesiydi (önceki "oyunun
   yapısı" yorumu yanlıştı). sp-faz1-s0 → BAŞARISIZ: drone'lar 1,2 milyar adım engellere çarptı.
 - **Doyma kusuru (2026-11-20):** aktörün eylem ortalaması sınırsızdı; boş arenada ~4,5'e kaydı, ortam boyu 1'e
   kırptığı için denemeler aynı eyleme dönüşüp öğrenme duruyordu. Düzeltme: `ppo.actor_dist` ortalamayı tanh ile
@@ -116,6 +118,9 @@ Final makalesinde **en az bir ablasyon** zorunlu. Not ağırlığı %25.
 - Gözlem taraması (sweep-obs-chaser-faz1, 2026-11-21): maskeli 1,5 milyar adım → ebeleme **%82** (5,2 s); tam gözlem
   500 M → %22. Darboğaz görüş/hafıza DEĞİL, eğitim süresiydi (500 M'lik koşularda lr 500 M'de 0'a inip öğrenmeyi
   kesiyordu). Engelli arenada temel koşular 1,5 milyar adım olmalı. Hafıza (GRU) şimdilik gerekmiyor; ablasyon 5 olarak kalır.
+- sweep-base-empty (2026-11-21): düzeltilmiş kodla kovalayan %99,6 (2,9 s), kaçan %100 → 1. adım tamam.
+  sp-empty-fix-s0: dengeli (gerçek oran kaçan ~%50, kovalayan ~%65), std çökmedi; ama sıra değişimi ölçüsü yanlıydı →
+  tekrar: sp-empty-fix2-s0 (kontrol maçlı).
 - Sıra (adım adım, kullanıcı isteği 2026-11-21): (1) `sweep-base-empty` boş arena temeli düzeltilmiş kodla →
   (2) boş arena self-play → (3) `sweep-base-faz1` engelli temel → (4) engelli self-play; eval.py (Elo).
   Engelli temel ajanlar **sıfırdan** eğitilir, boş arena ajanından devam ettirilmez (karar 2026-11-21: kanıtlanmış ve
