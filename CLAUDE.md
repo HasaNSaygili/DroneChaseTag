@@ -116,8 +116,10 @@ Final makalesinde **en az bir ablasyon** zorunlu. Not ağırlığı %25.
 - Gözlem taraması (sweep-obs-chaser-faz1, 2026-11-21): maskeli 1,5 milyar adım → ebeleme **%82** (5,2 s); tam gözlem
   500 M → %22. Darboğaz görüş/hafıza DEĞİL, eğitim süresiydi (500 M'lik koşularda lr 500 M'de 0'a inip öğrenmeyi
   kesiyordu). Engelli arenada temel koşular 1,5 milyar adım olmalı. Hafıza (GRU) şimdilik gerekmiyor; ablasyon 5 olarak kalır.
-- Sırada: elle yazılmışlara karşı temel koşular (kaçan vs elle yazılmış kovalayan dahil, 1,5 milyar, birden çok seed),
-  yeni engelli self-play, eval.py (Elo). Eski `ppo-chaser-faz1-s0` / `ppo-evader-faz1-s0` notebook'ları geçersiz.
+- Sıra (adım adım, kullanıcı isteği 2026-11-21): (1) `sweep-base-empty` boş arena temeli düzeltilmiş kodla →
+  (2) boş arena self-play → (3) `sweep-base-faz1` engelli temel → (4) engelli self-play; eval.py (Elo).
+  Engelli temel ajanlar **sıfırdan** eğitilir, boş arena ajanından devam ettirilmez (karar 2026-11-21: kanıtlanmış ve
+  engelli/engelsiz karşılaştırmasını temiz tutar). Eski `ppo-chaser-faz1-s0` / `ppo-evader-faz1-s0` notebook'ları geçersiz.
 - Üç doğrulama koşusunun dosyaları `experiments/<koşu>/` altında (Drive'dan indirildi). Ara rapor sunumu
   (16 slayt, Türkçe): claude.ai artifact PiPxbcF9gQQyD67yDuMcwh; eğriler `scripts/plot_curves.py` ile.
 - Elle yazılmış rakipler: kovalayan = harita bilir, rakibi görüş hattıyla görür, ızgarada en kısa yol
