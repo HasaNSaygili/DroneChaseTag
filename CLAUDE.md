@@ -130,7 +130,8 @@ Final makalesinde **en az bir ablasyon** zorunlu. Not ağırlığı %25.
 - sweep-base-faz1 (2026-11-22, 3. adım tamam): engelli temel, 1,5 milyar adım. Kovalayan vs OPEN 3 seed %82 / 78 / 83
   (tutarlı). Kaçan vs elle yazılmış kovalayan: s0 %61, s1 %54 süre doldu, **s2 hiç öğrenemedi (%1)**: seyrek ödülde keşif
   şansa bağlı; s2 olduğu gibi bırakıldı (kullanıcı kararı), raporda "3 seed'in 2'si". Öğrenen kaçanlar kovalayanı ~%20
-  engele çarptırıyor (videoda bakılmadı). Self-play başlangıcı: kaçan s0. Elle yazılmış kovalayan yavaş: kaçan koşusu
+  engele çarptırıyor. Videolar (1'er maç): temel kaçanlar engelleri KULLANMIYOR, ana taktik yine daire çizmek;
+  engel kullanımı self-play'de çıkarsa ana bulgu o olur. Self-play başlangıcı: kaçan s0. Elle yazılmış kovalayan yavaş: kaçan koşusu
   A100'de 0,62 M adım/s (~40 dk), L4'te 0,14 (~3 sa).
 - Sıra (adım adım, kullanıcı isteği 2026-11-21): (1) `sweep-base-empty` boş arena temeli düzeltilmiş kodla →
   (2) boş arena self-play → (3) `sweep-base-faz1` engelli temel → (4) engelli self-play; eval.py (Elo).
