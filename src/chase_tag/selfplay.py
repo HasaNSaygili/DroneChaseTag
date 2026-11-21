@@ -41,9 +41,10 @@ import numpy as np
 
 from .arenas import make_arena_set
 from .env import OBS_DIM, ChaseTagEnv
+from .eval import make_pair_runner, stack
 from .geometry import CRASH_KIND_NAMES
 from .ppo import PPOConfig, _crash_summary, actor_dist, make_update
-from .rules import C_CRASH, CHASER, CTRL_HZ, E_CRASH, EVADER, MAX_STEPS, OUTCOME_NAMES, TAG, TIMEOUT
+from .rules import C_CRASH, CHASER, CTRL_HZ, E_CRASH, EVADER, OUTCOME_NAMES, TAG, TIMEOUT
 
 ROLES = ("chaser", "evader")
 ROLE_TR = {"chaser": "kovalayan", "evader": "kaçan"}
@@ -122,27 +123,10 @@ def make_match_eval(env, squash=True):
 
     Bütün dünyalar sıfırdan başlar ve tam MAX_STEPS adım oynanır; süre sınırı yüzünden her maç en geç son adımda
     biter, yani her dünya tam bir maç verir (sonrası otomatik yeniden başlar, sayılmaz). İki taraf da eğitimdeki
-    gibi olasılıklı oynar: ölçülen şey, eğitilen politikanın gerçekten kazandığı oran."""
-    def run(p_ch, p_ev, key):
-        k_reset, k_run = jax.random.split(key)
-        s = env.reset(k_reset)
-
-        def body(carry, k):
-            s, first = carry
-            k_c, k_e, k_env = jax.random.split(k, 3)
-            obs = env.observe(s)
-            mu_c, sd_c = actor_dist(p_ch, obs[:, CHASER], squash)
-            mu_e, sd_e = actor_dist(p_ev, obs[:, EVADER], squash)
-            a = jnp.stack([mu_c + sd_c * jax.random.normal(k_c, mu_c.shape),
-                           mu_e + sd_e * jax.random.normal(k_e, mu_e.shape)], axis=1)   # (n, 2, 3)
-            s, _, _, info = env.step(s, a, k_env)
-            first = jnp.where(first == 0, info["outcome"].astype(jnp.int32), first)   # sadece ilk biten maç
-            return (s, first), None
-
-        (_, first), _ = jax.lax.scan(body, (s, jnp.zeros(env.n, jnp.int32)), jax.random.split(k_run, MAX_STEPS))
-        return first
-
-    return jax.jit(run)
+    gibi olasılıklı oynar: ölçülen şey, eğitilen politikanın gerçekten kazandığı oran.
+    (eval.make_pair_runner'ın tek çiftlik hali: bütün dünyalar aynı çifti oynar.)"""
+    run = make_pair_runner(env, 1, squash)
+    return lambda p_ch, p_ev, key: run(stack([p_ch]), stack([p_ev]), key)
 
 
 def _load_params(path):

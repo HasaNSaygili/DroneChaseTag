@@ -103,7 +103,11 @@ Final makalesinde **en az bir ablasyon** zorunlu. Not ağırlığı %25.
   en az 20 M, en fazla 100 M adım; kazanma oranı **ayrı kontrol maçlarıyla** ölçülür (2026-11-21'den beri: 4096 maç
   baştan sona, her 5 M adımda). Eski ölçü (son 5 turda biten eğitim maçları) senkron başlangıç yüzünden yanlıydı:
   süre dolan maçlar aynı turda bitip kaçanın oranını şişiriyordu; sp-* koşularının (fix2 öncesi) oranları buna tabi; rakip seçimi %50 en son + %50 PFSP (1−x)²; havuzda sadece öğrenen politikalar;
-  WCT kuralı; SABİT öğrenme oranı; 8 blok; ilerleme Elo ile (eval.py henüz yazılmadı).
+  WCT kuralı; SABİT öğrenme oranı; 8 blok; ilerleme Elo ile.
+- Elo (`eval.py` + `scripts/elo.py`, 2026-11-21): round-robin, her kovalayan sürümü × her kaçan sürümü, çift başına
+  256 maç baştan sona, iki taraf olasılıklı (eğitimdeki gibi; `--deterministic` seçeneği var), görülmemiş arenalar
+  (seed + 999); puan Bradley–Terry (en çok olabilirlik, sanal yarım maç önseli, ortalama 1000). Çıktı `<koşu>/elo/`.
+  CPU'da 11 × 11 × 256 maç ≈ 9 dk (Colab gerekmez).
 - Self-play sonuçları (ayrıntı LOG): sp-empty-s0 → kovalayan baskın, kaçanın std'si 0,03'e çöktü.
   sp-empty-ent-s0 (ent_coef 0,003) → denge değişti, kaçan %15–61 (oranlar şişirilmiş, yukarıya bak); ASIL neden keşfin çökmesiydi (önceki "oyunun
   yapısı" yorumu yanlıştı). sp-faz1-s0 → BAŞARISIZ: drone'lar 1,2 milyar adım engellere çarptı.
@@ -120,7 +124,9 @@ Final makalesinde **en az bir ablasyon** zorunlu. Not ağırlığı %25.
   kesiyordu). Engelli arenada temel koşular 1,5 milyar adım olmalı. Hafıza (GRU) şimdilik gerekmiyor; ablasyon 5 olarak kalır.
 - sweep-base-empty (2026-11-21): düzeltilmiş kodla kovalayan %99,6 (2,9 s), kaçan %100 → 1. adım tamam.
   sp-empty-fix-s0: dengeli (gerçek oran kaçan ~%50, kovalayan ~%65), std çökmedi; ama sıra değişimi ölçüsü yanlıydı →
-  tekrar: sp-empty-fix2-s0 (kontrol maçlı).
+  tekrar: sp-empty-fix2-s0 (kontrol maçlı) → taraflar sırayla birbirini yeniyor; Elo: döngü YOK, gerçek ilerleme
+  (her sürüm rakibin önceki bütün sürümlerini yener; kovalayan 626 → 1550, kaçan 84 → 1669; eğri düzleşmedi,
+  20 nesilde yakınsamadı). 2. adım tamam: boş arena bitti, engelsiz kıyas noktası bu koşu.
 - Sıra (adım adım, kullanıcı isteği 2026-11-21): (1) `sweep-base-empty` boş arena temeli düzeltilmiş kodla →
   (2) boş arena self-play → (3) `sweep-base-faz1` engelli temel → (4) engelli self-play; eval.py (Elo).
   Engelli temel ajanlar **sıfırdan** eğitilir, boş arena ajanından devam ettirilmez (karar 2026-11-21: kanıtlanmış ve
