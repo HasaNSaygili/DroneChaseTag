@@ -23,6 +23,7 @@ import jax
 import jax.numpy as jnp
 import numpy as np
 
+from chase_tag import geometry as G
 from chase_tag.arenas import make_arena_set
 from chase_tag.env import ChaseTagEnv
 from chase_tag.ppo import actor_dist
@@ -56,7 +57,8 @@ def simulate(det):
         for params, me, k in ((p_ch, CHASER, k1), (p_ev, EVADER, k2)):
             mu, std = actor_dist(params, obs[:, me], squash)
             acts.append(mu if det else mu + std * jax.random.normal(k, mu.shape))
-        rec = dict(pos=s.data.states.pos, vel=s.data.states.vel, t=s.t)
+        rec = dict(pos=s.data.states.pos, vel=s.data.states.vel, t=s.t, vis=s.visible[:, 0],
+                   obst_e=jax.vmap(G.obstacle_dist)(s.data.states.pos[:, EVADER], s.arena))   # boş arenada inf
         s, _, _, info = env.step(s, jnp.stack(acts, 1), k3)
         rec["outcome"] = info["outcome"]
         return s, rec
@@ -94,7 +96,9 @@ def events(rec):
                                  vc=np.linalg.norm(vc), ve=np.linalg.norm(ve), relv=np.linalg.norm(rel),
                                  turn=np.degrees(np.arccos(np.clip(cosang, -1, 1))),
                                  bound_e=min(pe.min(), (ARENA - pe).min()), bound_c=min(pc.min(), (ARENA - pc).min()),
-                                 ez=pe[2], dmax_after=d[j:j + 50, w].max() if kind == "ıska" else np.nan))
+                                 ez=pe[2], obst_e=float(rec["obst_e"][m, w]),
+                                 hidden=float(np.mean(~rec["vis"][max(i - 10, 0):j + 1, w])),
+                                 dmax_after=d[j:j + 50, w].max() if kind == "ıska" else np.nan))
                 i = j + 1
             else:
                 i += 1
@@ -109,6 +113,8 @@ def table(rows, name):
     cols = [("dmin", "en yakın mesafe m"), ("dz", "|Δz| m"), ("dxy", "yatay mesafe m"), ("vc", "kovalayan hızı m/s"),
             ("ve", "kaçan hızı m/s"), ("relv", "bağıl hız m/s"), ("turn", "kaçanın yön değişimi °"),
             ("bound_e", "kaçanın sınıra mesafesi m"), ("bound_c", "kovalayanın sınıra mesafesi m"), ("ez", "kaçanın z'si m")]
+    if np.isfinite([r["obst_e"] for r in rows]).any():          # engelli arena
+        cols += [("obst_e", "kaçanın engele mesafesi m"), ("hidden", "görüş kapalı zaman oranı")]
     print(f"{'ölçü (en yakın anda), medyan':32s} | {'yakaladı':>9s} | {'ıska':>9s}")
     for c, lab in cols:
         f = lambda kind: np.median([r[c] for r in rows if r["kind"] == kind]) if (k == kind).any() else np.nan
@@ -121,6 +127,13 @@ def table(rows, name):
               f"kaçanın yön değişimi > 60° %{100 * np.mean([r['turn'] > 60 for r in miss]):.0f} | "
               f"ıskadan sonraki 1 s'de en uzak mesafe medyanı {np.nanmedian([r['dmax_after'] for r in miss]):.2f} m")
     hits = [r for r in rows if r["kind"] == "yakaladı"]
+    if miss and np.isfinite([r["obst_e"] for r in rows]).any():
+        f = lambda rs, c: 100 * np.mean([c(r) for r in rs]) if rs else np.nan
+        print(f"engel: kaçan engele < 0,3 m: yakaladı %{f(hits, lambda r: r['obst_e'] < 0.3):.0f} vs ıska "
+              f"%{f(miss, lambda r: r['obst_e'] < 0.3):.0f} | kaçan zemine/tavana/duvara < 0,3 m: yakaladı "
+              f"%{f(hits, lambda r: r['bound_e'] < 0.3):.0f} vs ıska %{f(miss, lambda r: r['bound_e'] < 0.3):.0f} | "
+              f"olay boyunca görüş hiç kapanmadı: yakaladı %{f(hits, lambda r: r['hidden'] == 0):.0f} vs ıska "
+              f"%{f(miss, lambda r: r['hidden'] == 0):.0f}")
     if hits and miss:
         print(f"karşılaştırma: kaçan sınıra < 0,3 m: yakaladı %{100 * np.mean([r['bound_e'] < 0.3 for r in hits]):.0f} "
               f"vs ıska %{100 * np.mean([r['bound_e'] < 0.3 for r in miss]):.0f} | yön değişimi > 60°: yakaladı "
