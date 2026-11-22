@@ -83,6 +83,8 @@ class SelfPlayConfig:
     ent_coef_evader: float = -1.0         # ≥0: kaçanın entropi bonusu bu olur (kovalayan ent_coef'te kalır); <0 = ent_coef
     evader_init_std: float = 0.0          # >0: self-play BAŞINDA öğrenen kaçanın std'si bu değere ayarlanır (ağın
     #                                       ortalaması aynı kalır). Havuzdaki kaçan_0 değişmez. 0 = kapalı
+    evader_min_std: float = 0.0           # >0: eğitim boyunca kaçanın std'si bunun altına inemez (PPOConfig.min_std,
+    #                                       sadece kaçan). 2026-11-23: çapalı koşularda std 0,2 → 0,06–0,09. 0 = kapalı
     # ---- self-play ----
     init_chaser: str = "experiments/ppo-chaser-empty-nocrashrew-s0/params_00476.pkl"   # kovalayan_0
     init_evader: str = "experiments/ppo-evader-empty-nocrashrew-s0/params_00476.pkl"   # kaçan_0
@@ -120,6 +122,8 @@ def role_ppo_cfg(sp, role):
     kw = {k: getattr(sp, k) for k in keys}
     if role == "evader" and sp.ent_coef_evader >= 0:
         kw["ent_coef"] = sp.ent_coef_evader
+    if role == "evader" and sp.evader_min_std > 0:
+        kw["min_std"] = sp.evader_min_std
     return PPOConfig(learner=role, opponent="pool", anneal_lr=False,
                      gamma=sp.gamma_chaser if role == "chaser" else sp.gamma_evader, **kw)
 

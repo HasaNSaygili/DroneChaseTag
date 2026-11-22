@@ -19,7 +19,7 @@ def test_squashed_mean_stays_in_action_range():
     assert np.abs(np.asarray(mu_raw)).max() > 1.0
 
 
-def _one_update(target_kl, warmup_steps=0):
+def _one_update(target_kl, warmup_steps=0, min_std=0.0):
     """Küçük boş arenada tek PPO turu (8 dünya × 16 adım, 2 epoch × 2 minibatch = 4 adım)."""
     from chase_tag.arenas import pack_layout
     from chase_tag.env import ChaseTagEnv
@@ -27,7 +27,8 @@ def _one_update(target_kl, warmup_steps=0):
     packed = pack_layout(np.zeros((0, 2, 3)), np.zeros((0, 5)))
     env = ChaseTagEnv(8, {k: v[None] for k, v in packed.items()})
     cfg = PPOConfig(n_worlds=8, n_steps=16, n_blocks=1, epochs=2, n_minibatches=2, total_steps=8 * 16,
-                    opponent="open", target_kl=target_kl, warmup_steps=warmup_steps, anneal_lr=False)
+                    opponent="open", target_kl=target_kl, warmup_steps=warmup_steps, anneal_lr=False,
+                    min_std=min_std)
     update, tx, _ = make_update(cfg, env, 0)
     p0 = init_params(jax.random.PRNGKey(0), cfg)
     p1, *_, m = update(p0, tx.init(p0), env.reset(jax.random.PRNGKey(1)), None, jax.random.PRNGKey(2))
@@ -56,6 +57,15 @@ def test_warmup_softens_first_steps():
     p0, p_cold, _ = _one_update(0.0)
     _, p_warm, _ = _one_update(0.0, warmup_steps=100)
     assert _max_change(p0, p_warm) < 0.1 * _max_change(p0, p_cold)
+
+
+def test_min_std_floor():
+    """min_std: güncellemeden sonra std alt sınırın altında kalamaz. Başlangıç std'si 0,6; sınır 0,7 verilince bir
+    turdan sonra parametre 0,7'ye çekilmiş olmalı. Sınır kapalıyken std 0,6 civarında kalır."""
+    _, p_on, _ = _one_update(0.0, min_std=0.7)
+    assert np.all(np.exp(np.asarray(p_on["log_std"])) >= 0.7 - 1e-6)
+    _, p_off, _ = _one_update(0.0)
+    assert np.all(np.exp(np.asarray(p_off["log_std"])) < 0.65)
 
 
 def test_fresh_policy_starts_near_zero_with_exploration():

@@ -68,6 +68,14 @@ def test_evader_entropy_override():
     assert role_ppo_cfg(sp, "evader").ent_coef == 0.001
 
 
+def test_evader_min_std_only_for_evader():
+    """evader_min_std sadece kaçanın PPO ayarına geçer; kovalayan sınırsız kalır."""
+    sp = SelfPlayConfig(evader_min_std=0.1)
+    assert role_ppo_cfg(sp, "evader").min_std == 0.1
+    assert role_ppo_cfg(sp, "chaser").min_std == 0.0
+    assert role_ppo_cfg(SelfPlayConfig(), "evader").min_std == 0.0
+
+
 def test_set_std_changes_only_noise():
     """set_std: std istenen değer olur, ağın ağırlıkları (ortalama eylem) aynı kalır."""
     with open("experiments/ppo-evader-faz1-long-s0/params_01430.pkl", "rb") as f:

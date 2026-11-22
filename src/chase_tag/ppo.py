@@ -71,6 +71,11 @@ class PPOConfig:
     # Oturmuş, gürültüsü düşük bir politikada (self-play başlangıcı) bu tek adım bile davranışı çok değiştiriyordu
     # (sp-faz1-fix2-s0'da kaçanın ilk turunda kl 3,1). 0 = kapalı (2026-11-22 öncesi bütün koşular böyle).
     warmup_steps: int = 0
+    # Keşif gürültüsü için alt sınır: her güncellemeden sonra log_std parametresi log(min_std)'nin altına düşmüşse oraya
+    # geri çekilir (parametrenin kendisi kırpılır; Elo, unutma testi, video ek ayar bilmeden aynı ajanı görür).
+    # Neden: self-play'de kaçanın std'si 0,2 → 0,06–0,09'a iniyordu; keşif azalınca yeni cevap bulamıyor, kovalayan öne
+    # geçiyordu. 0 = kapalı (2026-11-23 öncesi bütün koşular böyle).
+    min_std: float = 0.0
     hidden: int = 256
     init_log_std: float = -0.5       # başlangıç keşif gürültüsü: std = e^-0.5 ≈ 0.6
     squash_mean: bool = True         # eylem ortalaması tanh ile [-1, 1]'de; False = eski (2026-11-20 öncesi) davranış
@@ -270,6 +275,8 @@ def make_update(cfg, env, me, opponent=None, reward_adjust=None):
                     stop = stop | (aux["approx_kl"] > cfg.target_kl)
                 updates, new_opt = tx.update(grads, opt_state, params)
                 new_params = optax.apply_updates(params, updates)
+                if cfg.min_std > 0:                                          # keşif alt sınırı (bkz. PPOConfig)
+                    new_params = dict(new_params, log_std=jnp.maximum(new_params["log_std"], jnp.log(cfg.min_std)))
                 keep = lambda old, new: jax.tree.map(lambda o, n_: jnp.where(stop, o, n_), old, new)
                 aux = dict(aux, kl_skip=stop.astype(jnp.float32))           # bu adım atlandı mı (ölçüm)
                 return (keep(params, new_params), keep(opt_state, new_opt), stop), aux
