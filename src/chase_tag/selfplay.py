@@ -77,6 +77,12 @@ class SelfPlayConfig:
     full_obs: bool = False                # True: iki taraf da rakibi hep görür (ablasyon 2)
     gamma_chaser: float = 0.995           # ufuk ~4 s
     gamma_evader: float = 0.998           # ufuk ~10 s (kaçanın ödülü 20 s sonunda)
+    # ---- kaçanın keşfi (2026-11-22, sp-faz1-lr1e4-s0'da kaçanın std'si 0,059 → 0,028'e çöktü, kovalayan baskın) ----
+    # Engelli temel kaçan self-play'e düşük gürültüyle başlıyor (std 0,064; boş arenadaki 0,22). Gürültü azalınca yeni
+    # hareket denenmiyor, yeni taktik bulunamıyor. İki ayrı deneme için iki ayrı ayar:
+    ent_coef_evader: float = -1.0         # ≥0: kaçanın entropi bonusu bu olur (kovalayan ent_coef'te kalır); <0 = ent_coef
+    evader_init_std: float = 0.0          # >0: self-play BAŞINDA öğrenen kaçanın std'si bu değere ayarlanır (ağın
+    #                                       ortalaması aynı kalır). Havuzdaki kaçan_0 değişmez. 0 = kapalı
     # ---- self-play ----
     init_chaser: str = "experiments/ppo-chaser-empty-nocrashrew-s0/params_00476.pkl"   # kovalayan_0
     init_evader: str = "experiments/ppo-evader-empty-nocrashrew-s0/params_00476.pkl"   # kaçan_0
@@ -100,9 +106,17 @@ def role_ppo_cfg(sp, role):
     keys = ("phase", "n_obst", "n_arenas", "opp_crash_reward", "n_worlds", "n_steps", "n_blocks", "epochs",
             "n_minibatches", "gae_lambda", "clip_eps", "vf_coef", "ent_coef", "lr", "max_grad_norm", "target_kl", "warmup_steps", "hidden",
             "squash_mean", "full_obs", "seed")
+    kw = {k: getattr(sp, k) for k in keys}
+    if role == "evader" and sp.ent_coef_evader >= 0:
+        kw["ent_coef"] = sp.ent_coef_evader
     return PPOConfig(learner=role, opponent="pool", anneal_lr=False,
-                     gamma=sp.gamma_chaser if role == "chaser" else sp.gamma_evader,
-                     **{k: getattr(sp, k) for k in keys})
+                     gamma=sp.gamma_chaser if role == "chaser" else sp.gamma_evader, **kw)
+
+
+def set_std(params, std):
+    """Politikanın keşif gürültüsünü (std) değiştirir, ortalamaya (ağın kendisine) dokunmaz.
+    log_std ağdan bağımsız, öğrenilen bir parametre: bütün eksenlere aynı değeri yazıyoruz."""
+    return dict(params, log_std=jnp.full_like(params["log_std"], jnp.log(std)))
 
 
 def make_pool_opponent(n, n_blocks, opp_role, squash=True):
@@ -202,6 +216,9 @@ def train_selfplay(sp, out_dir, resume=True, log=print):
     else:
         init = {"chaser": _load_params(sp.init_chaser), "evader": _load_params(sp.init_evader)}
         params = dict(init)
+        if sp.evader_init_std > 0:          # sadece öğrenen kaçan; havuza aşağıda değişmemiş init[...] girer
+            params["evader"] = set_std(params["evader"], sp.evader_init_std)
+            log(f"kaçanın başlangıç std'si {float(jnp.exp(init['evader']['log_std']).mean()):.3f} → {sp.evader_init_std}")
         opt = {r: txs[r].init(params[r]) for r in ROLES}
         pools = {r: Pool(init[r], sp.pool_max) for r in ROLES}
         for r in ROLES:
