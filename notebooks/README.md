@@ -5,6 +5,7 @@ Her koşunun kendi notebook'u `runs/` altında; kod o koşunun sürümüne sabit
 
 | Koşu | Colab |
 |---|---|
+| `elo-sp-faz1-evstd-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/elo-sp-faz1-evstd-s0.ipynb) |
 | `ppo-chaser-empty-nocrashrew-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/ppo-chaser-empty-nocrashrew-s0.ipynb) |
 | `ppo-chaser-empty-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/ppo-chaser-empty-s0.ipynb) |
 | `ppo-chaser-faz1-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/ppo-chaser-faz1-s0.ipynb) |
@@ -27,4 +28,4 @@ Her koşunun kendi notebook'u `runs/` altında; kod o koşunun sürümüne sabit
 | `sweep-ent-chaser-faz1` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sweep-ent-chaser-faz1.ipynb) |
 | `sweep-obs-chaser-faz1` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sweep-obs-chaser-faz1.ipynb) |
 
-Diğerleri: `train.ipynb` (tek koşu şablonu), `sweep.ipynb` (tarama şablonu: birkaç koşu arka arkaya + karşılaştırma), `speedtest.ipynb` (A100 hız testi).
+Diğerleri: `train.ipynb` (tek koşu şablonu), `sweep.ipynb` (tarama şablonu: birkaç koşu arka arkaya + karşılaştırma), `elo.ipynb` (bir self-play koşusunun Elo turnuvası, GPU; runs/ altında `elo-<koşu>`), `speedtest.ipynb` (A100 hız testi).
