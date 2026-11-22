@@ -16,6 +16,8 @@ Her koşunun kendi notebook'u `runs/` altında; kod o koşunun sürümüne sabit
 | `sp-empty-kl-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-empty-kl-s0.ipynb) |
 | `sp-empty-lr1e4-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-empty-lr1e4-s0.ipynb) |
 | `sp-empty-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-empty-s0.ipynb) |
+| `sp-faz1-event-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-faz1-event-s0.ipynb) |
+| `sp-faz1-evstd-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-faz1-evstd-s0.ipynb) |
 | `sp-faz1-fix2-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-faz1-fix2-s0.ipynb) |
 | `sp-faz1-kl-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-faz1-kl-s0.ipynb) |
 | `sp-faz1-lr1e4-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sp-faz1-lr1e4-s0.ipynb) |
