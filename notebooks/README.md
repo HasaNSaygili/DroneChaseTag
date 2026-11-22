@@ -31,5 +31,6 @@ Her koşunun kendi notebook'u `runs/` altında; kod o koşunun sürümüne sabit
 | `sweep-base-faz1` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sweep-base-faz1.ipynb) |
 | `sweep-ent-chaser-faz1` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sweep-ent-chaser-faz1.ipynb) |
 | `sweep-obs-chaser-faz1` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sweep-obs-chaser-faz1.ipynb) |
+| `watch-sp-empty-anchor-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/watch-sp-empty-anchor-s0.ipynb) |
 
-Diğerleri: `train.ipynb` (tek koşu şablonu), `sweep.ipynb` (tarama şablonu: birkaç koşu arka arkaya + karşılaştırma), `eval.ipynb` (bir self-play koşusunun değerlendirmesi: Elo + unutma testi, GPU; runs/ altında `eval-<koşu>`), `speedtest.ipynb` (A100 hız testi).
+Diğerleri: `train.ipynb` (tek koşu şablonu), `sweep.ipynb` (tarama şablonu: birkaç koşu arka arkaya + karşılaştırma), `eval.ipynb` (bir self-play koşusunun değerlendirmesi: Elo + unutma testi, GPU; runs/ altında `eval-<koşu>`), `watch.ipynb` (ıska analizi + öğrenen vs öğrenen videoları; runs/ altında `watch-<koşu>`), `speedtest.ipynb` (A100 hız testi).
