@@ -66,6 +66,11 @@ class PPOConfig:
     # üst üste binen adımları sınırlamaz; sp-faz1-fix2-s0'da clip_frac 0,4'e, kl 0,05'e çıkıp kovalayan çöktü.
     # 0 = kapalı (2026-11-22 öncesi bütün koşular böyle).
     target_kl: float = 0.0
+    # Öğrenme oranı ısınması (warmup): ilk bu kadar optimizer adımında lr 0'dan lr'ye doğrusal çıkar. Neden: Adam
+    # sıfırdan kurulunca ilk adımı gradyanın büyüklüğüne bakmadan her ağırlığı ~lr kadar oynatır (m/√v ≈ ±1).
+    # Oturmuş, gürültüsü düşük bir politikada (self-play başlangıcı) bu tek adım bile davranışı çok değiştiriyordu
+    # (sp-faz1-fix2-s0'da kaçanın ilk turunda kl 3,1). 0 = kapalı (2026-11-22 öncesi bütün koşular böyle).
+    warmup_steps: int = 0
     hidden: int = 256
     init_log_std: float = -0.5       # başlangıç keşif gürültüsü: std = e^-0.5 ≈ 0.6
     squash_mean: bool = True         # eylem ortalaması tanh ile [-1, 1]'de; False = eski (2026-11-20 öncesi) davranış
@@ -176,8 +181,12 @@ def make_update(cfg, env, me, opponent=None):
     mb_size = batch // cfg.n_minibatches
     n_updates = cfg.total_steps // batch
     lr = (optax.linear_schedule(cfg.lr, 0.0, n_updates * cfg.epochs * cfg.n_minibatches)
-          if cfg.anneal_lr else cfg.lr)
-    tx = optax.chain(optax.clip_by_global_norm(cfg.max_grad_norm), optax.adam(lr, eps=1e-5))
+          if cfg.anneal_lr else optax.constant_schedule(cfg.lr))
+    if cfg.warmup_steps > 0:
+        # İlk warmup_steps adım: 0 → lr; sonrası yukarıdaki plan (sabit ya da 0'a inen). Sayaç Adam'ın kendi sayacı:
+        # KL yüzünden atlanan adımlar sayılmaz, self-play'de optimizer nesiller boyu taşındığı için ısınma bir kez olur.
+        lr = optax.join_schedules([optax.linear_schedule(0.0, cfg.lr, cfg.warmup_steps), lr], [cfg.warmup_steps])
+    tx =optax.chain(optax.clip_by_global_norm(cfg.max_grad_norm), optax.adam(lr, eps=1e-5))
 
     # ---- 1. Veri toplama: bir oyun adımı ----
     def env_step(carry, key):

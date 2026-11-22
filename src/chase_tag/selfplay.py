@@ -71,6 +71,7 @@ class SelfPlayConfig:
     lr: float = 3e-4                      # SABİT: self-play'de öğrenme "bitmez", rakip hep değişir
     max_grad_norm: float = 0.5
     target_kl: float = 0.0                # >0: KL ile erken durdurma (bkz. PPOConfig.target_kl); 0 = kapalı
+    warmup_steps: int = 0                 # >0: lr ısınması, ilk bu kadar optimizer adımı (bkz. PPOConfig); 0 = kapalı
     hidden: int = 256
     squash_mean: bool = True             # eylem ortalaması tanh ile sınırlı (bkz. ppo.actor_dist)
     full_obs: bool = False                # True: iki taraf da rakibi hep görür (ablasyon 2)
@@ -97,7 +98,7 @@ class SelfPlayConfig:
 def role_ppo_cfg(sp, role):
     """Bir rol için PPO ayarları (ppo.make_update bunları kullanır)."""
     keys = ("phase", "n_obst", "n_arenas", "opp_crash_reward", "n_worlds", "n_steps", "n_blocks", "epochs",
-            "n_minibatches", "gae_lambda", "clip_eps", "vf_coef", "ent_coef", "lr", "max_grad_norm", "target_kl", "hidden",
+            "n_minibatches", "gae_lambda", "clip_eps", "vf_coef", "ent_coef", "lr", "max_grad_norm", "target_kl", "warmup_steps", "hidden",
             "squash_mean", "full_obs", "seed")
     return PPOConfig(learner=role, opponent="pool", anneal_lr=False,
                      gamma=sp.gamma_chaser if role == "chaser" else sp.gamma_evader,
