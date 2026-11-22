@@ -31,6 +31,7 @@ p = argparse.ArgumentParser()
 p.add_argument("--run", required=True)
 p.add_argument("--worlds", type=int, default=512)
 p.add_argument("--every", type=int, default=1, help="her k. sürüm (0 ve sonuncu hep dahil)")
+p.add_argument("--stochastic", action="store_true", help="olasılıklı oynat (eğitimdeki gibi); çıktı vs_scripted_stoch.json")
 a = p.parse_args()
 
 cfg = json.load(open(os.path.join(a.run, "config.json")))
@@ -50,9 +51,11 @@ def make_eval(role):
         def body(carry, k):
             s, mem = carry
             k1, k2 = jax.random.split(k)
-            mu, _ = actor_dist(params, env.observe(s)[:, me], squash)          # gürültüsüz: ortalama eylem
+            k1, k3 = jax.random.split(k1)
+            mu, std = actor_dist(params, env.observe(s)[:, me], squash)
+            act_me = mu + std * jax.random.normal(k3, mu.shape) if a.stochastic else mu   # varsayılan: ortalama eylem
             a_opp, mem = opp_fn(s, mem, k1, None, None)
-            act = jnp.zeros((a.worlds, 2, 3)).at[:, me].set(mu).at[:, 1 - me].set(a_opp)
+            act = jnp.zeros((a.worlds, 2, 3)).at[:, me].set(act_me).at[:, 1 - me].set(a_opp)
             s, _, done, info = env.step(s, act, k2)
             return (s, opp_reset(mem, done)), (info["outcome"], info["length"], info["crash_kind"])
         k0, k1 = jax.random.split(key)
@@ -62,12 +65,13 @@ def make_eval(role):
 
 
 res = dict(run=os.path.basename(os.path.normpath(a.run)), worlds=a.worlds, steps=2 * MAX_STEPS, arena_seed=arena_seed,
-           deterministic=True, opponents=OPP, versions={})
+           deterministic=not a.stochastic, opponents=OPP, versions={})
+mode = "olasılıklı" if a.stochastic else "gürültüsüz"
 for role, tr in (("chaser", "kovalayan"), ("evader", "kaçan")):
     files = [cfg[f"init_{role}"]] + sorted(glob.glob(os.path.join(a.run, f"{role}_gen*.pkl")))
     idx = sorted(set(list(range(0, len(files), a.every)) + [len(files) - 1]))
     ev = make_eval(role)
-    print(f"\n== {tr} sürümleri vs {OPP[role]} (gürültüsüz, {a.worlds} dünya × {2 * MAX_STEPS} adım)")
+    print(f"\n== {tr} sürümleri vs {OPP[role]} ({mode}, {a.worlds} dünya × {2 * MAX_STEPS} adım)")
     rows = []
     for k in idx:
         t0 = time.perf_counter()
@@ -81,7 +85,7 @@ for role, tr in (("chaser", "kovalayan"), ("evader", "kaçan")):
               + f" | {mean_len / 50:4.1f} s | {time.perf_counter() - t0:.0f} s")
     res["versions"][role] = rows
 
-out = os.path.join(a.run, "vs_scripted.json")
+out = os.path.join(a.run, "vs_scripted_stoch.json" if a.stochastic else "vs_scripted.json")
 with open(out, "w", encoding="utf-8") as f:
     json.dump(res, f, indent=1, ensure_ascii=False)
 print(f"\nkaydedildi: {out}")
