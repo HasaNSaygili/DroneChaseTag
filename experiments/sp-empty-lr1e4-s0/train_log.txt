@@ -1,0 +1,311 @@
+arenalar üretiliyor (1000, faz 1, engel (0, 0))...
+
+=== nesil 0 · öğrenen: kovalayan · rakip havuzu: 1 kaçan (en son: kaçan_0) ===
+nesil  0 kovalayan tur   5 |    5 M | 0.11 M/s | havuz ort. % 70.5 | eğitim maçları: ebeleme %99.8 süre % 0.0 K.çarp % 0.0 E.çarp % 0.2 | süre  2.9 s | std 0.20 kl 0.0022 clip %2 atlanan %0 | gaz: hız 0.97 kırpılan %86 düz %27 | çarpma K[-] E[duv2 zem78 tav20]
+nesil  0 kovalayan tur  10 |   10 M | 0.21 M/s | havuz ort. % 82.6 | eğitim maçları: ebeleme %99.8 süre % 0.0 K.çarp % 0.0 E.çarp % 0.2 | süre  3.2 s | std 0.20 kl 0.0025 clip %2 atlanan %0 | gaz: hız 0.98 kırpılan %89 düz %32 | çarpma K[-] E[zem82 tav18]
+nesil  0 kovalayan tur  15 |   16 M | 0.29 M/s | havuz ort. % 89.7 | eğitim maçları: ebeleme %99.8 süre % 0.0 K.çarp % 0.0 E.çarp % 0.2 | süre  3.2 s | std 0.20 kl 0.0020 clip %1 atlanan %0 | gaz: hız 0.98 kırpılan %89 düz %32 | çarpma K[-] E[duv10 zem76 tav14]
+nesil  0 kontrol maçı (4096 maç, en son kaçan_0'e karşı): kazanma %98.9 | ebeleme %98.6 süre doldu %1.1 kaçan çarptı %0.2 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  0 kovalayan tur  20 |   21 M | 0.30 M/s | havuz ort. % 93.5 | eğitim maçları: ebeleme %98.7 süre % 1.0 K.çarp % 0.0 E.çarp % 0.2 | süre  3.2 s | std 0.20 kl 0.0022 clip %1 atlanan %0 | gaz: hız 0.98 kırpılan %89 düz %31 | çarpma K[-] E[duv45 zem47 tav8]
+--- nesil 0 bitti (eşik): kovalayan, 21 M adım, 1.2 dk, kontrol maçında en son rakibe karşı %98.9 → havuza kovalayan_1 olarak eklendi
+
+=== nesil 1 · öğrenen: kaçan · rakip havuzu: 2 kovalayan (en son: kovalayan_1) ===
+nesil  1 kaçan     tur   5 |    5 M | 0.23 M/s | havuz ort. % 29.5 | eğitim maçları: ebeleme %99.9 süre % 0.0 K.çarp % 0.0 E.çarp % 0.1 | süre  2.9 s | std 0.23 kl 0.0015 clip %1 atlanan %0 | gaz: hız 0.96 kırpılan %79 düz %14 | çarpma K[-] E[zem84 tav16]
+nesil  1 kaçan     tur  10 |   10 M | 0.39 M/s | havuz ort. % 17.4 | eğitim maçları: ebeleme %99.8 süre % 0.0 K.çarp % 0.0 E.çarp % 0.2 | süre  3.2 s | std 0.23 kl 0.0023 clip %2 atlanan %0 | gaz: hız 0.96 kırpılan %79 düz %15 | çarpma K[-] E[duv2 zem58 tav40]
+nesil  1 kaçan     tur  15 |   16 M | 0.50 M/s | havuz ort. % 10.3 | eğitim maçları: ebeleme %99.1 süre % 0.0 K.çarp % 0.0 E.çarp % 0.9 | süre  3.5 s | std 0.22 kl 0.0025 clip %2 atlanan %0 | gaz: hız 0.96 kırpılan %79 düz %14 | çarpma K[-] E[duv35 zem39 tav26]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %2.2 | ebeleme %82.8 süre doldu %2.2 kaçan çarptı %15.0 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  20 |   21 M | 0.50 M/s | havuz ort. %  6.5 | eğitim maçları: ebeleme %94.6 süre % 1.0 K.çarp % 0.0 E.çarp % 4.4 | süre  4.2 s | std 0.22 kl 0.0024 clip %2 atlanan %0 | gaz: hız 0.97 kırpılan %80 düz %13 | çarpma K[-] E[duv65 zem29 tav6]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %6.0 | ebeleme %77.7 süre doldu %6.0 kaçan çarptı %16.4 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  25 |   26 M | 0.55 M/s | havuz ort. %  4.4 | eğitim maçları: ebeleme %85.0 süre % 1.2 K.çarp % 0.0 E.çarp %13.9 | süre  5.1 s | std 0.22 kl 0.0020 clip %1 atlanan %0 | gaz: hız 0.97 kırpılan %80 düz %12 | çarpma K[duv100] E[duv81 zem17 tav1]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %12.0 | ebeleme %72.0 süre doldu %12.0 kaçan çarptı %15.9 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  30 |   31 M | 0.60 M/s | havuz ort. %  4.9 | eğitim maçları: ebeleme %79.7 süre % 5.0 K.çarp % 0.0 E.çarp %15.3 | süre  6.0 s | std 0.22 kl 0.0021 clip %1 atlanan %0 | gaz: hız 0.96 kırpılan %78 düz %11 | çarpma K[duv100] E[duv85 zem13 tav2]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %15.6 | ebeleme %70.6 süre doldu %15.6 kaçan çarptı %13.8 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  35 |   37 M | 0.64 M/s | havuz ort. %  8.5 | eğitim maçları: ebeleme %76.3 süre %13.2 K.çarp % 0.0 E.çarp %10.5 | süre  6.6 s | std 0.22 kl 0.0019 clip %1 atlanan %0 | gaz: hız 0.96 kırpılan %77 düz %11 | çarpma K[duv100] E[duv77 zem17 tav5]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %16.4 | ebeleme %68.8 süre doldu %16.4 kaçan çarptı %14.8 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  40 |   42 M | 0.67 M/s | havuz ort. % 12.2 | eğitim maçları: ebeleme %72.8 süre %17.0 K.çarp % 0.0 E.çarp %10.1 | süre  7.3 s | std 0.22 kl 0.0020 clip %1 atlanan %0 | gaz: hız 0.96 kırpılan %77 düz %11 | çarpma K[-] E[duv73 zem19 tav8]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %18.2 | ebeleme %70.1 süre doldu %18.2 kaçan çarptı %11.7 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  45 |   47 M | 0.69 M/s | havuz ort. % 15.8 | eğitim maçları: ebeleme %66.5 süre %20.4 K.çarp % 0.0 E.çarp %13.1 | süre  7.7 s | std 0.22 kl 0.0022 clip %1 atlanan %0 | gaz: hız 0.96 kırpılan %76 düz %10 | çarpma K[-] E[duv74 zem14 tav12]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %20.6 | ebeleme %67.4 süre doldu %20.6 kaçan çarptı %12.0 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  50 |   52 M | 0.72 M/s | havuz ort. % 17.8 | eğitim maçları: ebeleme %69.7 süre %20.3 K.çarp % 0.0 E.çarp %10.1 | süre  7.1 s | std 0.22 kl 0.0018 clip %1 atlanan %0 | gaz: hız 0.96 kırpılan %74 düz %10 | çarpma K[duv100] E[duv64 zem18 tav18]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %23.1 | ebeleme %65.7 süre doldu %23.0 kaçan çarptı %11.3 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  55 |   58 M | 0.73 M/s | havuz ort. % 18.5 | eğitim maçları: ebeleme %69.9 süre %19.5 K.çarp % 0.0 E.çarp %10.5 | süre  7.5 s | std 0.22 kl 0.0022 clip %1 atlanan %0 | gaz: hız 0.95 kırpılan %73 düz %10 | çarpma K[duv100] E[duv56 zem14 tav29]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %22.4 | ebeleme %69.2 süre doldu %22.4 kaçan çarptı %8.4 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  60 |   63 M | 0.75 M/s | havuz ort. % 20.2 | eğitim maçları: ebeleme %69.1 süre %22.4 K.çarp % 0.0 E.çarp % 8.5 | süre  8.1 s | std 0.22 kl 0.0022 clip %2 atlanan %0 | gaz: hız 0.95 kırpılan %71 düz %9 | çarpma K[duv100] E[duv58 zem16 tav26]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %23.2 | ebeleme %64.4 süre doldu %23.2 kaçan çarptı %12.5 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  65 |   68 M | 0.77 M/s | havuz ort. % 22.4 | eğitim maçları: ebeleme %66.4 süre %25.3 K.çarp % 0.0 E.çarp % 8.4 | süre  8.6 s | std 0.22 kl 0.0023 clip %2 atlanan %0 | gaz: hız 0.95 kırpılan %69 düz %8 | çarpma K[duv100] E[duv62 zem19 tav19]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %26.9 | ebeleme %61.4 süre doldu %26.9 kaçan çarptı %11.7 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  70 |   73 M | 0.78 M/s | havuz ort. % 24.1 | eğitim maçları: ebeleme %63.3 süre %26.6 K.çarp % 0.0 E.çarp %10.0 | süre  9.2 s | std 0.22 kl 0.0025 clip %2 atlanan %0 | gaz: hız 0.94 kırpılan %67 düz %8 | çarpma K[-] E[duv51 zem33 tav16]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %27.6 | ebeleme %59.4 süre doldu %27.6 kaçan çarptı %13.0 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  75 |   79 M | 0.79 M/s | havuz ort. % 25.5 | eğitim maçları: ebeleme %61.0 süre %28.0 K.çarp % 0.0 E.çarp %11.0 | süre  9.5 s | std 0.22 kl 0.0020 clip %1 atlanan %0 | gaz: hız 0.94 kırpılan %65 düz %8 | çarpma K[-] E[duv56 zem28 tav16]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %30.6 | ebeleme %56.6 süre doldu %30.6 kaçan çarptı %12.8 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  80 |   84 M | 0.80 M/s | havuz ort. % 27.3 | eğitim maçları: ebeleme %57.4 süre %30.3 K.çarp % 0.0 E.çarp %12.3 | süre 10.6 s | std 0.22 kl 0.0023 clip %2 atlanan %0 | gaz: hız 0.93 kırpılan %64 düz %7 | çarpma K[duv75 zem25] E[duv55 zem28 tav16]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %31.8 | ebeleme %53.2 süre doldu %31.8 kaçan çarptı %15.1 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  85 |   89 M | 0.81 M/s | havuz ort. % 29.4 | eğitim maçları: ebeleme %55.8 süre %32.5 K.çarp % 0.0 E.çarp %11.7 | süre 11.0 s | std 0.22 kl 0.0025 clip %2 atlanan %0 | gaz: hız 0.93 kırpılan %62 düz %6 | çarpma K[duv50 zem50] E[duv49 zem42 tav9]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %34.2 | ebeleme %51.2 süre doldu %34.2 kaçan çarptı %14.6 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  90 |   94 M | 0.82 M/s | havuz ort. % 30.8 | eğitim maçları: ebeleme %51.9 süre %32.8 K.çarp % 0.0 E.çarp %15.4 | süre 11.0 s | std 0.22 kl 0.0024 clip %2 atlanan %0 | gaz: hız 0.92 kırpılan %60 düz %5 | çarpma K[zem100] E[duv40 zem51 tav9]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %42.6 | ebeleme %45.4 süre doldu %42.5 kaçan çarptı %12.0 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  1 kaçan     tur  95 |  100 M | 0.83 M/s | havuz ort. % 33.3 | eğitim maçları: ebeleme %49.2 süre %36.0 K.çarp % 0.1 E.çarp %14.7 | süre 12.1 s | std 0.22 kl 0.0026 clip %2 atlanan %0 | gaz: hız 0.92 kırpılan %58 düz %4 | çarpma K[duv83 zem17] E[duv39 zem54 tav7]
+nesil  1 kontrol maçı (4096 maç, en son kovalayan_1'e karşı): kazanma %41.7 | ebeleme %45.8 süre doldu %41.6 kaçan çarptı %12.5 kovalayan çarptı %0.1 ikisi çarptı %0.0
+nesil  1 kaçan     tur  96 |  101 M | 0.83 M/s | havuz ort. % 33.4 | eğitim maçları: ebeleme %51.4 süre %35.3 K.çarp % 0.0 E.çarp %13.3 | süre 11.9 s | std 0.22 kl 0.0027 clip %2 atlanan %0 | gaz: hız 0.91 kırpılan %58 düz %4 | çarpma K[-] E[duv42 zem53 tav5]
+--- nesil 1 bitti (en fazla adım): kaçan, 101 M adım, 2.0 dk, kontrol maçında en son rakibe karşı %41.7 → havuza kaçan_1 olarak eklendi
+
+=== nesil 2 · öğrenen: kovalayan · rakip havuzu: 2 kaçan (en son: kaçan_1) ===
+nesil  2 kovalayan tur   5 |    5 M | 0.23 M/s | havuz ort. % 82.0 | eğitim maçları: ebeleme %78.8 süre % 0.0 K.çarp % 0.1 E.çarp %21.1 | süre  5.7 s | std 0.20 kl 0.0026 clip %2 atlanan %0 | gaz: hız 0.96 kırpılan %81 düz %19 | çarpma K[duv50 zem50] E[duv45 zem49 tav6]
+nesil  2 kovalayan tur  10 |   10 M | 0.39 M/s | havuz ort. % 88.0 | eğitim maçları: ebeleme %81.6 süre % 0.0 K.çarp % 0.1 E.çarp %18.3 | süre  6.6 s | std 0.20 kl 0.0018 clip %1 atlanan %0 | gaz: hız 0.95 kırpılan %79 düz %16 | çarpma K[duv78 zem22] E[duv30 zem63 tav7]
+nesil  2 kovalayan tur  15 |   16 M | 0.50 M/s | havuz ort. % 92.9 | eğitim maçları: ebeleme %85.5 süre % 0.0 K.çarp % 0.0 E.çarp %14.5 | süre  6.7 s | std 0.20 kl 0.0017 clip %1 atlanan %0 | gaz: hız 0.95 kırpılan %80 düz %13 | çarpma K[duv50 zem50] E[duv41 zem53 tav6]
+nesil  2 kontrol maçı (4096 maç, en son kaçan_1'e karşı): kazanma %66.5 | ebeleme %54.4 süre doldu %33.3 kaçan çarptı %12.1 kovalayan çarptı %0.2 ikisi çarptı %0.0
+nesil  2 kovalayan tur  20 |   21 M | 0.57 M/s | havuz ort. % 86.5 | eğitim maçları: ebeleme %46.1 süre %47.2 K.çarp % 0.1 E.çarp % 6.6 | süre  8.3 s | std 0.20 kl 0.0015 clip %1 atlanan %0 | gaz: hız 0.96 kırpılan %83 düz %18 | çarpma K[duv56 zem44] E[duv42 zem53 tav5]
+--- nesil 2 bitti (eşik): kovalayan, 21 M adım, 0.6 dk, kontrol maçında en son rakibe karşı %66.5 → havuza kovalayan_2 olarak eklendi
+
+=== nesil 3 · öğrenen: kaçan · rakip havuzu: 3 kovalayan (en son: kovalayan_2) ===
+nesil  3 kaçan     tur   5 |    5 M | 0.39 M/s | havuz ort. % 23.0 | eğitim maçları: ebeleme %79.5 süre % 0.0 K.çarp % 0.1 E.çarp %20.4 | süre  5.6 s | std 0.22 kl 0.0030 clip %2 atlanan %0 | gaz: hız 0.91 kırpılan %56 düz %5 | çarpma K[duv75 zem25] E[duv39 zem55 tav6]
+nesil  3 kaçan     tur  10 |   10 M | 0.59 M/s | havuz ort. % 13.6 | eğitim maçları: ebeleme %85.3 süre % 0.0 K.çarp % 0.1 E.çarp %14.6 | süre  6.1 s | std 0.22 kl 0.0023 clip %2 atlanan %0 | gaz: hız 0.90 kırpılan %53 düz %2 | çarpma K[duv50 zem50] E[duv27 zem55 tav17]
+nesil  3 kaçan     tur  15 |   16 M | 0.71 M/s | havuz ort. %  8.1 | eğitim maçları: ebeleme %86.7 süre % 0.0 K.çarp % 0.1 E.çarp %13.2 | süre  7.8 s | std 0.22 kl 0.0035 clip %3 atlanan %0 | gaz: hız 0.89 kırpılan %49 düz %1 | çarpma K[duv75 zem25] E[duv28 zem59 tav13]
+nesil  3 kontrol maçı (4096 maç, en son kovalayan_2'e karşı): kazanma %43.1 | ebeleme %53.7 süre doldu %43.0 kaçan çarptı %3.2 kovalayan çarptı %0.1 ikisi çarptı %0.0
+nesil  3 kaçan     tur  20 |   21 M | 0.77 M/s | havuz ort. % 23.7 | eğitim maçları: ebeleme %28.1 süre %68.7 K.çarp % 0.1 E.çarp % 3.2 | süre 12.5 s | std 0.22 kl 0.0027 clip %2 atlanan %0 | gaz: hız 0.89 kırpılan %49 düz %1 | çarpma K[duv62 zem38] E[duv24 zem62 tav14]
+nesil  3 kontrol maçı (4096 maç, en son kovalayan_2'e karşı): kazanma %44.1 | ebeleme %53.9 süre doldu %44.1 kaçan çarptı %2.0 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  3 kaçan     tur  25 |   26 M | 0.81 M/s | havuz ort. % 28.1 | eğitim maçları: ebeleme %58.9 süre %37.5 K.çarp % 0.1 E.çarp % 3.5 | süre 10.5 s | std 0.22 kl 0.0031 clip %3 atlanan %0 | gaz: hız 0.87 kırpılan %45 düz %1 | çarpma K[duv83 zem17] E[duv7 zem77 tav16]
+nesil  3 kontrol maçı (4096 maç, en son kovalayan_2'e karşı): kazanma %45.2 | ebeleme %53.0 süre doldu %45.2 kaçan çarptı %1.7 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  3 kaçan     tur  30 |   31 M | 0.83 M/s | havuz ort. % 29.5 | eğitim maçları: ebeleme %63.9 süre %32.5 K.çarp % 0.1 E.çarp % 3.5 | süre 10.2 s | std 0.22 kl 0.0035 clip %3 atlanan %0 | gaz: hız 0.86 kırpılan %42 düz %0 | çarpma K[duv100] E[duv5 zem69 tav26]
+nesil  3 kontrol maçı (4096 maç, en son kovalayan_2'e karşı): kazanma %48.0 | ebeleme %50.0 süre doldu %48.0 kaçan çarptı %2.0 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  3 kaçan     tur  35 |   37 M | 0.86 M/s | havuz ort. % 39.4 | eğitim maçları: ebeleme %36.4 süre %61.9 K.çarp % 0.0 E.çarp % 1.7 | süre 13.9 s | std 0.22 kl 0.0030 clip %2 atlanan %0 | gaz: hız 0.86 kırpılan %43 düz %0 | çarpma K[zem100] E[duv1 zem83 tav16]
+nesil  3 kontrol maçı (4096 maç, en son kovalayan_2'e karşı): kazanma %55.0 | ebeleme %44.2 süre doldu %55.0 kaçan çarptı %0.8 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  3 kaçan     tur  40 |   42 M | 0.87 M/s | havuz ort. % 48.2 | eğitim maçları: ebeleme %43.4 süre %54.9 K.çarp % 0.0 E.çarp % 1.7 | süre 13.4 s | std 0.22 kl 0.0031 clip %3 atlanan %0 | gaz: hız 0.86 kırpılan %42 düz %0 | çarpma K[duv50 zem50] E[zem73 tav27]
+nesil  3 kontrol maçı (4096 maç, en son kovalayan_2'e karşı): kazanma %67.5 | ebeleme %31.6 süre doldu %67.5 kaçan çarptı %0.9 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  3 kaçan     tur  45 |   47 M | 0.88 M/s | havuz ort. % 49.9 | eğitim maçları: ebeleme %50.7 süre %47.9 K.çarp % 0.0 E.çarp % 1.3 | süre 12.6 s | std 0.22 kl 0.0037 clip %3 atlanan %0 | gaz: hız 0.87 kırpılan %45 düz %0 | çarpma K[duv67 zem33] E[zem59 tav41]
+--- nesil 3 bitti (eşik): kaçan, 47 M adım, 0.9 dk, kontrol maçında en son rakibe karşı %67.5 → havuza kaçan_2 olarak eklendi
+
+=== nesil 4 · öğrenen: kovalayan · rakip havuzu: 3 kaçan (en son: kaçan_2) ===
+nesil  4 kovalayan tur   5 |    5 M | 1.22 M/s | havuz ort. % 80.1 | eğitim maçları: ebeleme %97.9 süre % 0.0 K.çarp % 0.1 E.çarp % 2.0 | süre  5.0 s | std 0.20 kl 0.0021 clip %2 atlanan %0 | gaz: hız 0.95 kırpılan %77 düz %18 | çarpma K[duv100] E[zem97 tav3]
+nesil  4 kovalayan tur  10 |   10 M | 1.22 M/s | havuz ort. % 84.5 | eğitim maçları: ebeleme %98.1 süre % 0.0 K.çarp % 0.2 E.çarp % 1.7 | süre  5.8 s | std 0.20 kl 0.0028 clip %3 atlanan %0 | gaz: hız 0.94 kırpılan %74 düz %10 | çarpma K[zem100] E[duv3 zem82 tav15]
+nesil  4 kovalayan tur  15 |   16 M | 1.22 M/s | havuz ort. % 89.7 | eğitim maçları: ebeleme %90.9 süre % 0.0 K.çarp % 0.3 E.çarp % 8.8 | süre  6.1 s | std 0.19 kl 0.0023 clip %2 atlanan %0 | gaz: hız 0.94 kırpılan %75 düz %8 | çarpma K[zem100] E[duv27 zem71 tav2]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %33.7 | ebeleme %32.9 süre doldu %66.3 kaçan çarptı %0.8 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  4 kovalayan tur  20 |   21 M | 1.16 M/s | havuz ort. % 80.1 | eğitim maçları: ebeleme %20.7 süre %78.1 K.çarp % 0.1 E.çarp % 1.1 | süre 12.8 s | std 0.19 kl 0.0016 clip %1 atlanan %0 | gaz: hız 0.96 kırpılan %81 düz %20 | çarpma K[duv82 tav18] E[duv33 zem61 tav5]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %33.7 | ebeleme %32.6 süre doldu %66.2 kaçan çarptı %1.1 kovalayan çarptı %0.1 ikisi çarptı %0.0
+nesil  4 kovalayan tur  25 |   26 M | 1.12 M/s | havuz ort. % 80.0 | eğitim maçları: ebeleme %65.2 süre %29.8 K.çarp % 0.2 E.çarp % 4.7 | süre  8.0 s | std 0.19 kl 0.0029 clip %3 atlanan %0 | gaz: hız 0.94 kırpılan %76 düz %13 | çarpma K[duv77 zem15 tav8] E[duv25 zem74 tav2]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %34.2 | ebeleme %32.7 süre doldu %65.8 kaçan çarptı %1.5 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  4 kovalayan tur  30 |   31 M | 1.10 M/s | havuz ort. % 81.1 | eğitim maçları: ebeleme %65.3 süre %27.5 K.çarp % 0.5 E.çarp % 6.7 | süre  8.3 s | std 0.19 kl 0.0027 clip %3 atlanan %0 | gaz: hız 0.94 kırpılan %75 düz %11 | çarpma K[duv70 zem10 tav20] E[duv32 zem67 tav2]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %34.9 | ebeleme %33.3 süre doldu %65.0 kaçan çarptı %1.6 kovalayan çarptı %0.1 ikisi çarptı %0.0
+nesil  4 kovalayan tur  35 |   37 M | 1.09 M/s | havuz ort. % 73.9 | eğitim maçları: ebeleme %19.6 süre %78.8 K.çarp % 0.1 E.çarp % 1.5 | süre 13.9 s | std 0.19 kl 0.0017 clip %1 atlanan %0 | gaz: hız 0.95 kırpılan %79 düz %15 | çarpma K[duv100] E[duv40 zem57 tav3]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %34.1 | ebeleme %32.1 süre doldu %65.6 kaçan çarptı %2.0 kovalayan çarptı %0.3 ikisi çarptı %0.0
+nesil  4 kovalayan tur  40 |   42 M | 1.08 M/s | havuz ort. % 72.7 | eğitim maçları: ebeleme %47.8 süre %47.5 K.çarp % 0.2 E.çarp % 4.5 | süre 10.4 s | std 0.19 kl 0.0024 clip %2 atlanan %0 | gaz: hız 0.94 kırpılan %77 düz %14 | çarpma K[duv71 tav29] E[duv31 zem66 tav3]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %36.2 | ebeleme %33.4 süre doldu %63.5 kaçan çarptı %2.8 kovalayan çarptı %0.2 ikisi çarptı %0.0
+nesil  4 kovalayan tur  45 |   47 M | 1.07 M/s | havuz ort. % 73.7 | eğitim maçları: ebeleme %66.8 süre %25.6 K.çarp % 0.1 E.çarp % 7.5 | süre  7.4 s | std 0.19 kl 0.0023 clip %2 atlanan %0 | gaz: hız 0.94 kırpılan %77 düz %12 | çarpma K[duv67 tav33] E[duv44 zem52 tav3]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %36.0 | ebeleme %33.5 süre doldu %63.8 kaçan çarptı %2.4 kovalayan çarptı %0.2 ikisi çarptı %0.0
+nesil  4 kovalayan tur  50 |   52 M | 1.06 M/s | havuz ort. % 69.9 | eğitim maçları: ebeleme %33.2 süre %65.6 K.çarp % 0.1 E.çarp % 1.2 | süre 13.0 s | std 0.19 kl 0.0017 clip %1 atlanan %0 | gaz: hız 0.94 kırpılan %76 düz %12 | çarpma K[tav100] E[duv14 zem85 tav1]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %36.0 | ebeleme %32.9 süre doldu %63.9 kaçan çarptı %3.1 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  4 kovalayan tur  55 |   58 M | 1.05 M/s | havuz ort. % 70.8 | eğitim maçları: ebeleme %40.1 süre %55.2 K.çarp % 0.4 E.çarp % 4.3 | süre 11.4 s | std 0.19 kl 0.0022 clip %2 atlanan %0 | gaz: hız 0.95 kırpılan %79 düz %14 | çarpma K[duv45 tav55] E[duv31 zem68 tav1]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %36.7 | ebeleme %32.3 süre doldu %63.3 kaçan çarptı %4.3 kovalayan çarptı %0.1 ikisi çarptı %0.0
+nesil  4 kovalayan tur  60 |   63 M | 1.05 M/s | havuz ort. % 71.8 | eğitim maçları: ebeleme %48.6 süre %41.7 K.çarp % 0.4 E.çarp % 9.3 | süre  9.9 s | std 0.19 kl 0.0028 clip %2 atlanan %0 | gaz: hız 0.95 kırpılan %78 düz %12 | çarpma K[duv79 tav21] E[duv31 zem68 tav1]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %38.4 | ebeleme %33.1 süre doldu %61.5 kaçan çarptı %5.3 kovalayan çarptı %0.0 ikisi çarptı %0.0
+nesil  4 kovalayan tur  65 |   68 M | 1.04 M/s | havuz ort. % 70.8 | eğitim maçları: ebeleme %25.3 süre %70.1 K.çarp % 0.1 E.çarp % 4.5 | süre 15.0 s | std 0.19 kl 0.0018 clip %1 atlanan %0 | gaz: hız 0.95 kırpılan %77 düz %14 | çarpma K[duv56 tav44] E[duv5 zem94 tav1]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %40.8 | ebeleme %34.4 süre doldu %58.9 kaçan çarptı %6.4 kovalayan çarptı %0.3 ikisi çarptı %0.0
+nesil  4 kovalayan tur  70 |   73 M | 1.04 M/s | havuz ort. % 69.4 | eğitim maçları: ebeleme %30.7 süre %65.0 K.çarp % 0.1 E.çarp % 4.2 | süre 13.7 s | std 0.19 kl 0.0019 clip %1 atlanan %0 | gaz: hız 0.96 kırpılan %79 düz %15 | çarpma K[duv15 tav85] E[zem100 tav0]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %43.9 | ebeleme %34.9 süre doldu %55.8 kaçan çarptı %9.1 kovalayan çarptı %0.2 ikisi çarptı %0.0
+nesil  4 kovalayan tur  75 |   79 M | 1.04 M/s | havuz ort. % 70.7 | eğitim maçları: ebeleme %41.5 süre %48.8 K.çarp % 0.3 E.çarp % 9.4 | süre 11.3 s | std 0.19 kl 0.0021 clip %2 atlanan %0 | gaz: hız 0.96 kırpılan %79 düz %13 | çarpma K[duv17 tav83] E[zem99 tav1]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %45.0 | ebeleme %34.9 süre doldu %54.8 kaçan çarptı %10.1 kovalayan çarptı %0.2 ikisi çarptı %0.0
+nesil  4 kovalayan tur  80 |   84 M | 1.04 M/s | havuz ort. % 70.9 | eğitim maçları: ebeleme %31.6 süre %57.6 K.çarp % 0.3 E.çarp %10.5 | süre 11.9 s | std 0.19 kl 0.0019 clip %1 atlanan %0 | gaz: hız 0.97 kırpılan %81 düz %15 | çarpma K[duv5 tav95] E[zem100 tav0]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %49.3 | ebeleme %37.9 süre doldu %50.3 kaçan çarptı %11.4 kovalayan çarptı %0.4 ikisi çarptı %0.0
+nesil  4 kovalayan tur  85 |   89 M | 1.03 M/s | havuz ort. % 63.6 | eğitim maçları: ebeleme %35.0 süre %54.1 K.çarp % 0.5 E.çarp %10.4 | süre 12.3 s | std 0.19 kl 0.0023 clip %2 atlanan %0 | gaz: hız 0.97 kırpılan %82 düz %15 | çarpma K[duv28 zem5 tav67] E[duv19 zem79 tav1]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %50.7 | ebeleme %38.8 süre doldu %49.0 kaçan çarptı %12.0 kovalayan çarptı %0.3 ikisi çarptı %0.0
+nesil  4 kovalayan tur  90 |   94 M | 1.03 M/s | havuz ort. % 65.4 | eğitim maçları: ebeleme %48.1 süre %39.0 K.çarp % 0.7 E.çarp %12.2 | süre  9.8 s | std 0.19 kl 0.0018 clip %1 atlanan %0 | gaz: hız 0.97 kırpılan %82 düz %14 | çarpma K[duv37 zem6 tav57] E[duv25 zem73 tav2]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %51.7 | ebeleme %39.5 süre doldu %47.9 kaçan çarptı %12.2 kovalayan çarptı %0.3 ikisi çarptı %0.0
+nesil  4 kovalayan tur  95 |  100 M | 1.03 M/s | havuz ort. % 67.7 | eğitim maçları: ebeleme %50.9 süre %34.8 K.çarp % 0.3 E.çarp %13.9 | süre  9.0 s | std 0.19 kl 0.0024 clip %2 atlanan %0 | gaz: hız 0.97 kırpılan %82 düz %14 | çarpma K[duv50 zem13 tav37] E[duv3 zem96 tav1]
+nesil  4 kontrol maçı (4096 maç, en son kaçan_2'e karşı): kazanma %52.9 | ebeleme %40.5 süre doldu %46.8 kaçan çarptı %12.5 kovalayan çarptı %0.3 ikisi çarptı %0.0
+nesil  4 kovalayan tur  96 |  101 M | 1.02 M/s | havuz ort. % 68.1 | eğitim maçları: ebeleme %53.9 süre %35.1 K.çarp % 0.4 E.çarp %10.7 | süre 10.1 s | std 0.19 kl 0.0019 clip %1 atlanan %0 | gaz: hız 0.97 kırpılan %82 düz %13 | çarpma K[duv43 tav57] E[duv1 zem99 tav1]
+--- nesil 4 bitti (en fazla adım): kovalayan, 101 M adım, 1.6 dk, kontrol maçında en son rakibe karşı %52.9 → havuza kovalayan_3 olarak eklendi
+
+=== nesil 5 · öğrenen: kaçan · rakip havuzu: 4 kovalayan (en son: kovalayan_3) ===
+nesil  5 kaçan     tur   5 |    5 M | 1.21 M/s | havuz ort. % 41.4 | eğitim maçları: ebeleme %89.0 süre % 0.0 K.çarp % 0.4 E.çarp %10.6 | süre  4.2 s | std 0.22 kl 0.0036 clip %4 atlanan %0 | gaz: hız 0.87 kırpılan %46 düz %1 | çarpma K[duv24 zem17 tav59] E[duv0 zem100]
+nesil  5 kaçan     tur  10 |   10 M | 1.21 M/s | havuz ort. % 34.1 | eğitim maçları: ebeleme %92.0 süre % 0.0 K.çarp % 0.7 E.çarp % 7.3 | süre  6.1 s | std 0.21 kl 0.0048 clip %5 atlanan %0 | gaz: hız 0.87 kırpılan %44 düz %0 | çarpma K[zem87 tav13] E[zem97 tav3]
+nesil  5 kaçan     tur  15 |   16 M | 1.21 M/s | havuz ort. % 23.1 | eğitim maçları: ebeleme %97.6 süre % 0.0 K.çarp % 1.9 E.çarp % 0.5 | süre 14.4 s | std 0.21 kl 0.0039 clip %4 atlanan %0 | gaz: hız 0.88 kırpılan %46 düz %0 | çarpma K[duv11 zem89] E[zem40 tav60]
+nesil  5 kontrol maçı (4096 maç, en son kovalayan_3'e karşı): kazanma %74.2 | ebeleme %25.5 süre doldu %72.6 kaçan çarptı %0.2 kovalayan çarptı %1.6 ikisi çarptı %0.0
+nesil  5 kaçan     tur  20 |   21 M | 1.15 M/s | havuz ort. % 32.3 | eğitim maçları: ebeleme %16.1 süre %83.4 K.çarp % 0.1 E.çarp % 0.4 | süre 13.6 s | std 0.21 kl 0.0029 clip %2 atlanan %0 | gaz: hız 0.87 kırpılan %47 düz %3 | çarpma K[zem100] E[zem98 tav2]
+--- nesil 5 bitti (eşik): kaçan, 21 M adım, 0.3 dk, kontrol maçında en son rakibe karşı %74.2 → havuza kaçan_3 olarak eklendi
+
+=== nesil 6 · öğrenen: kovalayan · rakip havuzu: 4 kaçan (en son: kaçan_3) ===
+nesil  6 kovalayan tur   5 |    5 M | 1.21 M/s | havuz ort. % 70.6 | eğitim maçları: ebeleme %91.7 süre % 0.0 K.çarp % 1.2 E.çarp % 7.1 | süre  4.0 s | std 0.19 kl 0.0024 clip %2 atlanan %0 | gaz: hız 0.96 kırpılan %79 düz %11 | çarpma K[duv7 zem83 tav11] E[duv0 zem99 tav1]
+nesil  6 kovalayan tur  10 |   10 M | 1.21 M/s | havuz ort. % 75.8 | eğitim maçları: ebeleme %71.0 süre % 0.0 K.çarp % 4.7 E.çarp %24.3 | süre  5.8 s | std 0.19 kl 0.0020 clip %1 atlanan %0 | gaz: hız 0.96 kırpılan %78 düz %8 | çarpma K[duv3 zem94 tav3] E[zem99 tav1]
+nesil  6 kovalayan tur  15 |   16 M | 1.21 M/s | havuz ort. % 83.7 | eğitim maçları: ebeleme %71.5 süre % 0.0 K.çarp % 2.9 E.çarp %25.6 | süre  9.3 s | std 0.18 kl 0.0039 clip %4 atlanan %0 | gaz: hız 0.96 kırpılan %77 düz %7 | çarpma K[duv14 zem63 tav23] E[duv20 zem79 tav1]
+nesil  6 kontrol maçı (4096 maç, en son kaçan_3'e karşı): kazanma %36.5 | ebeleme %36.3 süre doldu %60.0 kaçan çarptı %0.3 kovalayan çarptı %3.4 ikisi çarptı %0.0
+nesil  6 kovalayan tur  20 |   21 M | 1.15 M/s | havuz ort. % 76.9 | eğitim maçları: ebeleme %31.2 süre %64.5 K.çarp % 0.6 E.çarp % 3.7 | süre  7.6 s | std 0.18 kl 0.0020 clip %1 atlanan %0 | gaz: hız 0.97 kırpılan %83 düz %18 | çarpma K[duv22 zem41 tav37] E[duv54 zem43 tav3]
+nesil  6 kontrol maçı (4096 maç, en son kaçan_3'e karşı): kazanma %45.4 | ebeleme %44.9 süre doldu %50.5 kaçan çarptı %0.5 kovalayan çarptı %4.1 ikisi çarptı %0.0
+nesil  6 kovalayan tur  25 |   26 M | 1.12 M/s | havuz ort. % 79.4 | eğitim maçları: ebeleme %67.4 süre %16.5 K.çarp % 4.5 E.çarp %11.6 | süre  7.4 s | std 0.18 kl 0.0023 clip %2 atlanan %0 | gaz: hız 0.96 kırpılan %79 düz %10 | çarpma K[duv9 zem86 tav4] E[duv38 zem59 tav3]
+nesil  6 kontrol maçı (4096 maç, en son kaçan_3'e karşı): kazanma %60.4 | ebeleme %60.1 süre doldu %35.1 kaçan çarptı %0.2 kovalayan çarptı %4.5 ikisi çarptı %0.0
+nesil  6 kovalayan tur  30 |   31 M | 1.10 M/s | havuz ort. % 81.7 | eğitim maçları: ebeleme %71.5 süre %14.1 K.çarp % 4.8 E.çarp % 9.6 | süre 10.3 s | std 0.18 kl 0.0032 clip %3 atlanan %0 | gaz: hız 0.96 kırpılan %78 düz %9 | çarpma K[duv7 zem87 tav6] E[duv48 zem49 tav3]
+--- nesil 6 bitti (eşik): kovalayan, 31 M adım, 0.5 dk, kontrol maçında en son rakibe karşı %60.4 → havuza kovalayan_4 olarak eklendi
+
+=== nesil 7 · öğrenen: kaçan · rakip havuzu: 5 kovalayan (en son: kovalayan_4) ===
+nesil  7 kaçan     tur   5 |    5 M | 1.21 M/s | havuz ort. % 25.7 | eğitim maçları: ebeleme %95.3 süre % 0.0 K.çarp % 3.6 E.çarp % 1.1 | süre  4.7 s | std 0.21 kl 0.0026 clip %2 atlanan %0 | gaz: hız 0.87 kırpılan %46 düz %2 | çarpma K[zem100] E[zem100]
+nesil  7 kaçan     tur  10 |   10 M | 1.21 M/s | havuz ort. % 20.3 | eğitim maçları: ebeleme %91.2 süre % 0.0 K.çarp % 8.4 E.çarp % 0.5 | süre  6.9 s | std 0.21 kl 0.0028 clip %2 atlanan %0 | gaz: hız 0.89 kırpılan %50 düz %1 | çarpma K[zem100] E[zem100]
+nesil  7 kaçan     tur  15 |   16 M | 1.21 M/s | havuz ort. % 17.7 | eğitim maçları: ebeleme %91.3 süre % 0.0 K.çarp % 7.9 E.çarp % 0.7 | süre  9.2 s | std 0.21 kl 0.0032 clip %3 atlanan %0 | gaz: hız 0.89 kırpılan %51 düz %0 | çarpma K[duv1 zem99] E[zem100]
+nesil  7 kontrol maçı (4096 maç, en son kovalayan_4'e karşı): kazanma %66.1 | ebeleme %33.7 süre doldu %65.8 kaçan çarptı %0.2 kovalayan çarptı %0.3 ikisi çarptı %0.0
+nesil  7 kaçan     tur  20 |   21 M | 1.15 M/s | havuz ort. % 26.2 | eğitim maçları: ebeleme %20.3 süre %78.8 K.çarp % 0.2 E.çarp % 0.7 | süre 12.6 s | std 0.21 kl 0.0018 clip %1 atlanan %0 | gaz: hız 0.89 kırpılan %53 düz %3 | çarpma K[zem100] E[zem100]
+--- nesil 7 bitti (eşik): kaçan, 21 M adım, 0.3 dk, kontrol maçında en son rakibe karşı %66.1 → havuza kaçan_4 olarak eklendi
+
+=== nesil 8 · öğrenen: kovalayan · rakip havuzu: 5 kaçan (en son: kaçan_4) ===
+nesil  8 kovalayan tur   5 |    5 M | 1.21 M/s | havuz ort. % 78.9 | eğitim maçları: ebeleme %92.5 süre % 0.0 K.çarp % 1.1 E.çarp % 6.4 | süre  4.0 s | std 0.18 kl 0.0023 clip %2 atlanan %0 | gaz: hız 0.95 kırpılan %78 düz %12 | çarpma K[duv32 zem44 tav24] E[duv72 zem24 tav4]
+nesil  8 kovalayan tur  10 |   10 M | 1.21 M/s | havuz ort. % 82.2 | eğitim maçları: ebeleme %90.3 süre % 0.0 K.çarp % 2.0 E.çarp % 7.7 | süre  6.4 s | std 0.18 kl 0.0032 clip %3 atlanan %0 | gaz: hız 0.94 kırpılan %74 düz %10 | çarpma K[duv28 zem64 tav8] E[duv69 zem27 tav4]
+nesil  8 kovalayan tur  15 |   16 M | 1.21 M/s | havuz ort. % 86.9 | eğitim maçları: ebeleme %95.1 süre % 0.0 K.çarp % 1.9 E.çarp % 3.0 | süre  9.1 s | std 0.18 kl 0.0030 clip %3 atlanan %0 | gaz: hız 0.94 kırpılan %76 düz %9 | çarpma K[duv10 zem90] E[duv62 zem28 tav10]
+nesil  8 kontrol maçı (4096 maç, en son kaçan_4'e karşı): kazanma %90.2 | ebeleme %90.0 süre doldu %9.3 kaçan çarptı %0.2 kovalayan çarptı %0.4 ikisi çarptı %0.0
+nesil  8 kovalayan tur  20 |   21 M | 1.15 M/s | havuz ort. % 86.4 | eğitim maçları: ebeleme %58.8 süre %40.4 K.çarp % 0.5 E.çarp % 0.3 | süre  6.4 s | std 0.18 kl 0.0025 clip %2 atlanan %0 | gaz: hız 0.96 kırpılan %81 düz %17 | çarpma K[zem96 tav4] E[zem98 tav2]
+--- nesil 8 bitti (eşik): kovalayan, 21 M adım, 0.3 dk, kontrol maçında en son rakibe karşı %90.2 → havuza kovalayan_5 olarak eklendi
+
+=== nesil 9 · öğrenen: kaçan · rakip havuzu: 6 kovalayan (en son: kovalayan_5) ===
+nesil  9 kaçan     tur   5 |    5 M | 1.21 M/s | havuz ort. % 23.6 | eğitim maçları: ebeleme %98.9 süre % 0.0 K.çarp % 0.3 E.çarp % 0.7 | süre  4.7 s | std 0.21 kl 0.0022 clip %1 atlanan %0 | gaz: hız 0.88 kırpılan %52 düz %4 | çarpma K[zem100] E[zem100]
+nesil  9 kaçan     tur  10 |   10 M | 1.21 M/s | havuz ort. % 22.9 | eğitim maçları: ebeleme %98.0 süre % 0.0 K.çarp % 1.6 E.çarp % 0.4 | süre  5.4 s | std 0.21 kl 0.0022 clip %1 atlanan %0 | gaz: hız 0.89 kırpılan %54 düz %3 | çarpma K[zem100] E[zem100]
+nesil  9 kaçan     tur  15 |   16 M | 1.21 M/s | havuz ort. % 23.4 | eğitim maçları: ebeleme %97.1 süre % 0.0 K.çarp % 1.4 E.çarp % 1.5 | süre  6.5 s | std 0.21 kl 0.0027 clip %2 atlanan %0 | gaz: hız 0.89 kırpılan %55 düz %2 | çarpma K[zem99 tav1] E[zem100]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %24.5 | ebeleme %72.9 süre doldu %24.4 kaçan çarptı %2.6 kovalayan çarptı %0.2 ikisi çarptı %0.0
+nesil  9 kaçan     tur  20 |   21 M | 1.15 M/s | havuz ort. % 26.2 | eğitim maçları: ebeleme %44.4 süre %50.3 K.çarp % 0.3 E.çarp % 4.9 | süre  9.6 s | std 0.20 kl 0.0021 clip %1 atlanan %0 | gaz: hız 0.89 kırpılan %55 düz %3 | çarpma K[duv9 zem83 tav9] E[zem99 tav1]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %24.1 | ebeleme %72.9 süre doldu %23.7 kaçan çarptı %3.0 kovalayan çarptı %0.4 ikisi çarptı %0.0
+nesil  9 kaçan     tur  25 |   26 M | 1.12 M/s | havuz ort. % 26.1 | eğitim maçları: ebeleme %74.5 süre %20.6 K.çarp % 1.0 E.çarp % 3.9 | süre  8.5 s | std 0.20 kl 0.0022 clip %1 atlanan %0 | gaz: hız 0.89 kırpılan %56 düz %3 | çarpma K[duv8 zem76 tav17] E[zem77 tav23]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %26.4 | ebeleme %69.8 süre doldu %26.0 kaçan çarptı %3.8 kovalayan çarptı %0.4 ikisi çarptı %0.0
+nesil  9 kaçan     tur  30 |   31 M | 1.10 M/s | havuz ort. % 32.1 | eğitim maçları: ebeleme %66.8 süre %27.3 K.çarp % 1.2 E.çarp % 4.8 | süre  9.6 s | std 0.20 kl 0.0023 clip %1 atlanan %0 | gaz: hız 0.89 kırpılan %56 düz %3 | çarpma K[duv11 zem69 tav20] E[zem88 tav12]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %23.4 | ebeleme %73.5 süre doldu %23.0 kaçan çarptı %3.2 kovalayan çarptı %0.3 ikisi çarptı %0.0
+nesil  9 kaçan     tur  35 |   37 M | 1.08 M/s | havuz ort. % 37.0 | eğitim maçları: ebeleme %51.3 süre %42.7 K.çarp % 2.9 E.çarp % 3.1 | süre 10.4 s | std 0.20 kl 0.0021 clip %1 atlanan %0 | gaz: hız 0.88 kırpılan %55 düz %3 | çarpma K[duv3 zem91 tav6] E[zem85 tav15]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %22.6 | ebeleme %71.9 süre doldu %22.3 kaçan çarptı %5.5 kovalayan çarptı %0.3 ikisi çarptı %0.0
+nesil  9 kaçan     tur  40 |   42 M | 1.07 M/s | havuz ort. % 38.2 | eğitim maçları: ebeleme %63.9 süre %29.5 K.çarp % 1.9 E.çarp % 4.6 | süre  9.6 s | std 0.20 kl 0.0020 clip %1 atlanan %0 | gaz: hız 0.87 kırpılan %53 düz %3 | çarpma K[duv6 zem86 tav8] E[zem82 tav18]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %27.7 | ebeleme %68.8 süre doldu %27.0 kaçan çarptı %3.6 kovalayan çarptı %0.7 ikisi çarptı %0.0
+nesil  9 kaçan     tur  45 |   47 M | 1.06 M/s | havuz ort. % 38.7 | eğitim maçları: ebeleme %69.2 süre %24.5 K.çarp % 1.1 E.çarp % 5.2 | süre  9.7 s | std 0.20 kl 0.0021 clip %1 atlanan %0 | gaz: hız 0.87 kırpılan %52 düz %3 | çarpma K[duv18 zem72 tav11] E[duv0 zem87 tav12]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %30.1 | ebeleme %64.7 süre doldu %29.5 kaçan çarptı %5.2 kovalayan çarptı %0.5 ikisi çarptı %0.0
+nesil  9 kaçan     tur  50 |   52 M | 1.06 M/s | havuz ort. % 43.5 | eğitim maçları: ebeleme %56.2 süre %39.0 K.çarp % 0.9 E.çarp % 3.9 | süre 11.3 s | std 0.20 kl 0.0022 clip %1 atlanan %0 | gaz: hız 0.87 kırpılan %52 düz %3 | çarpma K[duv25 zem68 tav8] E[duv0 zem89 tav10]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %27.6 | ebeleme %69.6 süre doldu %26.9 kaçan çarptı %2.9 kovalayan çarptı %0.7 ikisi çarptı %0.0
+nesil  9 kaçan     tur  55 |   58 M | 1.05 M/s | havuz ort. % 45.5 | eğitim maçları: ebeleme %57.0 süre %34.6 K.çarp % 3.0 E.çarp % 5.4 | süre 11.2 s | std 0.20 kl 0.0022 clip %1 atlanan %0 | gaz: hız 0.86 kırpılan %50 düz %3 | çarpma K[duv10 zem87 tav3] E[duv1 zem94 tav5]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %29.1 | ebeleme %63.2 süre doldu %27.8 kaçan çarptı %7.7 kovalayan çarptı %1.3 ikisi çarptı %0.0
+nesil  9 kaçan     tur  60 |   63 M | 1.05 M/s | havuz ort. % 46.6 | eğitim maçları: ebeleme %60.0 süre %34.6 K.çarp % 1.4 E.çarp % 4.0 | süre 11.2 s | std 0.20 kl 0.0022 clip %1 atlanan %0 | gaz: hız 0.85 kırpılan %48 düz %2 | çarpma K[duv16 zem82 tav2] E[duv2 zem81 tav17]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %26.4 | ebeleme %68.8 süre doldu %25.3 kaçan çarptı %4.8 kovalayan çarptı %1.1 ikisi çarptı %0.0
+nesil  9 kaçan     tur  65 |   68 M | 1.04 M/s | havuz ort. % 49.1 | eğitim maçları: ebeleme %60.0 süre %32.6 K.çarp % 1.2 E.çarp % 6.1 | süre 10.8 s | std 0.20 kl 0.0020 clip %1 atlanan %0 | gaz: hız 0.84 kırpılan %46 düz %3 | çarpma K[duv42 zem58 tav1] E[duv2 zem95 tav3]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %30.0 | ebeleme %64.5 süre doldu %28.7 kaçan çarptı %5.5 kovalayan çarptı %1.3 ikisi çarptı %0.0
+nesil  9 kaçan     tur  70 |   73 M | 1.04 M/s | havuz ort. % 49.9 | eğitim maçları: ebeleme %64.2 süre %30.2 K.çarp % 1.2 E.çarp % 4.5 | süre 10.2 s | std 0.20 kl 0.0022 clip %1 atlanan %0 | gaz: hız 0.85 kırpılan %47 düz %2 | çarpma K[duv52 zem47 tav1] E[duv2 zem93 tav5]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %39.9 | ebeleme %54.5 süre doldu %38.1 kaçan çarptı %5.6 kovalayan çarptı %1.8 ikisi çarptı %0.0
+nesil  9 kaçan     tur  75 |   79 M | 1.04 M/s | havuz ort. % 51.3 | eğitim maçları: ebeleme %56.1 süre %34.7 K.çarp % 2.6 E.çarp % 6.6 | süre 11.2 s | std 0.19 kl 0.0024 clip %2 atlanan %0 | gaz: hız 0.85 kırpılan %48 düz %3 | çarpma K[duv28 zem72] E[duv9 zem84 tav7]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %43.1 | ebeleme %53.2 süre doldu %41.9 kaçan çarptı %3.7 kovalayan çarptı %1.2 ikisi çarptı %0.0
+nesil  9 kaçan     tur  80 |   84 M | 1.04 M/s | havuz ort. % 55.2 | eğitim maçları: ebeleme %48.2 süre %44.6 K.çarp % 2.1 E.çarp % 5.1 | süre 12.8 s | std 0.19 kl 0.0028 clip %2 atlanan %0 | gaz: hız 0.86 kırpılan %50 düz %3 | çarpma K[duv32 zem68] E[duv7 zem87 tav7]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %45.1 | ebeleme %50.9 süre doldu %43.4 kaçan çarptı %4.0 kovalayan çarptı %1.7 ikisi çarptı %0.0
+nesil  9 kaçan     tur  85 |   89 M | 1.03 M/s | havuz ort. % 58.1 | eğitim maçları: ebeleme %42.7 süre %50.4 K.çarp % 1.9 E.çarp % 5.0 | süre 13.4 s | std 0.19 kl 0.0025 clip %2 atlanan %0 | gaz: hız 0.86 kırpılan %50 düz %4 | çarpma K[duv45 zem55 tav1] E[duv8 zem83 tav9]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %46.6 | ebeleme %50.0 süre doldu %45.3 kaçan çarptı %3.5 kovalayan çarptı %1.3 ikisi çarptı %0.0
+nesil  9 kaçan     tur  90 |   94 M | 1.03 M/s | havuz ort. % 57.9 | eğitim maçları: ebeleme %47.4 süre %46.6 K.çarp % 1.8 E.çarp % 4.1 | süre 12.6 s | std 0.19 kl 0.0023 clip %1 atlanan %0 | gaz: hız 0.87 kırpılan %51 düz %4 | çarpma K[duv33 zem67] E[duv10 zem77 tav13]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %51.0 | ebeleme %44.3 süre doldu %49.4 kaçan çarptı %4.6 kovalayan çarptı %1.7 ikisi çarptı %0.0
+nesil  9 kaçan     tur  95 |  100 M | 1.03 M/s | havuz ort. % 59.7 | eğitim maçları: ebeleme %41.8 süre %50.9 K.çarp % 2.8 E.çarp % 4.6 | süre 13.7 s | std 0.19 kl 0.0029 clip %2 atlanan %0 | gaz: hız 0.87 kırpılan %52 düz %4 | çarpma K[duv18 zem82] E[duv15 zem65 tav20]
+nesil  9 kontrol maçı (4096 maç, en son kovalayan_5'e karşı): kazanma %51.6 | ebeleme %43.4 süre doldu %49.7 kaçan çarptı %5.0 kovalayan çarptı %1.9 ikisi çarptı %0.0
+nesil  9 kaçan     tur  96 |  101 M | 1.02 M/s | havuz ort. % 60.2 | eğitim maçları: ebeleme %34.8 süre %57.1 K.çarp % 1.7 E.çarp % 6.4 | süre 14.1 s | std 0.19 kl 0.0025 clip %2 atlanan %0 | gaz: hız 0.87 kırpılan %52 düz %4 | çarpma K[duv21 zem79] E[duv16 zem74 tav10]
+--- nesil 9 bitti (en fazla adım): kaçan, 101 M adım, 1.6 dk, kontrol maçında en son rakibe karşı %51.6 → havuza kaçan_5 olarak eklendi
+
+=== nesil 10 · öğrenen: kovalayan · rakip havuzu: 6 kaçan (en son: kaçan_5) ===
+nesil 10 kovalayan tur   5 |    5 M | 1.21 M/s | havuz ort. % 84.2 | eğitim maçları: ebeleme %89.6 süre % 0.0 K.çarp % 1.6 E.çarp % 8.8 | süre  5.1 s | std 0.18 kl 0.0028 clip %2 atlanan %0 | gaz: hız 0.96 kırpılan %78 düz %12 | çarpma K[duv89 zem9 tav2] E[duv11 zem71 tav18]
+nesil 10 kovalayan tur  10 |   10 M | 1.21 M/s | havuz ort. % 87.3 | eğitim maçları: ebeleme %93.0 süre % 0.0 K.çarp % 1.2 E.çarp % 5.8 | süre  6.1 s | std 0.18 kl 0.0036 clip %4 atlanan %0 | gaz: hız 0.94 kırpılan %72 düz %6 | çarpma K[duv55 zem42 tav3] E[duv7 zem83 tav10]
+nesil 10 kovalayan tur  15 |   16 M | 1.21 M/s | havuz ort. % 90.2 | eğitim maçları: ebeleme %91.6 süre % 0.0 K.çarp % 1.0 E.çarp % 7.4 | süre  7.0 s | std 0.18 kl 0.0027 clip %2 atlanan %0 | gaz: hız 0.95 kırpılan %75 düz %7 | çarpma K[duv45 zem40 tav15] E[duv2 zem93 tav5]
+nesil 10 kontrol maçı (4096 maç, en son kaçan_5'e karşı): kazanma %97.7 | ebeleme %93.5 süre doldu %1.1 kaçan çarptı %4.1 kovalayan çarptı %1.3 ikisi çarptı %0.0
+nesil 10 kovalayan tur  20 |   21 M | 1.15 M/s | havuz ort. % 90.7 | eğitim maçları: ebeleme %74.3 süre %22.8 K.çarp % 0.6 E.çarp % 2.3 | süre  6.3 s | std 0.18 kl 0.0023 clip %2 atlanan %0 | gaz: hız 0.96 kırpılan %79 düz %15 | çarpma K[duv67 zem20 tav13] E[duv10 zem78 tav12]
+--- nesil 10 bitti (eşik): kovalayan, 21 M adım, 0.3 dk, kontrol maçında en son rakibe karşı %97.7 → havuza kovalayan_6 olarak eklendi
+
+=== nesil 11 · öğrenen: kaçan · rakip havuzu: 7 kovalayan (en son: kovalayan_6) ===
+nesil 11 kaçan     tur   5 |    5 M | 1.21 M/s | havuz ort. % 48.9 | eğitim maçları: ebeleme %89.6 süre % 0.0 K.çarp % 2.1 E.çarp % 8.3 | süre  5.4 s | std 0.19 kl 0.0025 clip %2 atlanan %0 | gaz: hız 0.86 kırpılan %48 düz %5 | çarpma K[duv65 zem34 tav2] E[duv21 zem52 tav27]
+nesil 11 kaçan     tur  10 |   10 M | 1.21 M/s | havuz ort. % 42.0 | eğitim maçları: ebeleme %95.5 süre % 0.0 K.çarp % 1.9 E.çarp % 2.7 | süre  5.9 s | std 0.19 kl 0.0027 clip %2 atlanan %0 | gaz: hız 0.86 kırpılan %47 düz %4 | çarpma K[duv59 zem41] E[duv28 zem66 tav6]
+nesil 11 kaçan     tur  15 |   16 M | 1.21 M/s | havuz ort. % 38.3 | eğitim maçları: ebeleme %90.1 süre % 0.0 K.çarp % 2.8 E.çarp % 7.2 | süre  7.7 s | std 0.19 kl 0.0038 clip %4 atlanan %0 | gaz: hız 0.85 kırpılan %48 düz %3 | çarpma K[duv49 zem50 tav1] E[duv5 zem92 tav3]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %8.8 | ebeleme %84.4 süre doldu %7.3 kaçan çarptı %6.8 kovalayan çarptı %1.5 ikisi çarptı %0.0
+nesil 11 kaçan     tur  20 |   21 M | 1.15 M/s | havuz ort. % 39.2 | eğitim maçları: ebeleme %56.1 süre %35.3 K.çarp % 1.6 E.çarp % 7.0 | süre  8.9 s | std 0.19 kl 0.0030 clip %2 atlanan %0 | gaz: hız 0.85 kırpılan %46 düz %3 | çarpma K[duv74 zem25 tav0] E[duv15 zem77 tav8]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %14.4 | ebeleme %78.1 süre doldu %12.5 kaçan çarptı %7.5 kovalayan çarptı %1.9 ikisi çarptı %0.0
+nesil 11 kaçan     tur  25 |   26 M | 1.12 M/s | havuz ort. % 36.9 | eğitim maçları: ebeleme %79.0 süre % 8.8 K.çarp % 3.0 E.çarp % 9.1 | süre  8.1 s | std 0.19 kl 0.0024 clip %2 atlanan %0 | gaz: hız 0.85 kırpılan %46 düz %3 | çarpma K[duv63 zem36 tav0] E[duv13 zem79 tav8]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %17.3 | ebeleme %77.9 süre doldu %15.1 kaçan çarptı %4.8 kovalayan çarptı %2.2 ikisi çarptı %0.0
+nesil 11 kaçan     tur  30 |   31 M | 1.10 M/s | havuz ort. % 40.9 | eğitim maçları: ebeleme %74.8 süre %14.5 K.çarp % 2.7 E.çarp % 7.9 | süre 10.5 s | std 0.19 kl 0.0020 clip %1 atlanan %0 | gaz: hız 0.86 kırpılan %46 düz %3 | çarpma K[duv44 zem55 tav0] E[duv8 zem84 tav8]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %19.6 | ebeleme %73.7 süre doldu %17.3 kaçan çarptı %6.7 kovalayan çarptı %2.3 ikisi çarptı %0.0
+nesil 11 kaçan     tur  35 |   37 M | 1.08 M/s | havuz ort. % 43.6 | eğitim maçları: ebeleme %51.3 süre %40.8 K.çarp % 2.4 E.çarp % 5.5 | süre 12.5 s | std 0.19 kl 0.0025 clip %2 atlanan %0 | gaz: hız 0.86 kırpılan %47 düz %3 | çarpma K[duv44 zem56] E[duv23 zem68 tav9]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %20.7 | ebeleme %75.5 süre doldu %18.2 kaçan çarptı %3.9 kovalayan çarptı %2.4 ikisi çarptı %0.0
+nesil 11 kaçan     tur  40 |   42 M | 1.07 M/s | havuz ort. % 43.8 | eğitim maçları: ebeleme %63.5 süre %27.6 K.çarp % 2.7 E.çarp % 6.2 | süre 11.0 s | std 0.18 kl 0.0024 clip %2 atlanan %0 | gaz: hız 0.86 kırpılan %46 düz %3 | çarpma K[duv51 zem49] E[duv33 zem59 tav9]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %27.1 | ebeleme %68.4 süre doldu %24.2 kaçan çarptı %4.5 kovalayan çarptı %2.9 ikisi çarptı %0.0
+nesil 11 kaçan     tur  45 |   47 M | 1.06 M/s | havuz ort. % 43.7 | eğitim maçları: ebeleme %75.2 süre %17.7 K.çarp % 2.7 E.çarp % 4.5 | süre 10.4 s | std 0.18 kl 0.0022 clip %1 atlanan %0 | gaz: hız 0.85 kırpılan %44 düz %3 | çarpma K[duv64 zem35 tav1] E[duv23 zem71 tav6]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %30.6 | ebeleme %65.7 süre doldu %27.8 kaçan çarptı %3.6 kovalayan çarptı %2.8 ikisi çarptı %0.0
+nesil 11 kaçan     tur  50 |   52 M | 1.06 M/s | havuz ort. % 45.5 | eğitim maçları: ebeleme %63.3 süre %29.5 K.çarp % 2.7 E.çarp % 4.5 | süre 11.7 s | std 0.18 kl 0.0024 clip %2 atlanan %0 | gaz: hız 0.85 kırpılan %44 düz %2 | çarpma K[duv58 zem41 tav0] E[duv12 zem84 tav4]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %34.4 | ebeleme %61.4 süre doldu %31.6 kaçan çarptı %4.2 kovalayan çarptı %2.8 ikisi çarptı %0.0
+nesil 11 kaçan     tur  55 |   58 M | 1.05 M/s | havuz ort. % 48.3 | eğitim maçları: ebeleme %54.4 süre %37.7 K.çarp % 3.8 E.çarp % 4.1 | süre 12.6 s | std 0.18 kl 0.0025 clip %2 atlanan %0 | gaz: hız 0.86 kırpılan %45 düz %2 | çarpma K[duv47 zem53] E[duv31 zem52 tav17]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %42.1 | ebeleme %54.7 süre doldu %38.1 kaçan çarptı %3.2 kovalayan çarptı %4.0 ikisi çarptı %0.0
+nesil 11 kaçan     tur  60 |   63 M | 1.05 M/s | havuz ort. % 50.4 | eğitim maçları: ebeleme %48.7 süre %45.2 K.çarp % 3.2 E.çarp % 2.9 | süre 14.2 s | std 0.18 kl 0.0022 clip %1 atlanan %0 | gaz: hız 0.86 kırpılan %44 düz %2 | çarpma K[duv50 zem50 tav0] E[duv23 zem62 tav16]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %42.8 | ebeleme %54.5 süre doldu %39.5 kaçan çarptı %2.7 kovalayan çarptı %3.3 ikisi çarptı %0.0
+nesil 11 kaçan     tur  65 |   68 M | 1.04 M/s | havuz ort. % 54.0 | eğitim maçları: ebeleme %45.5 süre %48.3 K.çarp % 3.2 E.çarp % 3.0 | süre 13.7 s | std 0.18 kl 0.0024 clip %1 atlanan %0 | gaz: hız 0.84 kırpılan %41 düz %2 | çarpma K[duv65 zem35] E[duv16 zem81 tav3]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %48.4 | ebeleme %48.6 süre doldu %44.6 kaçan çarptı %3.0 kovalayan çarptı %3.8 ikisi çarptı %0.0
+nesil 11 kaçan     tur  70 |   73 M | 1.04 M/s | havuz ort. % 55.2 | eğitim maçları: ebeleme %48.7 süre %45.4 K.çarp % 3.5 E.çarp % 2.5 | süre 13.3 s | std 0.18 kl 0.0021 clip %1 atlanan %0 | gaz: hız 0.83 kırpılan %39 düz %2 | çarpma K[duv78 zem22] E[duv8 zem80 tav12]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %48.2 | ebeleme %50.7 süre doldu %43.5 kaçan çarptı %1.2 kovalayan çarptı %4.7 ikisi çarptı %0.0
+nesil 11 kaçan     tur  75 |   79 M | 1.04 M/s | havuz ort. % 58.5 | eğitim maçları: ebeleme %43.6 süre %51.6 K.çarp % 3.1 E.çarp % 1.7 | süre 14.1 s | std 0.18 kl 0.0027 clip %2 atlanan %0 | gaz: hız 0.82 kırpılan %37 düz %2 | çarpma K[duv81 zem19] E[duv10 zem81 tav10]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %48.9 | ebeleme %49.8 süre doldu %43.5 kaçan çarptı %1.3 kovalayan çarptı %5.5 ikisi çarptı %0.0
+nesil 11 kaçan     tur  80 |   84 M | 1.03 M/s | havuz ort. % 61.5 | eğitim maçları: ebeleme %38.4 süre %58.0 K.çarp % 3.0 E.çarp % 0.7 | süre 14.4 s | std 0.18 kl 0.0026 clip %2 atlanan %0 | gaz: hız 0.80 kırpılan %34 düz %1 | çarpma K[duv90 zem10] E[duv12 zem52 tav36]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %52.4 | ebeleme %45.7 süre doldu %47.2 kaçan çarptı %1.9 kovalayan çarptı %5.2 ikisi çarptı %0.0
+nesil 11 kaçan     tur  85 |   89 M | 1.03 M/s | havuz ort. % 64.3 | eğitim maçları: ebeleme %38.9 süre %55.0 K.çarp % 4.6 E.çarp % 1.6 | süre 14.2 s | std 0.18 kl 0.0039 clip %4 atlanan %0 | gaz: hız 0.81 kırpılan %35 düz %1 | çarpma K[duv93 zem7] E[duv22 zem66 tav13]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %59.4 | ebeleme %36.6 süre doldu %53.4 kaçan çarptı %3.9 kovalayan çarptı %6.1 ikisi çarptı %0.0
+nesil 11 kaçan     tur  90 |   94 M | 1.03 M/s | havuz ort. % 66.1 | eğitim maçları: ebeleme %35.9 süre %56.4 K.çarp % 5.1 E.çarp % 2.5 | süre 14.5 s | std 0.18 kl 0.0027 clip %2 atlanan %0 | gaz: hız 0.81 kırpılan %36 düz %1 | çarpma K[duv82 zem18] E[duv11 zem74 tav15]
+nesil 11 kontrol maçı (4096 maç, en son kovalayan_6'e karşı): kazanma %60.8 | ebeleme %36.9 süre doldu %54.2 kaçan çarptı %2.3 kovalayan çarptı %6.6 ikisi çarptı %0.0
+nesil 11 kaçan     tur  95 |  100 M | 1.03 M/s | havuz ort. % 67.4 | eğitim maçları: ebeleme %34.9 süre %57.5 K.çarp % 4.9 E.çarp % 2.7 | süre 14.5 s | std 0.18 kl 0.0044 clip %5 atlanan %0 | gaz: hız 0.80 kırpılan %34 düz %1 | çarpma K[duv80 zem20] E[duv12 zem72 tav16]
+--- nesil 11 bitti (eşik): kaçan, 100 M adım, 1.6 dk, kontrol maçında en son rakibe karşı %60.8 → havuza kaçan_6 olarak eklendi
+
+=== nesil 12 · öğrenen: kovalayan · rakip havuzu: 7 kaçan (en son: kaçan_6) ===
+nesil 12 kovalayan tur   5 |    5 M | 1.21 M/s | havuz ort. % 87.6 | eğitim maçları: ebeleme %89.5 süre % 0.0 K.çarp % 5.4 E.çarp % 5.0 | süre  5.4 s | std 0.17 kl 0.0027 clip %2 atlanan %0 | gaz: hız 0.92 kırpılan %66 düz %10 | çarpma K[duv99 zem1 tav0] E[duv8 zem83 tav9]
+nesil 12 kovalayan tur  10 |   10 M | 1.21 M/s | havuz ort. % 89.4 | eğitim maçları: ebeleme %86.4 süre % 0.0 K.çarp % 8.3 E.çarp % 5.4 | süre  7.3 s | std 0.17 kl 0.0031 clip %3 atlanan %0 | gaz: hız 0.90 kırpılan %60 düz %5 | çarpma K[duv97 zem3 tav0] E[duv4 zem90 tav6]
+nesil 12 kovalayan tur  15 |   16 M | 1.21 M/s | havuz ort. % 90.6 | eğitim maçları: ebeleme %90.2 süre % 0.0 K.çarp % 6.5 E.çarp % 3.3 | süre 13.3 s | std 0.17 kl 0.0058 clip %7 atlanan %0 | gaz: hız 0.90 kırpılan %61 düz %7 | çarpma K[duv95 zem5] E[duv1 zem97 tav2]
+nesil 12 kontrol maçı (4096 maç, en son kaçan_6'e karşı): kazanma %86.9 | ebeleme %83.6 süre doldu %8.9 kaçan çarptı %3.3 kovalayan çarptı %4.2 ikisi çarptı %0.0
+nesil 12 kovalayan tur  20 |   21 M | 1.15 M/s | havuz ort. % 90.4 | eğitim maçları: ebeleme %57.3 süre %36.9 K.çarp % 3.2 E.çarp % 2.6 | süre  8.4 s | std 0.17 kl 0.0028 clip %2 atlanan %0 | gaz: hız 0.92 kırpılan %66 düz %11 | çarpma K[duv97 zem3] E[duv3 zem95 tav2]
+--- nesil 12 bitti (eşik): kovalayan, 21 M adım, 0.3 dk, kontrol maçında en son rakibe karşı %86.9 → havuza kovalayan_7 olarak eklendi
+
+=== nesil 13 · öğrenen: kaçan · rakip havuzu: 8 kovalayan (en son: kovalayan_7) ===
+nesil 13 kaçan     tur   5 |    5 M | 1.21 M/s | havuz ort. % 56.7 | eğitim maçları: ebeleme %89.2 süre % 0.0 K.çarp % 5.3 E.çarp % 5.5 | süre  5.6 s | std 0.18 kl 0.0029 clip %2 atlanan %0 | gaz: hız 0.79 kırpılan %31 düz %2 | çarpma K[duv100 zem0] E[duv13 zem83 tav4]
+nesil 13 kaçan     tur  10 |   10 M | 1.21 M/s | havuz ort. % 49.5 | eğitim maçları: ebeleme %87.8 süre % 0.0 K.çarp % 7.8 E.çarp % 4.4 | süre  8.3 s | std 0.18 kl 0.0035 clip %3 atlanan %0 | gaz: hız 0.76 kırpılan %28 düz %1 | çarpma K[duv97 zem3] E[duv11 zem85 tav4]
+nesil 13 kaçan     tur  15 |   16 M | 1.21 M/s | havuz ort. % 48.6 | eğitim maçları: ebeleme %86.0 süre % 0.0 K.çarp %10.4 E.çarp % 3.6 | süre 11.3 s | std 0.17 kl 0.0033 clip %3 atlanan %0 | gaz: hız 0.75 kırpılan %26 düz %1 | çarpma K[duv99 zem1] E[duv7 zem87 tav5]
+nesil 13 kontrol maçı (4096 maç, en son kovalayan_7'e karşı): kazanma %48.1 | ebeleme %46.6 süre doldu %39.9 kaçan çarptı %5.3 kovalayan çarptı %8.2 ikisi çarptı %0.0
+nesil 13 kaçan     tur  20 |   21 M | 1.15 M/s | havuz ort. % 50.7 | eğitim maçları: ebeleme %31.3 süre %62.4 K.çarp % 3.9 E.çarp % 2.4 | süre 12.4 s | std 0.17 kl 0.0025 clip %2 atlanan %0 | gaz: hız 0.76 kırpılan %29 düz %1 | çarpma K[duv99 zem1] E[duv16 zem61 tav23]
+nesil 13 kontrol maçı (4096 maç, en son kovalayan_7'e karşı): kazanma %55.3 | ebeleme %42.5 süre doldu %47.0 kaçan çarptı %2.2 kovalayan çarptı %8.3 ikisi çarptı %0.0
+nesil 13 kaçan     tur  25 |   26 M | 1.12 M/s | havuz ort. % 53.4 | eğitim maçları: ebeleme %48.7 süre %34.4 K.çarp %10.7 E.çarp % 6.2 | süre 12.0 s | std 0.17 kl 0.0032 clip %3 atlanan %0 | gaz: hız 0.75 kırpılan %26 düz %1 | çarpma K[duv100 zem0] E[duv9 zem83 tav9]
+nesil 13 kontrol maçı (4096 maç, en son kovalayan_7'e karşı): kazanma %59.8 | ebeleme %36.6 süre doldu %51.3 kaçan çarptı %3.6 kovalayan çarptı %8.4 ikisi çarptı %0.0
+nesil 13 kaçan     tur  30 |   31 M | 1.10 M/s | havuz ort. % 55.8 | eğitim maçları: ebeleme %43.1 süre %41.6 K.çarp %10.8 E.çarp % 4.5 | süre 13.9 s | std 0.17 kl 0.0067 clip %9 atlanan %0 | gaz: hız 0.74 kırpılan %25 düz %0 | çarpma K[duv100 zem0] E[duv12 zem81 tav6]
+nesil 13 kontrol maçı (4096 maç, en son kovalayan_7'e karşı): kazanma %65.0 | ebeleme %31.7 süre doldu %55.3 kaçan çarptı %3.3 kovalayan çarptı %9.7 ikisi çarptı %0.0
+nesil 13 kaçan     tur  35 |   37 M | 1.08 M/s | havuz ort. % 58.6 | eğitim maçları: ebeleme %26.8 süre %66.2 K.çarp % 5.2 E.çarp % 1.9 | süre 14.0 s | std 0.17 kl 0.0033 clip %3 atlanan %0 | gaz: hız 0.76 kırpılan %30 düz %1 | çarpma K[duv100 zem0] E[duv16 zem79 tav5]
+--- nesil 13 bitti (eşik): kaçan, 37 M adım, 0.6 dk, kontrol maçında en son rakibe karşı %65.0 → havuza kaçan_7 olarak eklendi
+
+=== nesil 14 · öğrenen: kovalayan · rakip havuzu: 8 kaçan (en son: kaçan_7) ===
+nesil 14 kovalayan tur   5 |    5 M | 1.21 M/s | havuz ort. % 87.8 | eğitim maçları: ebeleme %90.2 süre % 0.0 K.çarp % 5.3 E.çarp % 4.5 | süre  4.6 s | std 0.17 kl 0.0031 clip %3 atlanan %0 | gaz: hız 0.92 kırpılan %66 düz %9 | çarpma K[duv97 zem3] E[duv18 zem73 tav9]
+nesil 14 kovalayan tur  10 |   10 M | 1.21 M/s | havuz ort. % 88.8 | eğitim maçları: ebeleme %86.1 süre % 0.0 K.çarp % 8.6 E.çarp % 5.3 | süre  5.6 s | std 0.17 kl 0.0036 clip %4 atlanan %0 | gaz: hız 0.91 kırpılan %61 düz %5 | çarpma K[duv96 zem4] E[duv5 zem93 tav2]
+nesil 14 kovalayan tur  15 |   16 M | 1.21 M/s | havuz ort. % 90.5 | eğitim maçları: ebeleme %87.8 süre % 0.0 K.çarp % 5.0 E.çarp % 7.2 | süre  9.4 s | std 0.17 kl 0.0025 clip %2 atlanan %0 | gaz: hız 0.91 kırpılan %64 düz %5 | çarpma K[duv93 zem7] E[duv2 zem96 tav2]
+nesil 14 kontrol maçı (4096 maç, en son kaçan_7'e karşı): kazanma %75.4 | ebeleme %70.9 süre doldu %18.7 kaçan çarptı %4.5 kovalayan çarptı %5.9 ikisi çarptı %0.0
+nesil 14 kovalayan tur  20 |   21 M | 1.15 M/s | havuz ort. % 90.5 | eğitim maçları: ebeleme %60.9 süre %34.7 K.çarp % 2.4 E.çarp % 2.1 | süre  6.9 s | std 0.17 kl 0.0042 clip %4 atlanan %0 | gaz: hız 0.93 kırpılan %68 düz %11 | çarpma K[duv97 zem3] E[duv7 zem90 tav3]
+--- nesil 14 bitti (eşik): kovalayan, 21 M adım, 0.3 dk, kontrol maçında en son rakibe karşı %75.4 → havuza kovalayan_8 olarak eklendi
+
+=== nesil 15 · öğrenen: kaçan · rakip havuzu: 9 kovalayan (en son: kovalayan_8) ===
+nesil 15 kaçan     tur   5 |    5 M | 1.21 M/s | havuz ort. % 48.8 | eğitim maçları: ebeleme %80.2 süre % 0.0 K.çarp % 6.1 E.çarp %13.7 | süre  5.7 s | std 0.17 kl 0.0033 clip %3 atlanan %0 | gaz: hız 0.75 kırpılan %26 düz %1 | çarpma K[duv97 zem3] E[duv25 zem65 tav10]
+nesil 15 kaçan     tur  10 |   10 M | 1.21 M/s | havuz ort. % 46.2 | eğitim maçları: ebeleme %77.9 süre % 0.0 K.çarp %14.4 E.çarp % 7.7 | süre  8.1 s | std 0.17 kl 0.0033 clip %3 atlanan %0 | gaz: hız 0.71 kırpılan %22 düz %0 | çarpma K[duv99 zem1] E[duv11 zem84 tav6]
+nesil 15 kaçan     tur  15 |   16 M | 1.21 M/s | havuz ort. % 46.0 | eğitim maçları: ebeleme %82.4 süre % 0.0 K.çarp %14.3 E.çarp % 3.3 | süre 12.7 s | std 0.17 kl 0.0036 clip %3 atlanan %0 | gaz: hız 0.72 kırpılan %23 düz %0 | çarpma K[duv99 zem1] E[duv17 zem72 tav12]
+nesil 15 kontrol maçı (4096 maç, en son kovalayan_8'e karşı): kazanma %64.7 | ebeleme %33.0 süre doldu %59.6 kaçan çarptı %2.3 kovalayan çarptı %5.1 ikisi çarptı %0.0
+nesil 15 kaçan     tur  20 |   21 M | 1.15 M/s | havuz ort. % 48.2 | eğitim maçları: ebeleme %24.2 süre %71.7 K.çarp % 2.9 E.çarp % 1.2 | süre 13.4 s | std 0.17 kl 0.0043 clip %5 atlanan %0 | gaz: hız 0.75 kırpılan %28 düz %1 | çarpma K[duv100] E[duv25 zem63 tav12]
+--- nesil 15 bitti (eşik): kaçan, 21 M adım, 0.3 dk, kontrol maçında en son rakibe karşı %64.7 → havuza kaçan_8 olarak eklendi
+
+=== nesil 16 · öğrenen: kovalayan · rakip havuzu: 9 kaçan (en son: kaçan_8) ===
+nesil 16 kovalayan tur   5 |    5 M | 1.21 M/s | havuz ort. % 88.1 | eğitim maçları: ebeleme %89.7 süre % 0.0 K.çarp % 6.1 E.çarp % 4.2 | süre  5.7 s | std 0.17 kl 0.0023 clip %2 atlanan %0 | gaz: hız 0.91 kırpılan %63 düz %8 | çarpma K[duv98 zem2] E[duv15 zem68 tav17]
+nesil 16 kovalayan tur  10 |   10 M | 1.21 M/s | havuz ort. % 89.1 | eğitim maçları: ebeleme %81.8 süre % 0.0 K.çarp % 9.8 E.çarp % 8.3 | süre  8.9 s | std 0.17 kl 0.0034 clip %3 atlanan %0 | gaz: hız 0.90 kırpılan %59 düz %4 | çarpma K[duv96 zem4] E[duv6 zem91 tav3]
+nesil 16 kovalayan tur  15 |   16 M | 1.21 M/s | havuz ort. % 90.2 | eğitim maçları: ebeleme %93.2 süre % 0.0 K.çarp % 3.9 E.çarp % 2.9 | süre 11.4 s | std 0.17 kl 0.0028 clip %2 atlanan %0 | gaz: hız 0.91 kırpılan %62 düz %5 | çarpma K[duv87 zem13 tav0] E[duv3 zem96 tav1]
+nesil 16 kontrol maçı (4096 maç, en son kaçan_8'e karşı): kazanma %67.8 | ebeleme %63.6 süre doldu %28.7 kaçan çarptı %4.2 kovalayan çarptı %3.5 ikisi çarptı %0.0
+nesil 16 kovalayan tur  20 |   21 M | 1.15 M/s | havuz ort. % 89.7 | eğitim maçları: ebeleme %42.6 süre %53.3 K.çarp % 1.7 E.çarp % 2.4 | süre  8.7 s | std 0.17 kl 0.0020 clip %1 atlanan %0 | gaz: hız 0.92 kırpılan %66 düz %10 | çarpma K[duv87 zem12 tav1] E[duv7 zem85 tav8]
+--- nesil 16 bitti (eşik): kovalayan, 21 M adım, 0.3 dk, kontrol maçında en son rakibe karşı %67.8 → havuza kovalayan_9 olarak eklendi
+
+=== nesil 17 · öğrenen: kaçan · rakip havuzu: 10 kovalayan (en son: kovalayan_9) ===
+nesil 17 kaçan     tur   5 |    5 M | 1.21 M/s | havuz ort. % 42.2 | eğitim maçları: ebeleme %88.2 süre % 0.0 K.çarp % 3.8 E.çarp % 8.0 | süre  5.7 s | std 0.17 kl 0.0044 clip %5 atlanan %0 | gaz: hız 0.73 kırpılan %25 düz %0 | çarpma K[duv95 zem5] E[duv33 zem62 tav5]
+nesil 17 kaçan     tur  10 |   10 M | 1.21 M/s | havuz ort. % 40.3 | eğitim maçları: ebeleme %85.4 süre % 0.0 K.çarp % 6.6 E.çarp % 8.0 | süre  8.0 s | std 0.17 kl 0.0037 clip %3 atlanan %0 | gaz: hız 0.70 kırpılan %19 düz %0 | çarpma K[duv91 zem9] E[duv15 zem82 tav4]
+nesil 17 kaçan     tur  15 |   16 M | 1.21 M/s | havuz ort. % 41.5 | eğitim maçları: ebeleme %80.2 süre % 0.0 K.çarp %13.6 E.çarp % 6.2 | süre 12.6 s | std 0.17 kl 0.0030 clip %2 atlanan %0 | gaz: hız 0.71 kırpılan %20 düz %0 | çarpma K[duv95 zem5] E[duv7 zem80 tav13]
+nesil 17 kontrol maçı (4096 maç, en son kovalayan_9'e karşı): kazanma %68.1 | ebeleme %30.4 süre doldu %64.0 kaçan çarptı %1.5 kovalayan çarptı %4.1 ikisi çarptı %0.0
+nesil 17 kaçan     tur  20 |   21 M | 1.15 M/s | havuz ort. % 44.9 | eğitim maçları: ebeleme %16.9 süre %81.0 K.çarp % 0.8 E.çarp % 1.2 | süre 14.5 s | std 0.17 kl 0.0036 clip %3 atlanan %0 | gaz: hız 0.74 kırpılan %26 düz %0 | çarpma K[duv92 zem8] E[duv48 zem25 tav27]
+--- nesil 17 bitti (eşik): kaçan, 21 M adım, 0.3 dk, kontrol maçında en son rakibe karşı %68.1 → havuza kaçan_9 olarak eklendi
+
+=== nesil 18 · öğrenen: kovalayan · rakip havuzu: 10 kaçan (en son: kaçan_9) ===
+nesil 18 kovalayan tur   5 |    5 M | 1.21 M/s | havuz ort. % 88.0 | eğitim maçları: ebeleme %89.3 süre % 0.0 K.çarp % 4.8 E.çarp % 5.8 | süre  5.8 s | std 0.17 kl 0.0029 clip %3 atlanan %0 | gaz: hız 0.91 kırpılan %64 düz %7 | çarpma K[duv72 zem28] E[duv22 zem71 tav8]
+nesil 18 kovalayan tur  10 |   10 M | 1.21 M/s | havuz ort. % 89.6 | eğitim maçları: ebeleme %87.9 süre % 0.0 K.çarp % 5.5 E.çarp % 6.6 | süre  7.7 s | std 0.17 kl 0.0058 clip %7 atlanan %0 | gaz: hız 0.90 kırpılan %59 düz %3 | çarpma K[duv65 zem35] E[duv7 zem90 tav4]
+nesil 18 kovalayan tur  15 |   16 M | 1.21 M/s | havuz ort. % 91.4 | eğitim maçları: ebeleme %93.8 süre % 0.0 K.çarp % 4.2 E.çarp % 2.1 | süre  9.4 s | std 0.17 kl 0.0030 clip %3 atlanan %0 | gaz: hız 0.91 kırpılan %62 düz %4 | çarpma K[duv42 zem58 tav0] E[duv5 zem91 tav4]
+nesil 18 kontrol maçı (4096 maç, en son kaçan_9'e karşı): kazanma %58.9 | ebeleme %57.0 süre doldu %38.8 kaçan çarptı %1.9 kovalayan çarptı %2.3 ikisi çarptı %0.0
+nesil 18 kovalayan tur  20 |   21 M | 1.15 M/s | havuz ort. % 90.7 | eğitim maçları: ebeleme %46.5 süre %50.3 K.çarp % 1.6 E.çarp % 1.6 | süre  8.1 s | std 0.16 kl 0.0026 clip %2 atlanan %0 | gaz: hız 0.92 kırpılan %66 düz %9 | çarpma K[duv50 zem48 tav2] E[duv10 zem85 tav5]
+nesil 18 kontrol maçı (4096 maç, en son kaçan_9'e karşı): kazanma %68.0 | ebeleme %65.4 süre doldu %29.7 kaçan çarptı %2.6 kovalayan çarptı %2.2 ikisi çarptı %0.0
+nesil 18 kovalayan tur  25 |   26 M | 1.12 M/s | havuz ort. % 91.0 | eğitim maçları: ebeleme %72.4 süre %19.8 K.çarp % 3.6 E.çarp % 4.2 | süre 10.4 s | std 0.16 kl 0.0026 clip %2 atlanan %0 | gaz: hız 0.91 kırpılan %61 düz %6 | çarpma K[duv57 zem43] E[duv7 zem89 tav4]
+--- nesil 18 bitti (eşik): kovalayan, 26 M adım, 0.4 dk, kontrol maçında en son rakibe karşı %68.0 → havuza kovalayan_10 olarak eklendi
+
+=== nesil 19 · öğrenen: kaçan · rakip havuzu: 11 kovalayan (en son: kovalayan_10) ===
+nesil 19 kaçan     tur   5 |    5 M | 1.21 M/s | havuz ort. % 42.1 | eğitim maçları: ebeleme %92.2 süre % 0.0 K.çarp % 3.3 E.çarp % 4.5 | süre  5.7 s | std 0.17 kl 0.0051 clip %6 atlanan %0 | gaz: hız 0.71 kırpılan %22 düz %0 | çarpma K[duv89 zem11] E[duv54 zem33 tav13]
+nesil 19 kaçan     tur  10 |   10 M | 1.21 M/s | havuz ort. % 40.1 | eğitim maçları: ebeleme %93.7 süre % 0.0 K.çarp % 4.1 E.çarp % 2.2 | süre  8.6 s | std 0.17 kl 0.0038 clip %4 atlanan %0 | gaz: hız 0.69 kırpılan %17 düz %0 | çarpma K[duv72 zem28] E[duv52 zem33 tav14]
+nesil 19 kaçan     tur  15 |   16 M | 1.21 M/s | havuz ort. % 39.7 | eğitim maçları: ebeleme %92.1 süre % 0.0 K.çarp % 7.2 E.çarp % 0.7 | süre 12.8 s | std 0.17 kl 0.0040 clip %4 atlanan %0 | gaz: hız 0.69 kırpılan %17 düz %0 | çarpma K[duv74 zem26] E[duv27 zem64 tav9]
+nesil 19 kontrol maçı (4096 maç, en son kovalayan_10'e karşı): kazanma %66.6 | ebeleme %32.6 süre doldu %65.1 kaçan çarptı %0.8 kovalayan çarptı %1.5 ikisi çarptı %0.0
+nesil 19 kaçan     tur  20 |   21 M | 1.15 M/s | havuz ort. % 45.6 | eğitim maçları: ebeleme %17.9 süre %80.6 K.çarp % 0.5 E.çarp % 1.0 | süre 12.6 s | std 0.16 kl 0.0034 clip %3 atlanan %0 | gaz: hız 0.72 kırpılan %24 düz %0 | çarpma K[duv82 zem18] E[duv32 zem65 tav3]
+--- nesil 19 bitti (eşik): kaçan, 21 M adım, 0.3 dk, kontrol maçında en son rakibe karşı %66.6 → havuza kaçan_10 olarak eklendi
+
+bitti: 795 M adım, 14.3 dk
