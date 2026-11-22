@@ -133,6 +133,18 @@ Final makalesinde **en az bir ablasyon** zorunlu. Not ağırlığı %25.
   engele çarptırıyor. Videolar (1'er maç): temel kaçanlar engelleri KULLANMIYOR, ana taktik yine daire çizmek;
   engel kullanımı self-play'de çıkarsa ana bulgu o olur. Self-play başlangıcı: kaçan s0. Elle yazılmış kovalayan yavaş: kaçan koşusu
   A100'de 0,62 M adım/s (~40 dk), L4'te 0,14 (~3 sa).
+- Engelli self-play düzeltmeleri (2026-11-22, ayrıntı LOG): kovalayan çöküşü = aşırı büyük PPO güncellemeleri →
+  self-play'de **lr 1e-4 + warmup_steps=100** (KL freni target_kl denendi, Adam momentumuyla kötü etkileşti, kullanılmıyor).
+  Kaçanın keşif çöküşü (std 0,064 → 0,028, kovalayan baskın) → **evader_init_std=0.2** (sp-faz1-evstd-s0: denge iki
+  yönlü); kaçana entropi bonusu (event) etkisiz. Sensör kör noktası yok (diag-rays).
+- Taktik bulguları (karar 2026-11-22: HATA DEĞİL, bulgu ve öğrenilmiş yol olarak kalıyor, kural değişmiyor): kaçan
+  sınırı sığınak yapıyor: boş arenada zemine (~0,2 m), engelli arenada tavana (~1,88 m) yapışıp son anda yana kaçıyor;
+  kovalayan sınıra ~0,45 m'den fazla yaklaşmıyor, ıskalıyor. Engelli kaçan engelleri KULLANMIYOR. Sınırlılık:
+  simülatörde zemin/tavan etkisi muhtemelen yok.
+- **Unutma sorunu (2026-11-22):** boş arena self-play ajanları elle yazılmış rakiplere karşı çöktü (kovalayan vs OPEN
+  %99,6 → %54,5; kaçan vs elle yazılmış kovalayan %100 → %0, ilk nesilde). Elo sadece havuzun içini ölçtüğü için
+  görmedi. Unutma testi (`scripts/vs_scripted.py`) her self-play koşusunun standart değerlendirmesi olacak.
+- **Ağır hesaplar Colab'da:** Elo, unutma testi, analiz, video yerelde CPU'da KOŞULMAZ; notebook hazırlanır, kullanıcı koşar.
 - Sıra (adım adım, kullanıcı isteği 2026-11-21): (1) `sweep-base-empty` boş arena temeli düzeltilmiş kodla →
   (2) boş arena self-play → (3) `sweep-base-faz1` engelli temel → (4) engelli self-play; eval.py (Elo).
   Engelli temel ajanlar **sıfırdan** eğitilir, boş arena ajanından devam ettirilmez (karar 2026-11-21: kanıtlanmış ve
