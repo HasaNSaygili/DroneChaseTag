@@ -70,8 +70,9 @@ class SelfPlayConfig:
     ent_coef: float = 0.0
     lr: float = 3e-4                      # SABİT: self-play'de öğrenme "bitmez", rakip hep değişir
     max_grad_norm: float = 0.5
+    target_kl: float = 0.0                # >0: KL ile erken durdurma (bkz. PPOConfig.target_kl); 0 = kapalı
     hidden: int = 256
-    squash_mean: bool = True              # eylem ortalaması tanh ile sınırlı (bkz. ppo.actor_dist)
+    squash_mean: bool = True             # eylem ortalaması tanh ile sınırlı (bkz. ppo.actor_dist)
     full_obs: bool = False                # True: iki taraf da rakibi hep görür (ablasyon 2)
     gamma_chaser: float = 0.995           # ufuk ~4 s
     gamma_evader: float = 0.998           # ufuk ~10 s (kaçanın ödülü 20 s sonunda)
@@ -96,7 +97,7 @@ class SelfPlayConfig:
 def role_ppo_cfg(sp, role):
     """Bir rol için PPO ayarları (ppo.make_update bunları kullanır)."""
     keys = ("phase", "n_obst", "n_arenas", "opp_crash_reward", "n_worlds", "n_steps", "n_blocks", "epochs",
-            "n_minibatches", "gae_lambda", "clip_eps", "vf_coef", "ent_coef", "lr", "max_grad_norm", "hidden",
+            "n_minibatches", "gae_lambda", "clip_eps", "vf_coef", "ent_coef", "lr", "max_grad_norm", "target_kl", "hidden",
             "squash_mean", "full_obs", "seed")
     return PPOConfig(learner=role, opponent="pool", anneal_lr=False,
                      gamma=sp.gamma_chaser if role == "chaser" else sp.gamma_evader,
@@ -279,7 +280,8 @@ def train_selfplay(sp, out_dir, resume=True, log=print):
                     f"havuz ort. %{100 * ema[role][:pool.n].mean():5.1f} | eğitim maçları: "
                     f"ebeleme %{pct(TAG):4.1f} süre %{pct(TIMEOUT):4.1f} K.çarp %{pct(C_CRASH):4.1f} "
                     f"E.çarp %{pct(E_CRASH):4.1f} | süre {m['ep_len'] / CTRL_HZ:4.1f} s | std {m['std']:.2f} "
-                    f"kl {m['approx_kl']:.4f} | gaz: hız {m['act_speed']:.2f} kırpılan %{100 * m['act_clip_frac']:.0f} "
+                    f"kl {m['approx_kl']:.4f} clip %{100 * m['clip_frac']:.0f} atlanan %{100 * m['kl_skip']:.0f} | "
+                    f"gaz: hız {m['act_speed']:.2f} kırpılan %{100 * m['act_clip_frac']:.0f} "
                     f"düz %{100 * m['pre_sat_frac']:.0f} | çarpma K[{_crash_summary(crash_window, CHASER)}] "
                     f"E[{_crash_summary(crash_window, EVADER)}]")
                 window[:] = 0

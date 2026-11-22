@@ -60,6 +60,12 @@ class PPOConfig:
     lr: float = 3e-4
     anneal_lr: bool = True           # öğrenme oranı eğitim boyunca doğrusal olarak 0'a iner
     max_grad_norm: float = 0.5       # gradyan kırpma
+    # KL ile erken durdurma (CleanRL / Stable-Baselines'taki target_kl). Bir turda aynı veriyle epochs × n_minibatches
+    # adım atılıyor; her adımdan önce politikanın turun başından beri ne kadar değiştiğine (approx_kl) bakılır, bu
+    # sınırı geçtiyse turun KALAN adımları atlanır. Neden: oran kırpması (clip_eps) tek tek örnekleri sınırlar ama
+    # üst üste binen adımları sınırlamaz; sp-faz1-fix2-s0'da clip_frac 0,4'e, kl 0,05'e çıkıp kovalayan çöktü.
+    # 0 = kapalı (2026-11-22 öncesi bütün koşular böyle).
+    target_kl: float = 0.0
     hidden: int = 256
     init_log_std: float = -0.5       # başlangıç keşif gürültüsü: std = e^-0.5 ≈ 0.6
     squash_mean: bool = True         # eylem ortalaması tanh ile [-1, 1]'de; False = eski (2026-11-20 öncesi) davranış
@@ -240,12 +246,21 @@ def make_update(cfg, env, me, opponent=None):
             mbs = jax.tree.map(lambda x: x[perm].reshape((cfg.n_minibatches, mb_size) + x.shape[1:]), data)
 
             def mb_step(carry, mb):
-                params, opt_state = carry
+                params, opt_state, stop = carry
                 (_, aux), grads = jax.value_and_grad(loss_fn, has_aux=True)(params, mb)
-                updates, opt_state = tx.update(grads, opt_state, params)
-                return (optax.apply_updates(params, updates), opt_state), aux
+                # Erken durdurma: aux["approx_kl"] = bu adımdan ÖNCEKİ politikanın, veriyi toplayan politikadan
+                # uzaklığı (bu minibatch üstünde). Sınır bir kez aşılınca turun geri kalanında stop hep True kalır.
+                # jit içinde "break" olmadığı için adım yine hesaplanır ama uygulanmaz (eski değerler korunur).
+                if cfg.target_kl > 0:
+                    stop = stop | (aux["approx_kl"] > cfg.target_kl)
+                updates, new_opt = tx.update(grads, opt_state, params)
+                new_params = optax.apply_updates(params, updates)
+                keep = lambda old, new: jax.tree.map(lambda o, n_: jnp.where(stop, o, n_), old, new)
+                aux = dict(aux, kl_skip=stop.astype(jnp.float32))           # bu adım atlandı mı (ölçüm)
+                return (keep(params, new_params), keep(opt_state, new_opt), stop), aux
             return jax.lax.scan(mb_step, carry, mbs)
-        (params, opt_state), aux = jax.lax.scan(epoch, (params, opt_state), jax.random.split(k_upd, cfg.epochs))
+        (params, opt_state, _), aux = jax.lax.scan(epoch, (params, opt_state, jnp.array(False)),
+                                                   jax.random.split(k_upd, cfg.epochs))
 
         # ---- ölçümler ----
         d = tr.done
@@ -370,6 +385,7 @@ def train(cfg, out_dir, resume=True, log=print):
                 f"kazanma %{100 * learner_win_rate(window, me, env.reward_table):5.1f} | ebeleme %{pct(TAG):4.1f} "
                 f"süre %{pct(TIMEOUT):4.1f} K.çarp %{pct(C_CRASH):4.1f} E.çarp %{pct(E_CRASH):4.1f} | "
                 f"süre {m['ep_len'] / CTRL_HZ:4.1f} s | std {m['std']:.2f} kl {m['approx_kl']:.4f} "
+                f"atlanan %{100 * m['kl_skip']:.0f} "
                 f"ev {m['explained_var']:.2f} | gaz: hız {m['act_speed']:.2f} kırpılan %{100 * m['act_clip_frac']:.0f} "
                 f"düz %{100 * m['pre_sat_frac']:.0f} | çarpma yeri K[{_crash_summary(crash_window, CHASER)}] "
                 f"E[{_crash_summary(crash_window, EVADER)}]")
