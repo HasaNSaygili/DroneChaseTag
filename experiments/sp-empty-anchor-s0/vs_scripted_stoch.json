@@ -1,0 +1,576 @@
+{
+ "run": "sp-empty-anchor-s0",
+ "worlds": 4096,
+ "steps": 2000,
+ "arena_seed": 999,
+ "deterministic": false,
+ "opponents": {
+  "chaser": "open",
+  "evader": "scripted_chaser"
+ },
+ "versions": {
+  "chaser": [
+   {
+    "version": 0,
+    "file": "params_00476.pkl",
+    "n_games": 44601,
+    "outcomes_pct": {
+     "ebeleme": 98.88791731127104,
+     "süre doldu": 0.273536467792202,
+     "kaçan çarptı": 0.8295778121566781,
+     "kovalayan çarptı": 0.008968408780072195,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 3.442698145781485,
+    "crash_pct": {
+     "kovalayan": {
+      "engel": 0.0,
+      "duvar": 100.0,
+      "zemin": 0.0,
+      "tavan": 0.0
+     },
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 63.24324324324324,
+      "zemin": 36.75675675675676,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 1,
+    "file": "chaser_gen00.pkl",
+    "n_games": 43101,
+    "outcomes_pct": {
+     "ebeleme": 98.5475975035382,
+     "süre doldu": 0.3573002946567365,
+     "kaçan çarptı": 1.0858216746711213,
+     "kovalayan çarptı": 0.009280527133941209,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 3.5312053084615207,
+    "crash_pct": {
+     "kovalayan": {
+      "engel": 0.0,
+      "duvar": 100.0,
+      "zemin": 0.0,
+      "tavan": 0.0
+     },
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 63.888888888888886,
+      "zemin": 36.11111111111111,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 2,
+    "file": "chaser_gen02.pkl",
+    "n_games": 38893,
+    "outcomes_pct": {
+     "ebeleme": 98.30046537937417,
+     "süre doldu": 0.8741932995654745,
+     "kaçan çarptı": 0.8253413210603451,
+     "kovalayan çarptı": 0.0,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 3.8434458642943463,
+    "crash_pct": {
+     "kovalayan": {},
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 70.7165109034268,
+      "zemin": 29.283489096573206,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 3,
+    "file": "chaser_gen04.pkl",
+    "n_games": 34120,
+    "outcomes_pct": {
+     "ebeleme": 98.43786635404454,
+     "süre doldu": 1.2573270808909731,
+     "kaçan çarptı": 0.29308323563892147,
+     "kovalayan çarptı": 0.011723329425556858,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 4.330402696365768,
+    "crash_pct": {
+     "kovalayan": {
+      "engel": 0.0,
+      "duvar": 100.0,
+      "zemin": 0.0,
+      "tavan": 0.0
+     },
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 85.0,
+      "zemin": 15.0,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 4,
+    "file": "chaser_gen06.pkl",
+    "n_games": 30168,
+    "outcomes_pct": {
+     "ebeleme": 97.78573322726068,
+     "süre doldu": 1.6706443914081146,
+     "kaçan çarptı": 0.5336780694775922,
+     "kovalayan çarptı": 0.00994431185361973,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 4.841567223548131,
+    "crash_pct": {
+     "kovalayan": {
+      "engel": 0.0,
+      "duvar": 100.0,
+      "zemin": 0.0,
+      "tavan": 0.0
+     },
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 81.98757763975155,
+      "zemin": 18.012422360248447,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 5,
+    "file": "chaser_gen08.pkl",
+    "n_games": 24683,
+    "outcomes_pct": {
+     "ebeleme": 96.64141311834055,
+     "süre doldu": 2.021634323218409,
+     "kaçan çarptı": 1.2964388445488797,
+     "kovalayan çarptı": 0.04051371389215249,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 5.819427136085564,
+    "crash_pct": {
+     "kovalayan": {
+      "engel": 0.0,
+      "duvar": 90.0,
+      "zemin": 10.0,
+      "tavan": 0.0
+     },
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 93.75,
+      "zemin": 6.25,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 6,
+    "file": "chaser_gen10.pkl",
+    "n_games": 22851,
+    "outcomes_pct": {
+     "ebeleme": 95.44002450658614,
+     "süre doldu": 2.91453328081922,
+     "kaçan çarptı": 1.5885519233293948,
+     "kovalayan çarptı": 0.056890289265240035,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 6.255447901623561,
+    "crash_pct": {
+     "kovalayan": {
+      "engel": 0.0,
+      "duvar": 84.61538461538461,
+      "zemin": 15.384615384615385,
+      "tavan": 0.0
+     },
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 93.93939393939394,
+      "zemin": 6.0606060606060606,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 7,
+    "file": "chaser_gen12.pkl",
+    "n_games": 20375,
+    "outcomes_pct": {
+     "ebeleme": 94.32638036809816,
+     "süre doldu": 4.898159509202453,
+     "kaçan çarptı": 0.6871165644171779,
+     "kovalayan çarptı": 0.08834355828220858,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 6.880755828220859,
+    "crash_pct": {
+     "kovalayan": {
+      "engel": 0.0,
+      "duvar": 83.33333333333334,
+      "zemin": 16.666666666666664,
+      "tavan": 0.0
+     },
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 88.57142857142857,
+      "zemin": 11.428571428571429,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 8,
+    "file": "chaser_gen14.pkl",
+    "n_games": 20526,
+    "outcomes_pct": {
+     "ebeleme": 93.28169151320277,
+     "süre doldu": 6.109324758842444,
+     "kaçan çarptı": 0.5018025918347462,
+     "kovalayan çarptı": 0.10718113612004287,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 6.7910932475884245,
+    "crash_pct": {
+     "kovalayan": {
+      "engel": 0.0,
+      "duvar": 86.36363636363636,
+      "zemin": 13.636363636363635,
+      "tavan": 0.0
+     },
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 68.93203883495146,
+      "zemin": 31.06796116504854,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 9,
+    "file": "chaser_gen16.pkl",
+    "n_games": 20532,
+    "outcomes_pct": {
+     "ebeleme": 91.30138320670173,
+     "süre doldu": 8.201831287745957,
+     "kaçan çarptı": 0.45295149035651666,
+     "kovalayan çarptı": 0.043834015195791935,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 6.722655367231638,
+    "crash_pct": {
+     "kovalayan": {
+      "engel": 0.0,
+      "duvar": 55.55555555555556,
+      "zemin": 44.44444444444444,
+      "tavan": 0.0
+     },
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 74.19354838709677,
+      "zemin": 25.806451612903224,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 10,
+    "file": "chaser_gen18.pkl",
+    "n_games": 20078,
+    "outcomes_pct": {
+     "ebeleme": 90.06873194541289,
+     "süre doldu": 9.512899691204304,
+     "kaçan çarptı": 0.2988345452734336,
+     "kovalayan çarptı": 0.11953381810937344,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 6.849736029485008,
+    "crash_pct": {
+     "kovalayan": {
+      "engel": 0.0,
+      "duvar": 87.5,
+      "zemin": 12.5,
+      "tavan": 0.0
+     },
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 86.66666666666667,
+      "zemin": 13.333333333333334,
+      "tavan": 0.0
+     }
+    }
+   }
+  ],
+  "evader": [
+   {
+    "version": 0,
+    "file": "params_00476.pkl",
+    "n_games": 8194,
+    "outcomes_pct": {
+     "ebeleme": 3.2340737124725414,
+     "süre doldu": 95.49670490602881,
+     "kaçan çarptı": 1.2448132780082988,
+     "kovalayan çarptı": 0.0244081034903588,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 19.8383573346351,
+    "crash_pct": {
+     "kovalayan": {
+      "engel": 0.0,
+      "duvar": 100.0,
+      "zemin": 0.0,
+      "tavan": 0.0
+     },
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 94.11764705882352,
+      "zemin": 5.88235294117647,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 1,
+    "file": "evader_gen01.pkl",
+    "n_games": 8261,
+    "outcomes_pct": {
+     "ebeleme": 8.776177218254448,
+     "süre doldu": 88.20965984747609,
+     "kaçan çarptı": 1.7431303716257112,
+     "kovalayan çarptı": 1.2710325626437478,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 18.860113787677037,
+    "crash_pct": {
+     "kovalayan": {
+      "engel": 0.0,
+      "duvar": 100.0,
+      "zemin": 0.0,
+      "tavan": 0.0
+     },
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 70.13888888888889,
+      "zemin": 29.86111111111111,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 2,
+    "file": "evader_gen03.pkl",
+    "n_games": 8200,
+    "outcomes_pct": {
+     "ebeleme": 3.414634146341464,
+     "süre doldu": 95.0609756097561,
+     "kaçan çarptı": 1.2073170731707317,
+     "kovalayan çarptı": 0.3170731707317073,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 19.64230487804878,
+    "crash_pct": {
+     "kovalayan": {
+      "engel": 0.0,
+      "duvar": 100.0,
+      "zemin": 0.0,
+      "tavan": 0.0
+     },
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 92.92929292929293,
+      "zemin": 7.07070707070707,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 3,
+    "file": "evader_gen05.pkl",
+    "n_games": 9034,
+    "outcomes_pct": {
+     "ebeleme": 26.9647996457826,
+     "süre doldu": 69.72548151427938,
+     "kaçan çarptı": 2.7894620323223376,
+     "kovalayan çarptı": 0.520256807615674,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 15.596229798538852,
+    "crash_pct": {
+     "kovalayan": {
+      "engel": 0.0,
+      "duvar": 100.0,
+      "zemin": 0.0,
+      "tavan": 0.0
+     },
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 74.60317460317461,
+      "zemin": 25.396825396825395,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 4,
+    "file": "evader_gen07.pkl",
+    "n_games": 9809,
+    "outcomes_pct": {
+     "ebeleme": 39.32103170557651,
+     "süre doldu": 57.9060046895708,
+     "kaçan çarptı": 2.742379447446223,
+     "kovalayan çarptı": 0.030584157406463454,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 13.666396166785605,
+    "crash_pct": {
+     "kovalayan": {
+      "engel": 0.0,
+      "duvar": 100.0,
+      "zemin": 0.0,
+      "tavan": 0.0
+     },
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 0.0,
+      "zemin": 98.88475836431226,
+      "tavan": 1.1152416356877324
+     }
+    }
+   },
+   {
+    "version": 5,
+    "file": "evader_gen09.pkl",
+    "n_games": 10384,
+    "outcomes_pct": {
+     "ebeleme": 45.685670261941446,
+     "süre doldu": 53.9002311248074,
+     "kaçan çarptı": 0.41409861325115566,
+     "kovalayan çarptı": 0.0,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 12.948954160246533,
+    "crash_pct": {
+     "kovalayan": {},
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 0.0,
+      "zemin": 100.0,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 6,
+    "file": "evader_gen11.pkl",
+    "n_games": 9865,
+    "outcomes_pct": {
+     "ebeleme": 38.25646224024328,
+     "süre doldu": 59.81753674607197,
+     "kaçan çarptı": 1.926001013684744,
+     "kovalayan çarptı": 0.0,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 13.815278256462241,
+    "crash_pct": {
+     "kovalayan": {},
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 0.5263157894736842,
+      "zemin": 99.47368421052632,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 7,
+    "file": "evader_gen13.pkl",
+    "n_games": 8632,
+    "outcomes_pct": {
+     "ebeleme": 22.90315106580167,
+     "süre doldu": 76.34383688600556,
+     "kaçan çarptı": 0.7530120481927711,
+     "kovalayan çarptı": 0.0,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 16.886619555143653,
+    "crash_pct": {
+     "kovalayan": {},
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 3.076923076923077,
+      "zemin": 64.61538461538461,
+      "tavan": 32.30769230769231
+     }
+    }
+   },
+   {
+    "version": 8,
+    "file": "evader_gen15.pkl",
+    "n_games": 9281,
+    "outcomes_pct": {
+     "ebeleme": 7.36989548540028,
+     "süre doldu": 64.1310203641849,
+     "kaçan çarptı": 28.499084150414827,
+     "kovalayan çarptı": 0.0,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 15.231242323025535,
+    "crash_pct": {
+     "kovalayan": {},
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 99.88657844990549,
+      "zemin": 0.11342155009451795,
+      "tavan": 0.0
+     }
+    }
+   },
+   {
+    "version": 9,
+    "file": "evader_gen17.pkl",
+    "n_games": 11410,
+    "outcomes_pct": {
+     "ebeleme": 55.29360210341805,
+     "süre doldu": 39.097283085013146,
+     "kaçan çarptı": 5.6091148115688,
+     "kovalayan çarptı": 0.0,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 11.947374233128835,
+    "crash_pct": {
+     "kovalayan": {},
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 86.09375,
+      "zemin": 13.28125,
+      "tavan": 0.625
+     }
+    }
+   },
+   {
+    "version": 10,
+    "file": "evader_gen19.pkl",
+    "n_games": 8598,
+    "outcomes_pct": {
+     "ebeleme": 35.03140265177949,
+     "süre doldu": 58.99046289834845,
+     "kaçan çarptı": 5.978134449872064,
+     "kovalayan çarptı": 0.0,
+     "ikisi çarptı": 0.0
+    },
+    "mean_len_s": 16.77860897883229,
+    "crash_pct": {
+     "kovalayan": {},
+     "kaçan": {
+      "engel": 0.0,
+      "duvar": 92.41245136186771,
+      "zemin": 7.587548638132295,
+      "tavan": 0.0
+     }
+    }
+   }
+  ]
+ }
+}
