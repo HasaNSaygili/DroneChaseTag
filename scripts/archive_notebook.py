@@ -51,7 +51,8 @@ lines = ["# Notebook'lar", "",
          "| Koşu | Colab |", "|---|---|"]
 lines += [f"| `{r}` | [aç]({COLAB}{r}.ipynb) |" for r in runs]
 lines += ["", "Diğerleri: `train.ipynb` (tek koşu şablonu), `sweep.ipynb` (tarama şablonu: birkaç koşu arka arkaya + "
-          "karşılaştırma), `speedtest.ipynb` (A100 hız testi).", ""]
+          "karşılaştırma), `elo.ipynb` (bir self-play koşusunun Elo turnuvası, GPU; runs/ altında `elo-<koşu>`), "
+          "`speedtest.ipynb` (A100 hız testi).", ""]
 with open("notebooks/README.md", "w", encoding="utf-8") as f:
     f.write("\n".join(lines))
 print("notebooks/README.md")
