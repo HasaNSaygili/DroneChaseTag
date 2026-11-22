@@ -32,14 +32,20 @@ p.add_argument("--run", required=True)
 p.add_argument("--worlds", type=int, default=512)
 p.add_argument("--every", type=int, default=1, help="her k. sürüm (0 ve sonuncu hep dahil)")
 p.add_argument("--stochastic", action="store_true", help="olasılıklı oynat (eğitimdeki gibi); çıktı vs_scripted_stoch.json")
+p.add_argument("--roles", default="chaser,evader", help="hangi rollerin sürümleri test edilsin")
+p.add_argument("--opp-vs-chaser", default="open", help="kovalayan sürümlerinin rakibi (elle yazılmış kaçan)")
+p.add_argument("--opp-vs-evader", default="scripted_chaser", help="kaçan sürümlerinin rakibi (elle yazılmış kovalayan)")
 a = p.parse_args()
+# Çapa rakiplerle (anchor_blocks) eğitilen koşularda OPEN ve elle yazılmış kovalayan eğitimde GÖRÜLDÜ; dürüst bir test
+# için eğitimde hiç görülmemiş bir rakip de kullanılır: --roles chaser --opp-vs-chaser open_mem (hafızalı OPEN).
 
 cfg = json.load(open(os.path.join(a.run, "config.json")))
 arena_seed = cfg["seed"] + 999
 arenas = make_arena_set(200, phase=cfg["phase"], n_obst=tuple(cfg["n_obst"]), seed=arena_seed, verbose=False)
 env = ChaseTagEnv(a.worlds, arenas, opp_crash_reward=cfg["opp_crash_reward"], full_obs=cfg.get("full_obs", False))
 squash = cfg.get("squash_mean", False)
-OPP = {"chaser": "open", "evader": "scripted_chaser"}      # temel ajanların eğitildiği rakipler
+OPP = {"chaser": a.opp_vs_chaser, "evader": a.opp_vs_evader}   # varsayılan: temel ajanların eğitildiği rakipler
+DEFAULT = (a.opp_vs_chaser, a.opp_vs_evader) == ("open", "scripted_chaser")
 
 
 def make_eval(role):
@@ -68,7 +74,9 @@ res = dict(run=os.path.basename(os.path.normpath(a.run)), worlds=a.worlds, steps
            deterministic=not a.stochastic, opponents=OPP, versions={})
 mode = "olasılıklı" if a.stochastic else "gürültüsüz"
 for role, tr in (("chaser", "kovalayan"), ("evader", "kaçan")):
-    files = [cfg[f"init_{role}"]] + sorted(glob.glob(os.path.join(a.run, f"{role}_gen*.pkl")))
+    if role not in a.roles.split(","):
+        continue
+    files =[cfg[f"init_{role}"]] + sorted(glob.glob(os.path.join(a.run, f"{role}_gen*.pkl")))
     idx = sorted(set(list(range(0, len(files), a.every)) + [len(files) - 1]))
     ev = make_eval(role)
     print(f"\n== {tr} sürümleri vs {OPP[role]} ({mode}, {a.worlds} dünya × {2 * MAX_STEPS} adım)")
@@ -85,7 +93,8 @@ for role, tr in (("chaser", "kovalayan"), ("evader", "kaçan")):
               + f" | {mean_len / 50:4.1f} s | {time.perf_counter() - t0:.0f} s")
     res["versions"][role] = rows
 
-out = os.path.join(a.run, "vs_scripted_stoch.json" if a.stochastic else "vs_scripted.json")
+suffix = ("" if DEFAULT else "_" + "_".join(OPP[r] for r in a.roles.split(","))) + ("_stoch" if a.stochastic else "")
+out = os.path.join(a.run, f"vs_scripted{suffix}.json")
 with open(out, "w", encoding="utf-8") as f:
     json.dump(res, f, indent=1, ensure_ascii=False)
 print(f"\nkaydedildi: {out}")
