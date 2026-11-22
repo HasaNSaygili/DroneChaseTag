@@ -43,7 +43,7 @@ from .arenas import make_arena_set
 from .env import OBS_DIM, ChaseTagEnv
 from .eval import make_pair_runner, stack
 from .geometry import CRASH_KIND_NAMES
-from .ppo import PPOConfig, _crash_summary, actor_dist, make_update
+from .ppo import PPOConfig, _crash_summary, actor_dist, make_opponent, make_update
 from .rules import C_CRASH, CHASER, CTRL_HZ, E_CRASH, EVADER, OUTCOME_NAMES, TAG, TIMEOUT
 
 ROLES = ("chaser", "evader")
@@ -97,6 +97,17 @@ class SelfPlayConfig:
     resample_every: int = 10              # PFSP blokları kaç turda bir yeniden çekilir
     pool_max: int = 32
     win_ema: float = 0.1                  # rakip başına kazanma oranının üstel ortalama katsayısı
+    # ---- çapa rakipler (2026-11-22): unutmaya karşı ----
+    # Sadece öğrenen ajanlardan oluşan havuzda iki taraf birbirine karşı DAR UZMANLAŞIYOR: boş ve engelli arenada
+    # self-play kaçanları elle yazılmış kovalayana karşı %100/%63 → %0 düştü (unutma testi, scripts/vs_scripted.py).
+    # Çapa: son anchor_blocks blok HER ZAMAN elle yazılmış bir rakiple oynar (öğrenen kovalayan → anchor_vs_chaser,
+    # öğrenen kaçan → anchor_vs_evader). Ajan hem birbirine hem dış rakibe karşı iyi kalmak zorunda.
+    anchor_blocks: int = 0                # 0 = kapalı (2026-11-22 öncesi bütün koşular)
+    anchor_vs_chaser: str = "open"        # öğrenen kovalayanın çapa rakibi (elle yazılmış kaçan)
+    anchor_vs_evader: str = "scripted_chaser"   # öğrenen kaçanın çapa rakibi (elle yazılmış kovalayan)
+    anchor_opp_crash_reward: float = 0.0  # çapa maçında rakip çarparsa öğrenenin ödülü. 0: elle yazılmış rakibi
+    #                                       çarptırmak ödül getirmez (yoksa rezonans hilesi geri gelir, bkz. LOG
+    #                                       ppo-chaser-empty-s0); temel ajanlar da böyle eğitildi
     seed: int = 0
     log_every: int = 5
 
@@ -119,19 +130,41 @@ def set_std(params, std):
     return dict(params, log_std=jnp.full_like(params["log_std"], jnp.log(std)))
 
 
-def make_pool_opponent(n, n_blocks, opp_role, squash=True):
-    """Havuzdaki donmuş ağlarla oynayan rakip. opp_args = (havuz dizisi, blok başına havuz indeksi)."""
+def make_pool_opponent(n, n_blocks, opp_role, squash=True, anchor_blocks=0, anchor_name=None):
+    """Havuzdaki donmuş ağlarla oynayan rakip. opp_args = (havuz dizisi, blok başına havuz indeksi).
+    anchor_blocks > 0: son anchor_blocks bloktaki dünyalarda rakibi ağ değil elle yazılmış anchor_name oynar
+    (o blokların slot'u önemsiz). Elle yazılmış rakip basitlik için bütün dünyalarda hesaplanıp sadece çapa
+    dünyalarında kullanılır; elle yazılmış kovalayanın hafızası (mem) bu yüzden bütün dünyalar için tutulur."""
     bs = n // n_blocks
+    if anchor_blocks:
+        s_fn, s_init, s_reset = make_opponent(anchor_name)
+        is_anchor = (jnp.arange(n) >= n - anchor_blocks * bs)[:, None]    # (n, 1) çapa dünyası mı
+    else:
+        s_init, s_reset = (lambda n: None), (lambda mem, done: mem)
 
     def fn(es, mem, key, opp_args, obs_all):
         pool, slot = opp_args
+        k_net, k_s = jax.random.split(key)
         p = jax.tree.map(lambda x: x[slot], pool)                          # (B, ...) her bloğun rakip ağı
         obs = obs_all[:, opp_role].reshape(n_blocks, bs, OBS_DIM)
         mu, std = jax.vmap(lambda pp, oo: actor_dist(pp, oo, squash))(p, obs)   # (B, bs, 3), (B, 3)
-        a = mu + std[:, None, :] * jax.random.normal(key, mu.shape)        # rakip de olasılıklı oynar
-        return a.reshape(n, 3), mem
+        a = (mu + std[:, None, :] * jax.random.normal(k_net, mu.shape)).reshape(n, 3)   # rakip de olasılıklı oynar
+        if anchor_blocks:
+            a_s, mem = s_fn(es, mem, k_s, None, None)
+            a = jnp.where(is_anchor, a_s, a)
+        return a, mem
 
-    return fn, (lambda n: None), (lambda mem, done: mem)
+    return fn, s_init, s_reset
+
+
+def anchor_reward_adjust(n, n_blocks, anchor_blocks, me, table, anchor_ocr):
+    """make_update'in reward_adjust'u: çapa dünyalarında 'rakip çarptı' sonucunun öğrenen ödülünü anchor_ocr yapar.
+    Döner (n, n_sonuç): ödüle eklenecek fark (çapa dışı dünyalarda 0). Ortamın tablosu WCT kuralı (rakip çarparsa +1)."""
+    adj = np.zeros((n, len(OUTCOME_NAMES)), np.float32)
+    if anchor_blocks:
+        opp_crash = E_CRASH if me == CHASER else C_CRASH                    # öğrenenin RAKİBİ çarptı
+        adj[n - anchor_blocks * (n // n_blocks):, opp_crash] = anchor_ocr - table[opp_crash, me]
+    return adj
 
 
 def make_match_eval(env, squash=True):
@@ -192,12 +225,21 @@ def train_selfplay(sp, out_dir, resume=True, log=print):
                                              full_obs=sp.full_obs), sp.squash_mean)
     role_idx = {"chaser": CHASER, "evader": EVADER}
     cfgs = {r: role_ppo_cfg(sp, r) for r in ROLES}
-    updates, txs = {}, {}
+    n_latest = max(1, int(round(sp.n_blocks * sp.p_latest)))
+    assert n_latest + sp.anchor_blocks <= sp.n_blocks, "en son rakip + çapa blokları blok sayısını aşıyor"
+    anchor_name = {"chaser": sp.anchor_vs_chaser, "evader": sp.anchor_vs_evader}
+    updates, txs, opp_inits = {}, {}, {}
     for r in ROLES:
         other = role_idx["evader" if r == "chaser" else "chaser"]
-        updates[r], txs[r], _ = make_update(cfgs[r], env, role_idx[r],
-                                            opponent=make_pool_opponent(sp.n_worlds, sp.n_blocks, other,
-                                                                        sp.squash_mean))
+        opponent = make_pool_opponent(sp.n_worlds, sp.n_blocks, other, sp.squash_mean, sp.anchor_blocks, anchor_name[r])
+        opp_inits[r] = opponent[1]
+        adj = anchor_reward_adjust(sp.n_worlds, sp.n_blocks, sp.anchor_blocks, role_idx[r], env.reward_table,
+                                   sp.anchor_opp_crash_reward) if sp.anchor_blocks else None
+        updates[r], txs[r], _ = make_update(cfgs[r], env, role_idx[r], opponent=opponent, reward_adjust=adj)
+    if sp.anchor_blocks:
+        log(f"çapa: son {sp.anchor_blocks}/{sp.n_blocks} blok elle yazılmış rakiple (kovalayan öğrenirken "
+            f"{sp.anchor_vs_chaser}, kaçan öğrenirken {sp.anchor_vs_evader}); çapa maçında rakip çarpması ödülü "
+            f"{sp.anchor_opp_crash_reward}")
 
     # ---- durum: iki rolün öğrenen ağı, Adam durumu, havuzu, rakip başına kazanma oranları ----
     ckpt = os.path.join(out_dir, "checkpoint.pkl")
@@ -227,7 +269,7 @@ def train_selfplay(sp, out_dir, resume=True, log=print):
         gen0, total = 0, 0
 
     batch = sp.n_worlds * sp.n_steps
-    n_latest = max(1, int(round(sp.n_blocks * sp.p_latest)))
+    n_net = sp.n_blocks - sp.anchor_blocks                          # ağ rakipli bloklar: [0, n_latest) en son, sonra PFSP
     mfile = open(os.path.join(out_dir, "metrics.jsonl"), "a")
     rng = np.random.default_rng(sp.seed + 1000 * gen0)
     t_start = time.perf_counter()
@@ -243,18 +285,19 @@ def train_selfplay(sp, out_dir, resume=True, log=print):
         log(f"\n=== nesil {gen} · öğrenen: {ROLE_TR[role]} · rakip havuzu: {pool.n} {ROLE_TR[other]} "
             f"(en son: {ROLE_TR[other]}_{latest}) ===")
         key, k_env = jax.random.split(key)
-        es, mem = env.reset(k_env), None
-        slot = np.full(sp.n_blocks, latest, np.int32)
+        es, mem = env.reset(k_env), opp_inits[role](sp.n_worlds)       # çapa elle yazılmış kovalayansa hafızası
+        slot = np.full(sp.n_blocks, latest, np.int32)                    # çapa bloklarının slot'u kullanılmaz
         opp_latest = jax.tree.map(lambda x: x[latest], pool.arr)      # kontrol maçlarının rakibi
         win_eval, eval_pct, last_eval = None, None, -np.inf
         window = np.zeros(len(OUTCOME_NAMES))
         crash_window = np.zeros((2, len(CRASH_KIND_NAMES)))
+        anchor_window = np.zeros(len(OUTCOME_NAMES))                     # çapa bloklarının sonuçları (log için)
         steps, u, t_gen = 0, 0, time.perf_counter()
         while True:
             if u % sp.resample_every == 0:                           # PFSP bloklarını yeniden çek
                 w = (1.0 - ema[role][:pool.n]) ** 2
                 w = w / w.sum() if w.sum() > 0 else np.full(pool.n, 1.0 / pool.n)
-                slot[n_latest:] = rng.choice(pool.n, size=sp.n_blocks - n_latest, p=w)
+                slot[n_latest:n_net] = rng.choice(pool.n, size=n_net - n_latest, p=w)
             params[role], opt[role], es, mem, key, m = updates[role](
                 params[role], opt[role], es, mem, key, (pool.arr, jnp.asarray(slot)))
             m = jax.device_get(m)
@@ -263,8 +306,9 @@ def train_selfplay(sp, out_dir, resume=True, log=print):
             u += 1
             bc = m["block_counts"]                                   # (B, 6)
             wins_b, ended_b = bc[:, win_k].sum(1), bc[:, 1:].sum(1)
-            for j in np.unique(slot):                                # rakip başına kazanma oranını güncelle (PFSP için)
-                sel = slot == j
+            net = np.arange(sp.n_blocks) < n_net                     # çapa blokları PFSP hesabına girmez
+            for j in np.unique(slot[net]):                           # rakip başına kazanma oranını güncelle (PFSP için)
+                sel = (slot == j) & net
                 if ended_b[sel].sum() > 0:
                     ema[role][j] = (1 - sp.win_ema) * ema[role][j] + sp.win_ema * wins_b[sel].sum() / ended_b[sel].sum()
             # ---- kontrol maçları: en az adımdan sonra her eval_every adımda bir (ve en fazla adımda son kez) ----
@@ -279,6 +323,7 @@ def train_selfplay(sp, out_dir, resume=True, log=print):
                 last_eval, evaled = steps, True
             window += m["outcome_counts"]
             crash_window += m["crash_counts"]
+            anchor_window += bc[n_net:].sum(0)
             row = dict(gen=gen, learner=role, update=u, gen_steps=steps, total_steps=total,
                        time_s=time.perf_counter() - t_start, slot=slot.tolist(),
                        win_latest_eval=win_eval if evaled else None, eval_pct=eval_pct if evaled else None,
@@ -301,9 +346,13 @@ def train_selfplay(sp, out_dir, resume=True, log=print):
                     f"kl {m['approx_kl']:.4f} clip %{100 * m['clip_frac']:.0f} atlanan %{100 * m['kl_skip']:.0f} | "
                     f"gaz: hız {m['act_speed']:.2f} kırpılan %{100 * m['act_clip_frac']:.0f} "
                     f"düz %{100 * m['pre_sat_frac']:.0f} | çarpma K[{_crash_summary(crash_window, CHASER)}] "
-                    f"E[{_crash_summary(crash_window, EVADER)}]")
+                    f"E[{_crash_summary(crash_window, EVADER)}]"
+                    + (f" | çapa ({anchor_name[role]}): ebeleme %{100 * anchor_window[TAG] / max(anchor_window[1:].sum(), 1):.0f}"
+                       f" süre %{100 * anchor_window[TIMEOUT] / max(anchor_window[1:].sum(), 1):.0f}"
+                       if sp.anchor_blocks else ""))
                 window[:] = 0
                 crash_window[:] = 0
+                anchor_window[:] = 0
             if done_gen:
                 break
         # ---- nesil sonu: öğreneni havuzuna ekle, kaydet ----

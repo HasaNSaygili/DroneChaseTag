@@ -171,11 +171,14 @@ class Transition(NamedTuple):
 # ---------------------------------------------------------------------------
 # Eğitim
 # ---------------------------------------------------------------------------
-def make_update(cfg, env, me, opponent=None):
+def make_update(cfg, env, me, opponent=None, reward_adjust=None):
     """Tek bir PPO turunu (veri topla + öğren) yapan, derlenmiş fonksiyonu üretir.
-    opponent: (fn, init, reset) üçlüsü; verilmezse cfg.opponent'tan (elle yazılmış rakip)."""
+    opponent: (fn, init, reset) üçlüsü; verilmezse cfg.opponent'tan (elle yazılmış rakip).
+    reward_adjust: (n_worlds, n_sonuç) dizi ya da None. Öğrenenin ödülüne dünya ve sonuca göre eklenir. Self-play'in
+    çapa bloklarında 'rakip çarptı' ödülünü sıfırlamak için (bkz. selfplay.anchor_reward_adjust)."""
     opp = 1 - me
     opp_fn, _, opp_reset = opponent or make_opponent(cfg.opponent)
+    ra = None if reward_adjust is None else jnp.asarray(reward_adjust, jnp.float32)
     n, T = cfg.n_worlds, cfg.n_steps
     batch = n * T
     mb_size = batch // cfg.n_minibatches
@@ -186,7 +189,7 @@ def make_update(cfg, env, me, opponent=None):
         # İlk warmup_steps adım: 0 → lr; sonrası yukarıdaki plan (sabit ya da 0'a inen). Sayaç Adam'ın kendi sayacı:
         # KL yüzünden atlanan adımlar sayılmaz, self-play'de optimizer nesiller boyu taşındığı için ısınma bir kez olur.
         lr = optax.join_schedules([optax.linear_schedule(0.0, cfg.lr, cfg.warmup_steps), lr], [cfg.warmup_steps])
-    tx =optax.chain(optax.clip_by_global_norm(cfg.max_grad_norm), optax.adam(lr, eps=1e-5))
+    tx = optax.chain(optax.clip_by_global_norm(cfg.max_grad_norm), optax.adam(lr, eps=1e-5))
 
     # ---- 1. Veri toplama: bir oyun adımı ----
     def env_step(carry, key):
@@ -201,7 +204,10 @@ def make_update(cfg, env, me, opponent=None):
         actions = jnp.zeros((n, 2, 3)).at[:, me].set(a).at[:, opp].set(a_opp)
         es, reward, done, info = env.step(es, actions, k_env)
         mem = opp_reset(mem, done)
-        tr = Transition(obs, cobs, a, log_prob(mu, std, a), critic_value(params, cobs), reward[:, me], done,
+        r_me = reward[:, me]
+        if ra is not None:
+            r_me = r_me + ra[jnp.arange(n), info["outcome"]]
+        tr = Transition(obs, cobs, a, log_prob(mu, std, a), critic_value(params, cobs), r_me, done,
                         info["outcome"], info["length"], info["crash_kind"])
         return (params, es, mem, opp_args), tr
 
