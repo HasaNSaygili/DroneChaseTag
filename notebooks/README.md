@@ -6,6 +6,8 @@ Her koşunun kendi notebook'u `runs/` altında; kod o koşunun sürümüne sabit
 | Koşu | Colab |
 |---|---|
 | `eval-sp-empty-anchor-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/eval-sp-empty-anchor-s0.ipynb) |
+| `eval-sp-empty-anchor2-floor-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/eval-sp-empty-anchor2-floor-s0.ipynb) |
+| `eval-sp-faz1-anchor2-floor-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/eval-sp-faz1-anchor2-floor-s0.ipynb) |
 | `eval-sp-faz1-anchor2-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/eval-sp-faz1-anchor2-s0.ipynb) |
 | `eval-sp-faz1-evstd-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/eval-sp-faz1-evstd-s0.ipynb) |
 | `ppo-chaser-empty-nocrashrew-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/ppo-chaser-empty-nocrashrew-s0.ipynb) |
@@ -36,6 +38,8 @@ Her koşunun kendi notebook'u `runs/` altında; kod o koşunun sürümüne sabit
 | `sweep-ent-chaser-faz1` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sweep-ent-chaser-faz1.ipynb) |
 | `sweep-obs-chaser-faz1` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/sweep-obs-chaser-faz1.ipynb) |
 | `watch-sp-empty-anchor-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/watch-sp-empty-anchor-s0.ipynb) |
+| `watch-sp-empty-anchor2-floor-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/watch-sp-empty-anchor2-floor-s0.ipynb) |
+| `watch-sp-faz1-anchor2-floor-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/watch-sp-faz1-anchor2-floor-s0.ipynb) |
 | `watch-sp-faz1-anchor2-s0` | [aç](https://colab.research.google.com/github/HasaNSaygili/DroneChaseTag/blob/main/notebooks/runs/watch-sp-faz1-anchor2-s0.ipynb) |
 
 Diğerleri: `train.ipynb` (tek koşu şablonu), `sweep.ipynb` (tarama şablonu: birkaç koşu arka arkaya + karşılaştırma), `eval.ipynb` (bir self-play koşusunun değerlendirmesi: Elo + unutma testi, GPU; runs/ altında `eval-<koşu>`), `watch.ipynb` (ıska analizi + öğrenen vs öğrenen videoları; runs/ altında `watch-<koşu>`), `speedtest.ipynb` (A100 hız testi).
